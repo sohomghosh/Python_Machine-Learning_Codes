@@ -1,0 +1,2 @@
+import seaborn as sns
+sns.pairplot(data,x_vars=['TV','Radio','Newspaper'],y_vars='Sales',size=7,aspect=0.7)

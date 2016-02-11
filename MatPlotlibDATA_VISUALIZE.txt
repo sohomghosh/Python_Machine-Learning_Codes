@@ -1,0 +1,4 @@
+import matplotlib.pyplot as plt
+plt.plot(k_range,scores)
+plt.xlabel('value of k for KNN')
+plot.ylabel('Testing Accuracy')

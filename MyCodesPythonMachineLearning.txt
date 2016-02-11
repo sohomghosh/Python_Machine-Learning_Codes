@@ -1,0 +1,130 @@
+KNN
+from sklearn.neighbours import KNeighboursClassifier
+knn=KNeighboursClassifier(n_neighbours=1)
+knn.fit(x,y)#x is the feature matrix, y is the response vector
+knn.predict([3,5,4,2])
+x_new=[[3,5,4,2],[5,4,3,2]]
+knn.predict(X_new)
+
+
+
+LOGISTIC REGRESSION
+from sklearn.liner model import LogisticRegression
+logreg=LogisticRegression()
+logreg.fit(x,y)
+logreg.predict(X_new)
+
+
+
+
+Train and test on the entire dataset
+from sklearn.datasets import load_iris
+iris=load_iris()
+X=iris.data
+Y=iris.target()
+from sklearn.linear_model import LogisticRegression
+logreg=LogisticRegression()
+logreg.fit(X,Y)
+logreg.predict(X)
+y_pred=logreg.predict(X)
+len(y_pred)
+
+
+
+
+
+
+EVALUATION MATRIX
+from sklearn import metrices
+print metrices.accuracy_score(y,y_pred)
+
+
+TESTSET APPROACH | VALIDATION SET APPROACH | TRAIN/TEST SPLIT
+print x.shape
+print y.shape
+
+from sklearn.cross_validation import train_test_split
+x_train, x_test,y_train,y_test=train_test_split(x,y,test_size=0.4)
+knn.fit(x_train,y_train)
+y_pred=knn.predict(x_test)
+print metrices.accuracy_score(y_tests, y_pred)
+
+
+
+MATPLOTLIB
+import matplotlib.pyplot as plt
+plt.plot(k_range,scores)
+plt.xlabel('Values of K for KNN')
+plt.ylabel('Testing Accuracy')
+
+
+
+PANDAS
+import pandas as pd
+data=pd.read_csv('http://www-bcf.usc.edu/~gareth/Advertising.csv')
+data.lead() #see the 1st 5 rows
+data.tail() #last 5 rows
+data.shape()
+
+
+ 
+
+SEABORN for visualization
+import seaborn as sns
+sns.pairplot(data,x_vars=['TV','Radio','Newspaper'],y_vary='Sales',size=7,aspect=0.7)
+
+
+
+
+PREPARING X,Y FOR PANDAS
+features_col=['TV','Radio','Newspaper']
+X=data[feature_cols] #Use list to select a subset of the original data frame
+X=data[['TV','Radio','Newspaper']]
+X.head()
+print type(X)
+print X.shape
+y=data['Sales']
+y.head()
+
+
+
+
+TESTING
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test=train_test_split(x,y,random_state=1)
+
+Linear Regression
+#import model
+from sklearn.linear_model import LinearRegression
+linereg=LinearRegression()
+linreg.fit(X_train,y_train)
+print linreg.intercept_
+print linreg.coef_
+
+
+
+NUMPY
+import numpy as np
+b=np.array([[0,1,2],[3,4,5]])
+
+from numpy import genfromtxt
+my_data=genfromtxt('my_file.csv',delimeter=',')
+
+
+ERRORS
+true=[100,50,30,20]
+pred=[90,50,50,30]
+from sklearn import metrices
+print metrices.mean_absolute_error(true,pred)
+print metrices.mean_squared_error(true,pred)
+print np.sqrt(metrices.mean_squared_error(true,pred))
+
+
+K-FOLD CROSS VALIDATION
+from sklearn.cross_validation import KFold
+kf=kfold(25,n_folds=5,shuffle=False)
+
+#stratified sampling
+from sklearn.cross_validation import cross_val_score
+knn=KNeighboursClasifier(n_neighbors=5)
+scores=cross_val_score(knn,x,y,cv=10,scoring='accuracy')

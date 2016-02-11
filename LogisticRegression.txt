@@ -1,0 +1,25 @@
+from sklearn.linear_model import LogisticRegression
+logreg=LogisticRegression()
+logreg.fit(X,y)
+log_reg.predict(X_new)
+
+from sklearn.datasets import load_iris
+iris=load_iris()
+X=iris.data
+Y=iris.target
+
+from sklearn.linear_model import LogisticRegression
+iris=load_iris()
+X=iris.data
+Y=iris.target
+from sklearn.linear_model import LogisticRegression
+logreg=LogisticRegression()
+logreg.fit(X,Y)
+logreg.predict(X)
+y_pred=logreg.predict(X)
+len(y_pred)
+
+
+#Evaluating Matrix
+from sklearn import metrices
+print metrices.accuracy_score(y,y_pred)
