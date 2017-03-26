@@ -29,3 +29,7 @@ df.set_value('row_name','column_name',value=10,takeable=False)
 
 #Setting values by index
 df.set_value(0,1,value=10,takeable=True)#Referring to the 0th row and 1st column
+
+#Select as in sql
+selected_data1_erp=data[data['Profession'] == 'Data Analyst']
+selected_data2_erp=selected_data1_erp.groupby(['WorkExp'],as_index = False)['Salary'].mean()
