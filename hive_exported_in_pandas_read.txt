@@ -1,0 +1,4 @@
+The default separator is "^A". In python language, it is "\x01"
+import pandas as pd
+data=pd.DataFrame.from_csv("000000_0",sep='\x01',index_col=None)
+data.head
