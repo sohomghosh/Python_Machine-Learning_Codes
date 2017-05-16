@@ -1,1 +1,1 @@
-data_wexp_role_salmoresixtypercentile=pd.read_csv("file.csv",sep=',', dtype={'id': np.int32, 'name': object, 'projct_id':np.int32,'address':object,'age':np.float64}, error_bad_lines=False,index_col=None,low_memory=False)
+data_wexp_role_salmoresixtypercentile=pd.read_csv("file.csv",sep='\x01', dtype={'id': np.int32, 'name': object, 'projct_id':np.int32,'address':object,'age':np.float64}, error_bad_lines=False,index_col=None,low_memory=False)
