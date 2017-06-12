@@ -14,9 +14,9 @@ async def relatedSkillsFor(request):
 
     try:
         model = gensim.models.word2vec.Word2Vec.load(model_path)
-        myskills = request.args['s']
+        myskills = request.args['s'] #This is a list
         myskills = [s.lower() for s in myskills]
-        maxcount = request.args['maxcount'][0]
+        maxcount = request.args['maxcount'][0] #First i.e. 0th element of the list is the required parameter which has been passed
         res = model.most_similar(positive=myskills, topn=int(maxcount))
     except KeyError:
         return json({"error":"word %s not in our dictonary/vocabulary" % request.args['s']})
