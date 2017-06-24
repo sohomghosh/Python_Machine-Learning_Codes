@@ -16,7 +16,7 @@ schemaPeople = sqlContext.createDataFrame(people)
 
 
 #For databricks related packages
-./bin/pyspark --packages com.databricks:spark-csv_2.10:1.3.0
+#./bin/pyspark --packages com.databricks:spark-csv_2.10:1.3.0
 
 #Before Spark 1.4
 train = sqlContext.load(source="com.databricks.spark.csv", path = 'PATH/train.csv', header = True,inferSchema = True)
@@ -108,4 +108,5 @@ df.withColumn('Purchase_new', df.Purchase /2.0).select('Purchase','Purchase_new'
 #Drop column
 df.drop('column_name')
 
+#ML - machine learning libraries
 #Source: http://spark.apache.org/docs/latest/api/python/pyspark.html
