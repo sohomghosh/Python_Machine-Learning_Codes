@@ -1,4 +1,7 @@
 #Source: https://www.analyticsvidhya.com/blog/2016/10/spark-dataframe-and-operations/
+#https://spark.apache.org/docs/latest/ml-features.html
+#Source: http://spark.apache.org/docs/latest/api/python/pyspark.html
+
 
 from pyspark import SparkContext
 sc = SparkContext()
@@ -123,5 +126,3 @@ df_final=df_final.drop('age')
 df_final.write.csv('/index/df_final.csv')
 
 
-#ML - machine learning libraries
-#Source: http://spark.apache.org/docs/latest/api/python/pyspark.html
