@@ -108,5 +108,9 @@ df.withColumn('Purchase_new', df.Purchase /2.0).select('Purchase','Purchase_new'
 #Drop column
 df.drop('column_name')
 
+#Filter, Join, groupBy
+people.filter(people.age > 30).join(department, people.deptId == department.id) \
+  .groupBy(department.name, "gender").agg({"salary": "avg", "age": "max"})
+
 #ML - machine learning libraries
 #Source: http://spark.apache.org/docs/latest/api/python/pyspark.html
