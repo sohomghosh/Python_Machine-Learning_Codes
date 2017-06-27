@@ -112,5 +112,8 @@ df.drop('column_name')
 people.filter(people.age > 30).join(department, people.deptId == department.id) \
   .groupBy(department.name, "gender").agg({"salary": "avg", "age": "max"})
 
+#Change name of column
+skills_data1.selectExpr("ad_id as ad_id_1", "cleaned_skills as cleaned_skills")
+
 #ML - machine learning libraries
 #Source: http://spark.apache.org/docs/latest/api/python/pyspark.html
