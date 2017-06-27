@@ -116,5 +116,12 @@ people.filter(people.age > 30).join(department, people.deptId == department.id) 
 new_df=df.selectExpr("id as id_1")
 new_df=df.withColumnRenamed("money", "money_in_rupees")
 
+#Drop a column from a dataframe
+df_final=df_final.drop('age')
+
+#Write a dataframe as csv
+df_final.write.csv('/index/df_final.csv')
+
+
 #ML - machine learning libraries
 #Source: http://spark.apache.org/docs/latest/api/python/pyspark.html
