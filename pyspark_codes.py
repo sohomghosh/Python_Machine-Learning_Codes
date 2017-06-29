@@ -161,4 +161,4 @@ df_exploded = df.withColumn('b', explode('b'))
 # +---+---+---------+---+
 
 #groupby and count and sort by count
-data_use.groupby(['sal','deg']).count().show().orderBy('count',ascending=False).show(100)
+data_use.groupby(['sal','deg']).count().orderBy('count',ascending=False).show(100)
