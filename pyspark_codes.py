@@ -136,3 +136,7 @@ myDF=myDF.withColumn("topic_word_count",topicWord(myDF.bodyText_token))#bodyText
 df_num = df.select(df.employment.cast("float"), 
 df.education.cast("float"), 
 df.health.cast("float"))
+
+#Filter based on length of lists in a column
+df_factlist.filter(size(df_factlist['fact_list'])>=2).show()
+df.where(size(col("tokens")) <= 3).show()#Another example
