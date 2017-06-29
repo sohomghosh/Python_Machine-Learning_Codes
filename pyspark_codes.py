@@ -140,3 +140,24 @@ df.health.cast("float"))
 #Filter based on length of lists in a column
 df_factlist.filter(size(df_factlist['fact_list'])>=2).show()
 df.where(size(col("tokens")) <= 3).show()#Another example
+
+
+
+#Explode: Make new rows by splitting a column of list
+#Given dataframe df
+# +---+---------+---------+---+
+# |  a|        b|        c|  d|
+# +---+---------+---------+---+
+# |  1|[1, 2, 3]|[7, 8, 9]|foo|
+# +---+---------+---------+---+
+df_exploded = df.withColumn('b', explode('b'))
+# >>> df_exploded.show()
+# +---+---+---------+---+
+# |  a|  b|        c|  d|
+# +---+---+---------+---+
+# |  1|  1|[7, 8, 9]|foo|
+# |  1|  2|[7, 8, 9]|foo|
+# |  1|  3|[7, 8, 9]|foo|
+# +---+---+---------+---+
+
+
