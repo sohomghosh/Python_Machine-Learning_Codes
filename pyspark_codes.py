@@ -162,3 +162,29 @@ df_exploded = df.withColumn('b', explode('b'))
 
 #groupby and count and sort by count
 data_use.groupby(['sal','deg']).count().orderBy('count',ascending=False).show(100)
+
+
+
+#Window Functions
+rdd = sc.parallelize([("user_1",  "object_1",  3), 
+                      ("user_1",  "object_2",  2), 
+                      ("user_2",  "object_1",  5), 
+                      ("user_2",  "object_2",  2), 
+                      ("user_2",  "object_2",  6)])
+df = sqlContext.createDataFrame(rdd, ["user_id", "object_id", "score"])
+from pyspark.sql.window import Window
+from pyspark.sql.functions import rank, col
+
+window = Window.partitionBy(df['user_id']).orderBy(df['score'].desc())
+
+df.select('*', rank().over(window).alias('rank')) 
+  .filter(col('rank') <= 2) 
+  .show() 
+#+-------+---------+-----+----+
+#|user_id|object_id|score|rank|
+#+-------+---------+-----+----+
+#| user_1| object_1|    3|   1|
+#| user_1| object_2|    2|   2|
+#| user_2| object_2|    6|   1|
+#| user_2| object_1|    5|   2|
+#+-------+---------+-----+----+
