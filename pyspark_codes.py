@@ -108,7 +108,7 @@ df.orderBy(df.Purchase.desc()).show(5) #Purchase is the column name
 #Adding new column
 df.withColumn('Purchase_new', df.Purchase /2.0).select('Purchase','Purchase_new').show(5)
 
-#Drop column
+#Drop column; Remove a column
 df.drop('column_name')
 
 #Filter, Join, groupBy
