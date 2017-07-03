@@ -188,3 +188,7 @@ df.select('*', rank().over(window).alias('rank'))
 #| user_2| object_2|    6|   1|
 #| user_2| object_1|    5|   2|
 #+-------+---------+-----+----+
+
+
+li=[23,34,56] #list of elements
+df.filter(df['column_name'].isin(li)) #Checking if column matches any element of a list
