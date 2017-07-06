@@ -241,3 +241,7 @@ pre_final_data['appln_id']=pd.to_numeric(pd.Series(pre_final_data['appln_id']),e
 similar_pos=['123','322']
 #data['pos_spec']=['123|452','987|321']
 dt_pos=data['pos_spec'].apply(lambda x : len(set(str(x).split('|')).intersection(set(similar_pos)))>0)
+
+#Combine lists of different length to a dataframe; First need to convert lists to a dataframe
+#Combine dataframes of different number of rows to a single dataframe
+pd.concat([df,df1], ignore_index=True, axis=1) #df and df2 are dataframes created from lists of different length
