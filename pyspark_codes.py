@@ -218,3 +218,16 @@ df.select('*', rank().over(window).alias('rank'))
 
 li=[23,34,56] #list of elements
 df.filter(df['column_name'].isin(li)) #Checking if column matches any element of a list
+
+
+
+import numpy as np
+import pyspark.sql.functions as func
+
+def median(values_list):
+    med = np.median(values_list)
+    return float(med)
+udf_median = func.udf(median, FloatType())
+
+df_grouped = df.groupby(['a', 'd']).agg(udf_median(func.collect_list(col('c'))).alias('median'))
+df_grouped.show()
