@@ -22,7 +22,7 @@ def api_hello():
 if __name__ == '__main__':
 	app.run(host="174.89.99.186",debug=True)
 
-
+#chmod +x python_flask_file.py
 #run by ./python_flask_file.py
 #call by http://174.89.99.186:5000/hello?name=SohomGhosh
 #call by http://174.89.99.186:5000/hello
