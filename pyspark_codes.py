@@ -219,6 +219,7 @@ df.select('*', rank().over(window).alias('rank'))
 li=[23,34,56] #list of elements
 df.filter(df['column_name'].isin(li)) #Checking if column matches any element of a list
 
+df.filter(df['column_name'].isin(li)==False) #Selecting if column does not match any element of a list
 
 
 import numpy as np
@@ -231,3 +232,6 @@ udf_median = func.udf(median, FloatType())
 
 df_grouped = df.groupby(['a', 'd']).agg(udf_median(func.collect_list(col('c'))).alias('median'))
 df_grouped.show()
+
+#Extract a column from a dataframe to a list
+sea_lists=[row[0] for row in dataframe_with_sea.collect()]
