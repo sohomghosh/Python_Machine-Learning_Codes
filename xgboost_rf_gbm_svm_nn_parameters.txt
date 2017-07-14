@@ -1,0 +1,17 @@
+XG-BOOST
+https://github.com/dmlc/xgboost/blob/master/doc/parameter.md
+
+Random Forest
+http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+Gradient Boosting Classifier
+http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html
+
+Neural Net
+http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
+
+SVM
+http://scikit-learn.org/stable/modules/svm.html
+
+Light GBM
+https://github.com/Microsoft/LightGBM
