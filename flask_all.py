@@ -67,6 +67,9 @@ if __name__ == "__main__":
 #Source 
 #http://www.flaskapi.org/#roadmap
 
+#Flask explained in details
+#https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/1
+
 #Change permissions
 #chmod +x flask_all.py
 
