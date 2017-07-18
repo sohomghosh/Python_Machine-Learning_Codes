@@ -242,3 +242,12 @@ df_grouped.show()
 
 #Extract a column from a dataframe to a list
 sea_lists=[row[0] for row in dataframe_with_sea.collect()]
+
+
+#Round off a column
+from pyspark.sql.functions import pow, lit
+from pyspark.sql.types import LongType
+num_places = 3
+m = pow(lit(10), num_places).cast(LongType())
+df = sc.parallelize([(0.6643, ), (0.6446, )]).toDF(["x"])
+df.withColumn("trunc", (col("x") * m).cast(LongType()) / m)
