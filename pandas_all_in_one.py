@@ -11,7 +11,7 @@ data_natun=pd.read_csv("file.csv",sep='\x01', dtype={'id': np.int32, 'name': obj
 
 #Read data giving _csv.Error: line contains NULL byte
 from io import StringIO
-data=pd.concat(pd.read_csv(StringIO(''.join(l.replace('\x00', '') for l in open("jb_duplicate_questions_detect_live_full_new.csv"))),sep=',',error_bad_lines=False,header=0,engine='python',chunksize=16*1024,quoting=csv.QUOTE_NONE, encoding='utf-8'))
+data=pd.concat(pd.read_csv(StringIO(''.join(l.replace('\x00', '') for l in open("data.csv"))),sep=',',error_bad_lines=False,header=0,engine='python',chunksize=16*1024,quoting=csv.QUOTE_NONE, encoding='utf-8'))
 
 
 #Join no result:
