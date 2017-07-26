@@ -166,6 +166,9 @@ def label_maker_topic(tokens,topic_words):
 topicWord=udf(lambda tkn: label_maker_topic(tkn,topic_words),StringType())#label_maker_topic is the name of the function, tkn referes to the column
 myDF=myDF.withColumn("topic_word_count",topicWord(myDF.bodyText_token))#bodyText_token is the column of the dataframe
 
+#Splitting a column into seperate columns
+user_messages_sparkdf.withColumn('ads_splitted',split(col('ads'),','))
+
 #Type Casting : changing datatype of a column in pyspark
 df_num = df.select(df.employment.cast("float"), 
 df.education.cast("float"), 
