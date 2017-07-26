@@ -25,7 +25,8 @@ import time
 from pyspark.ml.feature import VectorIndexer, VectorAssembler, SQLTransformer
 from pyspark.ml import Pipeline
 from pyspark.sql.functions import lit
-from pyspark.ml.linalg import SparseVector, DenseVector 
+from pyspark.ml.linalg import SparseVector, DenseVector
+from pyspark.sql.functions import explode
 
 from pyspark.ml.classification import MultilayerPerceptronClassifier
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
