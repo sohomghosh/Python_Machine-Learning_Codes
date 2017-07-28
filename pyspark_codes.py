@@ -104,7 +104,7 @@ df.select('User_ID','Age').show(5)
 #Distinct number of items in a column 'Item'
 df.select('Item').distinct().count()
 
-#Pair wise frequency of categorical columns
+#Pair wise frequency of categorical columns; pivot like; Rows to columns
 df.crosstab('Age', 'Gender').show()
 
 #Drop duplicates
