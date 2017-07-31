@@ -255,3 +255,22 @@ num_places = 3
 m = pow(lit(10), num_places).cast(LongType())
 df = sc.parallelize([(0.6643, ), (0.6446, )]).toDF(["x"])
 df.withColumn("trunc", (col("x") * m).cast(LongType()) / m)
+
+
+######GROUPBY THEN CONCAT OR MAKE A LIST#####
+df = spark.createDataFrame([
+  ("username1", "friend1"),
+  ("username1", "friend2"),
+  ("username2", "friend1"),
+  ("username2", "friend3")],["username", "friend"])
+
+from pyspark.sql import functions as F
+from pyspark.sql.types import StringType
+join_ = F.udf(lambda x: ", ".join(x), StringType())
+
+#Group concat, Groupconcat, group_concat
+df.groupBy("username").agg(join_(F.collect_list("friend").alias("friends_grouped"))).show(10)
+
+#Groupby and list form , collect_list
+df.groupBy("username").agg(F.collect_list("friend").alias("friends_grouped")).show(10)
+
