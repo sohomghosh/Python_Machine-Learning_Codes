@@ -33,6 +33,7 @@ from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 
 from pyspark.ml.classification import GBTClassifier
 
+from pyspark.sql.functions import max,min
 
 from pyspark import SparkContext
 sc = SparkContext()
@@ -274,3 +275,5 @@ df.groupBy("username").agg(join_(F.collect_list("friend").alias("friends_grouped
 #Groupby and list form , collect_list
 df.groupBy("username").agg(F.collect_list("friend").alias("friends_grouped")).show(10)
 
+#Select max or maximum from a column
+train.select(max("datetime")).show(truncate=False)
