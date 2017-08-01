@@ -277,3 +277,7 @@ df.groupBy("username").agg(F.collect_list("friend").alias("friends_grouped")).sh
 
 #Select max or maximum from a column
 train.select(max("datetime")).show(truncate=False)
+
+#Get Item : Extract item from a specific postion of a column consisting of lists
+#Previously id was [ab,fg,fe] out of which new_id [ab] is to be selected
+ans=df_tmp.withColumn('new_id',split(df_tmp.id,',').getItem(0))
