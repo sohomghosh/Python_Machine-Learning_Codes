@@ -104,7 +104,7 @@ df.describe('particular_column_name').show()
 #Select particular column(s)
 df.select('User_ID','Age').show(5)
 
-#Distinct number of items in a column 'Item'
+#Distinct number of items in a column 'Item'; Unique number of items in a column 'Item'
 df.select('Item').distinct().count()
 
 #Pair wise frequency of categorical columns; pivot like; Rows to columns
