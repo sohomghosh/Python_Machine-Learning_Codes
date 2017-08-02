@@ -36,6 +36,8 @@ from pyspark.ml.classification import GBTClassifier
 from pyspark.sql.functions import max,min
 
 from pyspark import SparkContext
+from pyspark.sql.functions import monotonically_increasing_id
+
 sc = SparkContext()
 
 sqlContext = SQLContext(sc)
@@ -281,3 +283,7 @@ train.select(max("datetime")).show(truncate=False)
 #Get Item : Extract item from a specific postion of a column consisting of lists
 #Previously id was [ab,fg,fe] out of which new_id [ab] is to be selected
 ans=df_tmp.withColumn('new_id',split(df_tmp.id,',').getItem(0))
+
+
+#Add row number column to a dataframe: Useful as pyspark dataframes cannot be accessed by index, no command like tail and join reshuffles them
+df.withColumn("id", monotonically_increasing_id()).show()
