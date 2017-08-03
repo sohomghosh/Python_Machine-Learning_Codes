@@ -126,6 +126,9 @@ df.filter(df.Purchase > 15000)
 #check what are the categories for Product_ID, which are in test file but not in train file by applying subtract operation
 diff_cat_in_train_test=test.select('Product_ID').subtract(train.select('Product_ID'))
 
+#Return a new DataFrame containing rows in this frame but not in another frame. This is equivalent to EXCEPT in SQL. Intersection.
+test_use=train_test_use.subtrcat(train_use).orderBy(col('row_id')).drop(col('row_id'))
+
 #Group by
 df.groupby('Age').agg({'Purchase': 'mean'}).show()
 df.groupby('Age').count().show()
