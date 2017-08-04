@@ -290,3 +290,6 @@ ans=df_tmp.withColumn('new_id',split(df_tmp.id,',').getItem(0))
 
 #Add row number column to a dataframe: Useful as pyspark dataframes cannot be accessed by index, no command like tail and join reshuffles them
 df.withColumn("id", monotonically_increasing_id()).show()
+
+#Relacing null values, missing values
+train_test=train_test.na.fill({'siteid':3696590,'browserid_merged':2, 'devid_encode':1})
