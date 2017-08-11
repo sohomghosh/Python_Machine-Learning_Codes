@@ -100,3 +100,10 @@ class ASpecificClass:
 #Inheritance: create a child cass of a base class
 #Compostion: create a object instance of a class within another class
 
+#Source: https://stackoverflow.com/questions/13646245/is-it-possible-to-make-abstract-classes-in-python
+# Python 3.4+
+from abc import ABC, abstractmethod
+class Abstract(ABC):
+    @abstractmethod
+    def foo(self):
+        pass
