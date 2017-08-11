@@ -75,3 +75,28 @@ roman_model = roman_mean(directory = '/home/data/', n_folds_gen = 10, n_folds_su
 
 #Saving roman_model
 roman_model.save_in_file(data)
+
+#Also check this
+#https://www.hackerearth.com/practice/python/object-oriented-programming/classes-and-objects-i/tutorial/
+#https://www.hackerearth.com/practice/python/object-oriented-programming/classes-and-objects-ii-inheritance-and-composition/tutorial/
+
+#Inheritance
+class DerivedClassName(BaseClassName):
+    pass
+
+
+#Composition
+class GenericClass:
+    define some attributes and methods
+
+class ASpecificClass:
+    Instance_variable_of_generic_class = GenericClass
+
+# use this instance somewhere in the class
+    some_method(Instance_variable_of_generic_class)
+
+
+	
+#Inheritance: create a child cass of a base class
+#Compostion: create a object instance of a class within another class
+
