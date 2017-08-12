@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
-plt.plot(k_range,scores)
+import pyplot
+
+plt.plot(k_range,scores) #for line plot
+plt.scatter(k_range,scores) #for scatter plot
 plt.xlabel('value of k for KNN')
 plt.ylabel('Testing Accuracy')
 plt.savefig('test_set_feature_relations.png',dpi=1000) #more dpi more size of the image
