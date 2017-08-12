@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
 plt.plot(k_range,scores)
 plt.xlabel('value of k for KNN')
-plot.ylabel('Testing Accuracy')
+plt.ylabel('Testing Accuracy')
+plt.savefig('test_set_feature_relations.png')
