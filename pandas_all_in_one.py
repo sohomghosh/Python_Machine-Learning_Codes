@@ -249,3 +249,21 @@ dt_pos=data['pos_spec'].apply(lambda x : len(set(str(x).split('|')).intersection
 #Combine lists of different length to a dataframe; First need to convert lists to a dataframe
 #Combine dataframes of different number of rows to a single dataframe
 pd.concat([df,df1], ignore_index=True, axis=1) #df and df2 are dataframes created from lists of different length
+
+
+#Apply on multiple pandas columns
+def quater(mn,yr):
+	if mn in [1,2,3]:
+		return "Q1-"+str(yr)
+	elif mn in [4,5,6]:
+		return "Q2-"+str(yr)
+	elif mn in [7,8,9]:
+		return "Q3-"+str(yr)
+	elif mn in [10,11,12]:
+		return "Q4-"+str(yr)
+	else:
+		return np.nan()
+
+#Transforming multiple columns on df_all
+df_all['quater']=df_all[['month','year']].apply(lambda x: quater(*x), axis=1)
+
