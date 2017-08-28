@@ -267,3 +267,7 @@ def quater(mn,yr):
 #Transforming multiple columns on df_all
 df_all['quater']=df_all[['month','year']].apply(lambda x: quater(*x), axis=1)
 
+
+###DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
+pd.DatetimeIndex(data['Given Date'],ambiguous ='NaT').month#######DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
+###DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
