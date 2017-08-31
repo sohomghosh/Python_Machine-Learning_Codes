@@ -271,3 +271,10 @@ df_all['quater']=df_all[['month','year']].apply(lambda x: quater(*x), axis=1)
 ###DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
 pd.DatetimeIndex(data['Given Date'],ambiguous ='NaT').month#######DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
 ###DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
+
+### Find out columns having null  ###
+pd.isnull(df).sum() > 0
+
+### Pivot ###
+df_new=df.pivot(index='id', columns='column_to_be_transformed_to_multiple_columns', values='column_whose_values_are_to_be_shown_in_each_cell').reset_index()
+
