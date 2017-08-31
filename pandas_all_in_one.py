@@ -278,3 +278,8 @@ pd.isnull(df).sum() > 0
 ### Pivot ###
 df_new=df.pivot(index='id', columns='column_to_be_transformed_to_multiple_columns', values='column_whose_values_are_to_be_shown_in_each_cell').reset_index()
 
+### Pivot table ###
+df_new=df.pivot_table(index=['id1','id2'], columns=['1st_column_to_be_transformed_to_multiple_columns','2nd_column_to_be_transformed_to_multiple_columns'], values=['1st_column_whose_values_are_to_be_shown_in_each_cell','2nd_column_whose_values_are_to_be_shown_in_each_cell']).reset_index()
+
+### Fatten-a-hierarchical-index-in-columns after using pivot_table ###
+[' '.join(col).strip() for col in df.columns.values]
