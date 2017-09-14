@@ -275,11 +275,40 @@ pd.DatetimeIndex(data['Given Date'],ambiguous ='NaT').month#######DO NOT USE THI
 ### Find out columns having null  ###
 pd.isnull(df).sum() > 0
 
-### Pivot ###
+### Pivot ### [Row to Column]
 df_new=df.pivot(index='id', columns='column_to_be_transformed_to_multiple_columns', values='column_whose_values_are_to_be_shown_in_each_cell').reset_index()
 
-### Pivot table ###
+### Pivot table ### [Row to Column]
 df_new=df.pivot_table(index=['id1','id2'], columns=['1st_column_to_be_transformed_to_multiple_columns','2nd_column_to_be_transformed_to_multiple_columns'], values=['1st_column_whose_values_are_to_be_shown_in_each_cell','2nd_column_whose_values_are_to_be_shown_in_each_cell']).reset_index()
 
 ### Fatten-a-hierarchical-index-in-columns after using pivot_table ###
 [' '.join(col).strip() for col in df.columns.values]
+
+### See more text each column in pandas
+ pd.options.display.max_colwidth = 100
+	
+
+### Source: https://medium.com/towards-data-science/pandas-tips-and-tricks-33bcc8a40bb9
+#Name: "Sohom Ghosh" to "Sohom" "Ghosh" each in seperate column; Spliting a string into multiple strings by space
+df[‘name’] = df.name.str.split(" ", expand=True)
+
+### Row to Column ###
+#Different types entries mentioned in "activity" column as seperate columns. The entries of these cells will be number of occurrences
+df.groupby('name')['activity'].value_counts().unstack().fillna(0)
+
+#Time Difference between timestamps of activities of a person
+df = df.sort_values(by=['name','timestamp'])
+df['time_diff'] = df.groupby('name')['timestamp'].diff()
+
+#Move each row one up in the dataframe
+df[‘new_shifted_column’] = df.time_diff.shift(-1)
+# -1 means one row up
+
+#Convert Time Difference to total seconds betweeen them
+df['time_diff'] = df.time_diff.dt.total_seconds()
+
+#cumuative sum
+df['money_spent_so_far'] = df.groupby(‘name’)['money_spent'].cumsum()
+
+#Cumulative count
+df2 = df[df.groupby(‘name’).cumcount()==1]
