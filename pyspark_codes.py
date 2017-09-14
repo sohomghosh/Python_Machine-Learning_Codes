@@ -293,3 +293,7 @@ df.withColumn("id", monotonically_increasing_id()).show()
 
 #Relacing null values, missing values
 train_test=train_test.na.fill({'siteid':3696590,'browserid_merged':2, 'devid_encode':1})
+
+#Sellect not null values of a column
+df1.filter(df1.ColumnName_to_check.isNotNull()).show
+
