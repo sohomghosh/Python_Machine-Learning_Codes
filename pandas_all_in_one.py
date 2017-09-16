@@ -312,3 +312,16 @@ df['money_spent_so_far'] = df.groupby(‘name’)['money_spent'].cumsum()
 
 #Cumulative count
 df2 = df[df.groupby(‘name’).cumcount()==1]
+
+
+#See dtype of all columns
+[(f,train[f].dtype) for f in train.columns]
+
+#Convert all categorical features to numeric
+for f in features:
+    if df_final_train[f].dtype=='object':
+    	lbl = LabelEncoder()
+    	lbl.fit(list(df_final_train[f].values)+list(df_final_test[f].values))
+    	df_final_train[f] = lbl.transform(list(df_final_train[f].values))
+    	df_final_test[f]= lbl.transform(list(df_final_test[f].values))
+
