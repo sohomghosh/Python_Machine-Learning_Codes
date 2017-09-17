@@ -328,3 +328,5 @@ for f in features:
     	df_final_train[f] = lbl.transform(list(df_final_train[f].values))
     	df_final_test[f]= lbl.transform(list(df_final_test[f].values))
 
+# Equivalent to summary in python #Gives Max, Min, count, detailed description
+train_clean.describe()
