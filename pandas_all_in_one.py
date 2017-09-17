@@ -275,6 +275,9 @@ pd.DatetimeIndex(data['Given Date'],ambiguous ='NaT').month#######DO NOT USE THI
 ### Find out columns having null  ###
 pd.isnull(df).sum() > 0
 
+### Find out number of null values in each column
+pd.isnull(df).sum()
+
 ### Pivot ### [Row to Column]
 df_new=df.pivot(index='id', columns='column_to_be_transformed_to_multiple_columns', values='column_whose_values_are_to_be_shown_in_each_cell').reset_index()
 
