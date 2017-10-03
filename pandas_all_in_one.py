@@ -330,3 +330,6 @@ for f in features:
 
 # Equivalent to summary in python #Gives Max, Min, count, detailed description
 train_clean.describe()
+
+# Spelling correction in pandas dataframe
+data['col']=data['col'].replace(to_replace=['wrong_spelling_1','wrong_spelling_2'],value='correct_spelling')
