@@ -324,3 +324,30 @@ foobars.printSchema()
 ##  |    |-- bar: float (nullable = false)
 
 foobars.select("foobar.foo", "foobar.bar").show()
+
+
+
+
+###Case when in pyspark SOURCE: https://stackoverflow.com/questions/39982135/apache-spark-dealing-with-case-statements
+from pyspark.sql import functions as F
+df.select(df.name, F.when(df.age > 4, 1).when(df.age < 3, -1).otherwise(0)).show()
+df.withColumn('new_col', F.when(df.age > 4, 1).when(df.age < 3, -1).otherwise(0)).show()
+
+
++-----+--------------------------------------------------------+
+| name|CASE WHEN (age > 4) THEN 1 WHEN (age < 3) THEN -1 ELSE 0|
++-----+--------------------------------------------------------+
+|Alice|                                                      -1|
+|  Bob|                                                       1|
++-----+--------------------------------------------------------+
+
+
+from pyspark.sql import functions as F
+df.select(df.name, F.when(df.age > 3, 1).otherwise(0)).show()
+
++-----+---------------------------------+
+| name|CASE WHEN (age > 3) THEN 1 ELSE 0|
++-----+---------------------------------+
+|Alice|                                0|
+|  Bob|                                1|
++-----+---------------------------------+
