@@ -120,6 +120,7 @@ df.dropna().count()
 #Replace na by zero
 df.fillna(0)
 
+
 #Filter - Select entries for which Purchase is > 15000
 df.filter(df.Purchase > 15000)
 
@@ -293,7 +294,7 @@ df.withColumn("id", monotonically_increasing_id()).show()
 
 #Relacing null values, missing values
 train_test=train_test.na.fill({'siteid':3696590,'browserid_merged':2, 'devid_encode':1})
-
+#siteid, browserid_merged are column names
 #Sellect not null values of a column
 df1.filter(df1.ColumnName_to_check.isNotNull()).show
 
