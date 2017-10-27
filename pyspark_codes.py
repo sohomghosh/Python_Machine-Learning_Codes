@@ -352,3 +352,17 @@ df.select(df.name, F.when(df.age > 3, 1).otherwise(0)).show()
 |Alice|                                0|
 |  Bob|                                1|
 +-----+---------------------------------+
+
+##Select maximum date i.e. latest date
+#Source: https://stackoverflow.com/questions/38377894/how-to-get-maxdate-from-given-set-of-data-grouped-by-some-fields-using-pyspark
+
+from pyspark.sql.functions import col, max as max_
+
+df = sc.parallelize([
+    ("2016-04-06 16:36", 1234, 111, 1),
+    ("2016-04-06 17:35", 1234, 111, 5),
+]).toDF(["datetime", "userId", "memberId", "value"])
+
+(df.withColumn("datetime", col("datetime").cast("timestamp"))
+    .groupBy("userId", "memberId")
+    .agg(max_("datetime")))
