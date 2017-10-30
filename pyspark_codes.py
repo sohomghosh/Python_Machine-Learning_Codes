@@ -113,6 +113,8 @@ df.crosstab('Age', 'Gender').show()
 #Drop duplicates
 train.select('Age','Gender').dropDuplicates().show()
 
+#Drop duplicates
+df.dropDuplicates(['name', 'height']).show()
 #Drop na
 df.dropna()
 df.dropna().count()
@@ -334,25 +336,25 @@ from pyspark.sql import functions as F
 df.select(df.name, F.when(df.age > 4, 1).when(df.age < 3, -1).otherwise(0)).show()
 df.withColumn('new_col', F.when(df.age > 4, 1).when(df.age < 3, -1).otherwise(0)).show()
 
-
+'''
 +-----+--------------------------------------------------------+
 | name|CASE WHEN (age > 4) THEN 1 WHEN (age < 3) THEN -1 ELSE 0|
 +-----+--------------------------------------------------------+
 |Alice|                                                      -1|
 |  Bob|                                                       1|
 +-----+--------------------------------------------------------+
-
+'''
 
 from pyspark.sql import functions as F
 df.select(df.name, F.when(df.age > 3, 1).otherwise(0)).show()
-
+'''
 +-----+---------------------------------+
 | name|CASE WHEN (age > 3) THEN 1 ELSE 0|
 +-----+---------------------------------+
 |Alice|                                0|
 |  Bob|                                1|
 +-----+---------------------------------+
-
+'''
 ##Select maximum date i.e. latest date
 #Source: https://stackoverflow.com/questions/38377894/how-to-get-maxdate-from-given-set-of-data-grouped-by-some-fields-using-pyspark
 
