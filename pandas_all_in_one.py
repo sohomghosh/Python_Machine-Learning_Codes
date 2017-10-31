@@ -333,3 +333,7 @@ train_clean.describe()
 
 # Spelling correction in pandas dataframe
 data['col']=data['col'].replace(to_replace=['wrong_spelling_1','wrong_spelling_2'],value='correct_spelling')
+
+#Apply user defined function taking multiple columns of a pandas dataframe input simultaneously
+df.apply(lambda row: my_test(row['a'], row['c']), axis=1)
+#Source: https://stackoverflow.com/questions/16353729/pandas-how-to-use-apply-function-to-multiple-columns
