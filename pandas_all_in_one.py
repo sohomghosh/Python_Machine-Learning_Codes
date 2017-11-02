@@ -337,3 +337,10 @@ data['col']=data['col'].replace(to_replace=['wrong_spelling_1','wrong_spelling_2
 #Apply user defined function taking multiple columns of a pandas dataframe input simultaneously
 df.apply(lambda row: my_test(row['a'], row['c']), axis=1)
 #Source: https://stackoverflow.com/questions/16353729/pandas-how-to-use-apply-function-to-multiple-columns
+
+#Pandas - R dataframe comparison link
+http://pandas.pydata.org/pandas-docs/stable/comparison_with_r.html
+
+#Pandas - categorical features
+http://pandas.pydata.org/pandas-docs/stable/categorical.html#categorical
+http://pandas.pydata.org/pandas-docs/stable/api.html#api-categorical
