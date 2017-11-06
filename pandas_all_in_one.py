@@ -344,3 +344,6 @@ http://pandas.pydata.org/pandas-docs/stable/comparison_with_r.html
 #Pandas - categorical features
 http://pandas.pydata.org/pandas-docs/stable/categorical.html#categorical
 http://pandas.pydata.org/pandas-docs/stable/api.html#api-categorical
+
+#Reading excel file
+data6 = pd.read_excel('mar_data.xls',header=0,sheetname=1)
