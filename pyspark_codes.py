@@ -368,3 +368,13 @@ df = sc.parallelize([
 (df.withColumn("datetime", col("datetime").cast("timestamp"))
     .groupBy("userId", "memberId")
     .agg(max_("datetime")))
+
+
+#After writing dataframe it is read with column _c0, _c1, _c2 ... etc. ; This script renames _c0, _c1, _c2 ... to names given in list li
+li=[<colnames>]
+st=''
+for i in range(len(li)):
+	st=st+".withColumnRenamed('_c"+str(i)+"','"+str(li[i])+"')"
+
+
+
