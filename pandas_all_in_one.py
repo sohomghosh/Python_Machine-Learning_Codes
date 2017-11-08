@@ -350,3 +350,6 @@ data6 = pd.read_excel('mar_data.xls',header=0,sheetname=1)
 
 #JOIN using pandas
 pd.merge(df1,df2,on='key_column_to_merge',how='inner')
+
+#Encoding
+train_test['Gender'] = train_test['Gender'].replace(to_replace = {'Male': 0, 'Female': 1})
