@@ -353,3 +353,7 @@ pd.merge(df1,df2,on='key_column_to_merge',how='inner')
 
 #Encoding
 train_test['Gender'] = train_test['Gender'].replace(to_replace = {'Male': 0, 'Female': 1})
+
+#Train Valid divide
+from sklearn.model_selection import train_test_split
+X_train,X_valid=train_test_split(train,test_size=0.33, random_state=42)
