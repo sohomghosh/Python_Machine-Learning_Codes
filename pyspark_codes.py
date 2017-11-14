@@ -393,3 +393,12 @@ df1 = sqlContext.createDataFrame([("11/25/1991","11/24/1991","11/30/1991"),
 func =  udf (lambda x: datetime.strptime(x, '%m/%d/%Y'), DateType())
 
 df = df1.withColumn('test', func(col('first')))
+
+
+#Taking date difference in pyspark
+#Source: https://stackoverflow.com/questions/36051299/how-to-subtract-a-column-of-days-from-a-column-of-dates-in-pyspark
+from pyspark.sql import Column
+
+def date_sub_(c1: Column, c2: Column) -> Column:
+    return ((c1.cast("timestamp").cast("long") - 60 * 60 * 24 * c2)
+        .cast("timestamp").cast("date"))
