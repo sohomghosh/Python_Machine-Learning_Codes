@@ -378,3 +378,18 @@ for i in range(len(li)):
 
 
 
+#Typecasting to date format
+#Source: https://stackoverflow.com/questions/38080748/convert-pyspark-string-to-date-format
+from datetime import datetime
+from pyspark.sql.functions import col, udf
+from pyspark.sql.types import DateType
+
+# Creation of a dummy dataframe:
+df1 = sqlContext.createDataFrame([("11/25/1991","11/24/1991","11/30/1991"), 
+                            ("11/25/1391","11/24/1992","11/30/1992")], schema=['first', 'second', 'third'])
+
+# Setting an user define function:
+# This function converts the string cell into a date:
+func =  udf (lambda x: datetime.strptime(x, '%m/%d/%Y'), DateType())
+
+df = df1.withColumn('test', func(col('first')))
