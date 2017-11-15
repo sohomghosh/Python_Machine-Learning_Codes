@@ -63,6 +63,20 @@ for dd in doc_clean:
 	fp2.write(str(ldamodel.get_document_topics(bow_vector, minimum_probability=None, minimum_phi_value=None, per_word_topics=False))+"\n")
 fp2.close()
 
+feature_matrix_lda=np.zeros(shape=(train_test.shape[0],100))#as number of topics is 100
+
+rw=0
+for dd in doc_clean:
+	bow_vector = dictionary.doc2bow(dd)
+	lis=ldamodel.get_document_topics(bow_vector, minimum_probability=None, minimum_phi_value=None, per_word_topics=False)
+	for (a,b) in lis:
+		feature_matrix_lda[rw,a]=b
+	rw=rw+1
+
+
+feature_lda_df=pd.DataFrame(feature_matrix_lda)
+
+
 texts = doc_clean#[[word for word in document.lower().split() if word not in stop] for document in documents]
 
 from collections import defaultdict
