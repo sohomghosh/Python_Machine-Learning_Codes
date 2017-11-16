@@ -1,0 +1,11 @@
+##create fib.pyx, copy paste the code here
+
+##create setup.py, copy paste the code
+
+##from terminal execute
+$python setup.py build_ext --inplace
+
+##Open python terminal: python3
+>>> import fib
+>>> fib.fib(10)
+#Output [1 1 2 3 5 8 13]
