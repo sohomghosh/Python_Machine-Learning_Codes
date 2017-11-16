@@ -1,0 +1,958 @@
+#########################################################################################################################################
+######################################################### SECTION-1 MASTERING PYTHON ####################################################
+#########################################################################################################################################
+
+Section 3: Building python packages
+Section 4: Best practises: source case formating & version control
+Section 5: Text mode, utily programs
+Section 6: CPU based (bound) programming - efficiency improve / Parallel Processing
+Section 7: async i/o use to improve input/output programing, Coroutines 
+Section 8: Semantic Syntax , Metaprograming
+Section 9: Automated Testing, Test Driven Development
+Section 10: Reactive Programming
+Section 11: MicroServices
+Section 12: System level code in c, extension modules and compiled code
+
+
+Statements VS Expressions in Python
+-----------------------------------
+Expressions: Expressions can be combined “horizontally” into larger expressions using operators, while statements can only be combined “vertically” by writing one after another, or with block constructs.
+Statements: A statement is a complete line of code that performs some action, while an expression is any section of the code that evaluates to a value. 
+Here’s a general rule of thumb: If you can print it, or assign it to a variable, it’s an expression.If you can’t, it’s a statement.
+Expressions example:
+2 + 2
+min(2, 22)
+Statements example:
+if CONDITION:
+elif CONDITION:
+
+
+
+Python Data Structures
+----------------------
+Python lists
+Python dictonaries
+Python tuples
+Python sets
+
+
+
+Maps, Hash tables in other languages = Dictonary in Python
+
+my_dict'ah'] #Look up in a dictonary
+my_dict.get('ah') #Look up in a dictonary
+
+
+Tuple: Any sequence seperated by comma ; Tuples are like rows in the database
+Example of Tuple: ('a',1,None)
+Cannot add data value to a tuple, cannot remove data value from a tuple
+
+
+Set
+example_set = {'a','b','c','d','e','f'}
+another_set = set()
+'b' in example_set
+OUTPUT: True
+example_set.add('z')
+example_set.discard('d')
+
+
+
+#Comprehesion: Special kind of expression. Variations of special syntax for creating dictonaries, lists and sets.  
+
+type(example_set)
+OUTPUT: <class 'set'>
+
+
+Section-1, Lecture-4
+First class object
+First class functions and classes
+
+
+def foo():
+	pass
+
+
+bar=foo
+bar.__name__
+##OUTPUT: 'foo'
+
+bar.plugin_name='demo'
+
+
+
+
+A functionally pure language should support the following constructs:
+
+1) Functions as first class objects, which means that you should be able to apply all the constructs of using data, to functions as well. Using functions as first class objects means to use them in the same manner that you use data. So, You can pass them as parameters like passing a function to another function as an argument. For example, in the following example you can pass the int function as a parameter to map function.
+2) Pure functions; there should not be any side-effects in them
+3) Ways and constructs to limit the use of for loops
+4) Good support for recursion
+SOURCE: https://www.hackerearth.com/practice/python/functional-programming/functional-programming-1/tutorial/
+
+Properties of first class functions:
+
+A function is an instance of the Object type.
+You can store the function in a variable.
+You can pass the function as a parameter to another function.
+You can return the function from a function.
+You can store them in data structures such as hash tables, lists, …
+SOURCE: http://www.geeksforgeeks.org/first-class-functions-python/
+
+
+PYTHON STANDARD LIBRARIES
+https://docs.python.org/3.5/library/index.html
+
+Priority queue heap queue implementation
+https://docs.python.org/3.5/library/heapq.html
+
+Higher Order Functions and Decorators
+Link: https://www.hackerearth.com/practice/python/functional-programming/higher-order-functions-and-decorators/tutorial/
+
+
+
+Python 3.5 New features
+1) use "*"" asterics like 
+"*partial_values" to indicate values in the same order
+2) New packages: typing, zipapp
+3) Faster reading of file system directories
+4) Automatically trying of interrupted system calls
+https://docs.python.org/3/whatsnew/3.5.html
+https://docs.python.org/3.7/whatsnew/3.7.html
+
+
+###USING HELP FUNCTIONS
+import functools
+help(functools.wraps)
+
+python3 -m pip install <package_name>
+
+#PYTHON PACKAGE LISTS
+https://pypi.python.org/pypi
+
+#PYTHON PACKAGE FIND FROM TERMINAL
+python3 -m pip search <package_name>
+
+
+####Creating Empty Package in Python
+$mkdir demopackage
+$python3
+>>>import demopackage
+>>>exit()
+$vi demopackage/__init.py__
+__all__=['foo','bar','baz']
+
+###The __init__.py files are required to make Python treat the directories as containing packages; this is done to prevent directories with a common name, such as string, from unintentionally hiding valid modules that occur later on the module search path.
+
+## __all__ contains list of all py files inside demopackage
+
+
+from .service import app
+#The . is a shortcut that tells it search in current package before rest of the PYTHONPATH
+
+
+#data folder create seperately
+#inside data folder store data files
+
+
+
+#Writing reusable code, PEP8
+https://www.python.org/dev/peps/pep-0008/
+
+#Imports should usually be on separate lines, e.g.:
+Yes: import os
+     import sys
+No:  import sys, os
+
+
+#It's okay to say this though:
+from subprocess import Popen, PIPE
+
+Imports should be grouped in the following order:
+1) standard library imports
+2) related third party imports
+3) local application/library specific imports
+
+YES:
+def f(x): return 2*x
+
+NO:
+f = lambda x: 2*x
+
+
+#For sequences, (strings, lists, tuples), use the fact that empty sequences are false.
+Yes: if not seq:
+     if seq:
+No: if len(seq):
+    if not len(seq):
+
+
+#Don't compare boolean values to True or False using ==.
+Yes:   if greeting:
+No:    if greeting == True:
+Worse: if greeting is True:
+
+
+#No trailing spaces
+Yes: if x == 4: print x, y; x, y = y, x
+No:  if x == 4 : print x , y ; x , y = y , x
+
+#Binary operators need to be seperated by spaces
+Yes: i = i + 1
+No:  i=i+1
+
+YES:	ham[lower + offset : upper + offset]
+NO:		ham[lower + offset:upper + offset]
+
+
+###VERSION CONTROL
+see https://github.com/sohomghosh/Git_commands/blob/master/git%20commands.sh
+
+###VIRTUAL ENVIRONMENT
+$python3 -m venv example_virtual_env
+$cd example
+$source bin/activate
+
+##DOCUMENTATION
+python3 -m pip3 install sphinx
+http://www.sphinx-doc.org/en/stable/
+https://docs.python.org/3.1/documenting/rest.html
+
+##argument pass
+import argparse
+parser = argparse.ArgumentParser(
+    prog = 'python -m apdemo',
+    description="Hello world"
+)
+parser.add_argument('-p', '--print', action='store_true', default = False)
+parser.add_argument('name', nargs='+')
+args = parser.parse_args()
+
+##User input
+print("Hello World")
+name = input("Name: ")
+print("Hello", name)
+
+from getpass import getpass
+from pprint import pprint
+password = getpass('Password: ')
+pprint([{1: 2, 3: 4}, {5: 6, 7: list(range(25))}])
+#pprint makes the printed text on the terminal look beautiful
+
+
+from subprocess import call,check_call,check_output
+from subprocess import run
+call(['ls','-l','/home/'])
+lines = check_output(['ls','-l','/home/'],universal_newlines = True).split('\n')
+lines[1]
+
+
+#Using Pipes ###NEED TO EXPLORE MORE : Running other programms from a program
+from subprocess import Popen, PIPE
+p = Popen(['python3','echo.py'],stdin=PIPE,stdout=PIPE,bufsize=0)
+
+p.stdin.write(b'Hello\n')
+p.stdin.flush()
+p.stdout.flush()
+p.stdout.readline()
+exit_code = p.wait()
+
+
+Multi Processing
+Multiprocessing is the use of two or more central processing units (CPUs) within a single computer system. The term also refers to the ability of a system to support more than one processor and/or the ability to allocate tasks between them.
+
+Parallel Processing
+In computers, parallel processing is the processing of program instructions by dividing them among multiple processors with the objective of running a program in less time. In the earliest computers, only one program ran at a time.
+
+
+###MULTI-PROCESSING EXAMPLE IN PYTHON
+#https://docs.python.org/3.5/library/multiprocessing.html
+
+from concurrent import futures
+
+def factorize(n):
+	"""Return the prime factors of *n*
+
+	This is a **very** bad factoring algorithm, which makes it a good
+	example of a CPU bound task.
+
+	"""
+	n = int(n)
+	if n == 1:
+		return 1, []
+	found = []
+	for i in range(2, (n // 2) + 1):
+		if n % i == 0:
+			if all(i % j != 0 for j in found):
+				found.append(i)
+	if not found:
+		return n, [n]
+	return n, found
+
+
+if __name__ == '__main__':
+	with futures.ProcessPoolExecutor() as pool:
+		for number, factors in pool.map(factorize, range(1, 10001)):
+			print('{}: {}'.format(number, factors))
+
+
+
+### Asynchronous programming is subtly different. This normally involves longer running tasks and tasks which are perhaps waiting on some kind of external stimuli. A good example of this is to perform a large calculation in a background thread so that the UI remains responsive. With asynchronous code we are normally talking about code which executes at a different rate to our main application.
+
+### Prallel processing works for CPU bound programs, it does not help when instructions are input/output bound. In that case we make use of Asynchronous i/o.
+
+import asyncio
+async def example():
+    x = await do_stuff()
+    return 'Hello world', x
+
+
+async def very_long():
+    while True:
+        await asyncio.sleep(0)
+
+
+
+#A coroutine is a function that can be paused and resumed at certain places within it. Python programs can define coroutines using the async and await keywords.
+Coroutine is handed off to scheduler. Scheduler places it into the list of coroutines it needs to call. Then scheduler checks if anything happens for the coroutine waiting for. Then scheduler picks up a coroutine executes it. Stores incoming coroutines. Manages them.
+
+
+import asyncio
+import logging
+import contextlib
+
+async def coro1():
+	while True:
+		for i in range(100000):
+			await asyncio.sleep(0.1)
+		print('coro1')
+
+
+async def coro2():
+	for i in range(25):
+		await asyncio.sleep(0.5)
+		print(i)
+	
+
+logging.getLogger('asyncio').setLevel('CRITICAL')
+
+asyncio.ensure_future(coro1())
+f = asyncio.ensure_future(coro2())
+
+with contextlib.closing(asyncio.get_event_loop()) as loop:
+	loop.run_until_complete(f)
+
+-----------------------------------------------------------------
+import asyncio
+
+class SlowSequence:
+    class Iterator:
+        def __init__(self, slowseq):
+            self.values = list(slowseq.values)
+        async def __anext__(self):
+            await asyncio.sleep(2)
+            try:
+                return self.values.pop(0)
+            except IndexError:
+                raise StopAsyncIteration
+    def __init__(self, *values):
+        self.values = values
+    async def __aiter__(self):
+        return SlowSequence.Iterator(self)
+
+
+async def main():
+	seq = SlowSequence(1, 2, 3, 4, 5)
+	async for value in seq:
+		print(value)
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(asyncio.ensure_future(main()))
+loop.close()
+---------------------------------------------------------------
+import asyncio
+
+async def get_future_values(future1, future2):
+    value1 = await future1
+    value2 = future2.result() if future2.done() else None
+    return value1, value2
+--------------------------------------------------------------
+import asyncio
+import random
+
+async def delayed_print(value):
+    await asyncio.sleep(random.randrange(5))
+    print(value)
+
+main = asyncio.gather(
+    asyncio.ensure_future(delayed_print(1)),
+    asyncio.ensure_future(delayed_print(2)),
+    asyncio.ensure_future(delayed_print(3)),
+    asyncio.ensure_future(delayed_print(4)),
+    asyncio.ensure_future(delayed_print(5)),
+)
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main)
+loop.close()
+--------------------------------------------------------------
+import asyncio
+import random
+
+async def delayed_value(value):
+    await asyncio.sleep(random.randrange(5))
+    return value
+
+async def main():
+    futures = [
+        asyncio.ensure_future(delayed_value(1)),
+        asyncio.ensure_future(delayed_value(2)),
+        asyncio.ensure_future(delayed_value(3)),
+        asyncio.ensure_future(delayed_value(4)),
+        asyncio.ensure_future(delayed_value(5)),
+    ]
+    for future in asyncio.as_completed(futures):
+        value = await future
+        print(value)
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(asyncio.ensure_future(main()))
+loop.close()
+----------------------------------------------------------
+
+import asyncio
+
+async def using_queues():
+    q = asyncio.Queue()
+
+    q.put_nowait('Hello')
+
+    await q.get()
+
+    await q.put('world')
+
+    q.get_nowait()
+
+
+    pq = asyncio.PriorityQueue()
+
+    stack = asyncio.LifoQueue()
+---------------------------------------------------------
+
+import asyncio
+
+async def call_coro(coro):
+    x = await coro()
+
+async def call_coro_with_five_second_timeout(coro):
+    x = await asyncio.wait_for(coro(), 5)
+
+async def call_coro_with_timeout_and_handle_exception(coro):
+    try:
+        x = await asyncio.wait_for(coro(), 5)
+    except asyncio.TimeoutError:
+        print('Too slow')
+---------------------------------------------------------
+#client.py
+
+import asyncio
+import itertools
+import contextlib
+
+async def client(host, port):
+    reader, writer = await asyncio.open_connection(host, port)
+
+    for i in itertools.count():
+        writer.write(b'ping\n')
+        response = await reader.readline()
+        if response == b'pong\n':
+            print(i)
+        else:
+            return
+
+main = asyncio.ensure_future(client('127.0.0.1', 8899))
+loop = asyncio.get_event_loop()
+
+with contextlib.closing(loop):
+    loop.run_until_complete(main)
+
+--------------------------------------------------------
+#server.py
+
+import asyncio
+import contextlib
+
+async def serve(reader, writer):
+    while True:
+        try:
+            request = await reader.readline()
+        except ConnectionResetError:
+            return
+        if request == b'':
+            return
+        elif request == b'ping\n':
+            writer.write(b'pong\n')
+        else:
+            writer.write(b'done\n')
+
+async def launch(host, port):
+    server = await asyncio.start_server(serve, host, port)
+    await server.wait_closed()
+
+main = asyncio.ensure_future(launch('127.0.0.1', 8899))
+loop = asyncio.get_event_loop()
+
+with contextlib.closing(loop):
+    loop.run_until_complete(main)
+--------------------------------------------------------
+#A decorator is written as a function closure and implemented by giving the “@” operator on top of the function
+
+###DECORATOR: Decorator is a function that takes another function as its input. Return value changes the original input function. 
+"@"" use to decorate a function. Means as soon as the function is finished declaring (here 'example'), call the decorator.
+
+#Example of decorator
+def null_decorator(func):
+	return func
+
+
+@null_decorator
+def example:
+	print('hi')
+
+#The above code with decorator means as follows:
+def example:
+	print('hi')
+
+
+example = null_decorator(example)
+
+#more than one decorator can be used with a function like:
+@decorator1
+@decorator2
+def function_name():
+	print("function with 2 decorators")
+
+
+#NOTE: Decorator closer to the function called first. So first call decorator2 then decorator1	
+----------------------------------------------------------
+#Closures
+#A closure is a way of keeping alive a variable even when the function has returned. So, in a closure, a function is defined along with the environment. In Python, this is done by nesting a function inside the encapsulating function and then returning the underlying function.
+def add_5():
+    five = 5
+
+    def add(arg): # nesting functions
+        return arg + five
+    return add
+
+if __name__ == '__main__':
+    closure1 = add_5()
+    print(closure1(1)) # output 6
+    print(closure1(2)) # output 7
+
+----------------------------------------------------------
+class Foo:
+	@staticmethod
+	def bar(x):
+		print(x)
+
+
+#Calling class methods without creating objects.
+Foo.bar('stuff')
+----------------------------------------------------------------------
+
+from functools import wraps
+
+def only(adapt = int):
+    def decorator(func):
+        @wraps(func):
+        def wrapper(*args,**kawrgs):
+            args = [adapt(x) for x in args]
+            kwargs = {n: adapt(v) for n, v in kwargs.items()}
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+@only(int)
+def add(left, right):
+    return left + right
+
+
+add('57' , 99.5)
+
+#Explanation: wraps is a function that returns a decorator which is applied to wrapper;
+#Function only returns a decorator; which in turn returns a wrapper; which is applied to the original function 
+
+#####Function Annotations
+def foo(a: int, b: float) -> bool:#argument a of int type, argument b of float type, return boolean
+    pass
+
+
+foo.__annotations__
+
+from inspect import signature
+signature(foo)
+
+----------------------------------------------------------------------
+#Arguments *args and **kwargs in a function
+#Source: https://stackoverflow.com/questions/3394835/args-and-kwargs
+You would use *args when you're not sure how many arguments might be passed to your function, i.e. it allows you pass an arbitrary number of arguments to your function. For example:
+>>> def print_everything(*args):
+        for count, thing in enumerate(args):
+...         print( '{0}. {1}'.format(count, thing))
+...
+>>> print_everything('apple', 'banana', 'cabbage')
+0. apple
+1. banana
+2. cabbage
+
+
+Similarly, **kwargs allows you to handle named arguments that you have not defined in advance:
+
+>>> def table_things(**kwargs):
+...     for name, value in kwargs.items():
+...         print( '{0} = {1}'.format(name, value))
+...
+>>> table_things(apple = 'fruit', cabbage = 'vegetable')
+cabbage = vegetable
+apple = fruit
+
+----------------------------------------------------------------------
+###CREATING CLASSES
+# http://www.geeksforgeeks.org/object-oriented-programming-in-python-set-1-class-and-its-members/
+
+The self :: Class methods must have an extra first parameter in method definition. We do not give a value for this parameter when we call the method, Python provides it
+
+The __init__ method :: Similar to constructors. It is run as soon as an object of a class is instantiated. The method is useful to do any initialization you want to do with your object.
+
+class CSStudent:
+ 
+    # Class Variable
+    stream = 'cse'            
+ 
+    # The init method or constructor
+    def __init__(self, roll):
+   
+        # Instance Variable    
+        self.roll = roll
+
+    # Adds an instance variable 
+    def setAddress(self, address):
+        self.address = address
+     
+    # Retrieves instance variable    
+    def getAddress(self):    
+        return self.address      
+  
+# Objects of CSStudent class
+a = CSStudent(101)
+b = CSStudent(102)
+  
+print(a.stream)  # prints "cse"
+print(b.stream)  # prints "cse"
+print(a.roll)    # prints 101
+
+# Class variables can be accessed using class
+# name also
+print(CSStudent.stream) # prints "cse" 
+
+a.setAddress("Noida, UP")
+print(a.getAddress()) #prints "Noida, UP"
+----------------------------------------------------------------------------------------------------------------------------------
+
+## Clas Decorator 
+
+
+@mungify
+class Foo:
+    pass
+
+====is equivalent as====
+
+class Foo:
+    pass
+
+
+Foo = mungify(Foo)
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+from factory import factory_constructed
+@factory_constructed
+class unique:
+    def __init__(self, *words):
+        self.words = words
+
+
+
+unique
+unique.type
+u1 = unique('hi', 'universe')
+u2 = unique('hey', 'mama')
+---------------------------------------------------------------------------------------------------------------------------------
+
+#Connecting with databases
+from database import database
+@database
+class db:
+    class Table1:
+        name = 'TEXT'
+        age = 'INTEGER'
+    class Table2:
+        alpha = 'INTEGER'
+        beta = 'INTEGER'
+
+
+db.execute('INSERT INTO Table1 (name, age) VALUES ("Alice", 25)')
+---------------------------------------------------------------------------------------------------------------------------------
+
+import sqlite3
+
+def database(connclass):
+    fname = getattr(connclass, 'database', 'default.sqlite')
+    connection = sqlite3.connect(fname, detect_types=sqlite3.PARSE_DECLTYPES)
+
+    for tablename in dir(connclass):
+        if tablename.startswith('_'):
+            continue
+
+        tabledata = getattr(connclass, tablename, None)
+
+        if not isinstance(tabledata, type):
+            continue
+
+        columns = []
+
+        for colname in dir(tabledata):
+            if colname.startswith('_'):
+                continue
+            coldata = getattr(tabledata, colname, None)
+            if coldata in ('INTEGER', 'TEXT'):
+                columns.append('{} {}'.format(colname, coldata))
+
+        sql = 'CREATE TABLE IF NOT EXISTS {} ({});'
+        sql = sql.format(tablename, ', '.join(columns))
+
+        connection.execute(sql)
+
+    return connection
+
+-----------------------------------------------------------------------------------------------------------------------------------
+###Metaclasses
+
+#Class Decorator: Takes an already created class and transforms it
+#Meta classes: Tells how classes are created, how they behave and how modify their behavior. Classes are instances of a class type. Call function before an instance is created by making the method static.
+
+from collections import OrderedDict
+class ExampleMeta(type):
+    @staticmethod
+    def __prepare__(name, bases, **kwargs):
+        return OrderedDict()
+    def __new__(metaclass, name, bases, namespace, **kwargs):
+        class_ = type    
+------------------------------------------------------------------------------------------------------------------------------------
+from collections import OrderedDict
+class ExampleMeta(type):
+    @staticmethod
+    def __prepare__(name, bases, **kwargs):
+        return OrderedDict()
+    def __new__(metaclass, name, bases, namespace, **kwargs):
+        class_ = type.__new__(metaclass, name, bases, namespace)
+        class_.order = tuple(namespace.keys())
+        return class_
+
+
+class Foo(metaclass = ExampleMeta):
+    z = 7
+    a = 2
+    m = 990
+
+Foo.order
+#('__module__','__qualname__','z','a','m')
+------------------------------------------------------------
+
+#Context Manager
+import contextlib
+
+@contextlib.contextmanager
+def before_and_after():
+    print('before')
+    try:
+        yield(lambda: print('during'))
+    finally:
+        print('after')
+
+
+with before_and_after() as during:
+    print('When I call during(), I get:')
+    during()
+
+#If yield raises an exception then it will look for context manager code. If yield value through context manager that value will be assigned as "as" after "with"
+-------------------------------------------------------------
+#database
+from collections import ChainMap
+
+class TransactionDict(dict):
+    def __enter__(self):
+        self.writes = dict()
+        return ChainMap(self.writes, self)
+    def __exit__(self, exc_type, exc_val, tb):
+        if exc_type is None:
+            self.update(self.writes)
+        self.writes = None        
+
+
+if __name__ == '__main__':
+    tdict = TransactionDict()
+    with tdict as trans:
+        trans['a'] = 1
+-------------------------------------------------------------
+class HasAProperty:
+    @property
+    def prop(self):
+        val = self._prop
+        print('getter producer', val)
+        return val
+    @prop.setter
+    def prop(self, value):
+        self._prop = value
+        print('setter received', value)
+    @prop.deleter
+    def prop(self):
+        del self._prop
+        print('deleted')        
+----------------------------------------------------------
+
+import unittest
+import os
+class BasicTest(unittest.Testcase):
+    def test_admission(self):
+        self.assertEqual(2 + 2, 4)
+----------------------------------------------------------
+Reactive Programming : Publish Subscribe model
+In computing, reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s), and that an inferred dependency within the associated execution model exists, which facilitates the automatic propagation of the change involved with data flow.
+
+See code list: Section 10
+----------------------------------------------------------
+#Micro service
+#Everything in flask is multi-threaded
+
+#Using nameko
+from nameko.rpc import rpc
+from .person import Person
+
+class PersonAPI:
+    name = 'person'
+    @rpc
+    def create(self, first_name, last_name, age, member = False):
+        return Person.create(first_name, last_name, age, member).id
+    @rpc
+    def list(self):
+        return [x.as_dict() for x in Person.list()]
+    @rpc
+    def get(self, id):
+        return Person.load(id).as_dict()
+    @rpc
+    def set(self, id, **values):
+        person = Person.load(id)
+        for name, value in values.items():
+            setattr(person, name, value)
+        person.store()
+    @rpc
+
+     #FOR MORE DETAILS SEE: https://www.udemy.com/learning-pathtensorflow-the-road-to-tensorflow-2nd-edition/learn/v4/t/lecture/6869644?start=0
+
+#####################################
+##ctypes     
+from .libc import printf, scanf, localtime, asctime
+from ctypes import c_int, create_string_buffer, byref, Structure
+
+def input_pair():
+    key = c_int()
+    value = create_string_buffer(16)
+    printf(b"[Input a pair as int:string] ")
+    scanf(b"%i:%s", byref(key), byref(value))
+    return key, value.value
+
+def print_a_time():
+    timer = c_int(12345678)
+    printf(asctime(localtime(byref(timer))))
+
+---------------------------------------------------------------------------------
+import ctypes, ctypes.util
+
+def load_library(*alternates):
+    for base_name in alternates:
+        lib_name = ctypes.util.find_library(base_name)
+
+        try:
+            if lib_name:
+                return ctypes.CDLL(lib_name)
+            else:
+                return ctypes.CDLL(base_name)
+        except OSError:
+            pass
+
+    raise OSError('Unable to load any of: {}'.format(alternates))
+
+_libc = load_library('c', 'msvcrt')
+
+class tm(ctypes.Structure):
+    _fields_ = [
+        ('tm_sec', ctypes.c_int),
+        ('tm_min', ctypes.c_int),
+        ('tm_hour', ctypes.c_int),
+        ('tm_mday', ctypes.c_int),
+        ('tm_mon', ctypes.c_int),
+        ('tm_year', ctypes.c_int),
+        ('tm_wday', ctypes.c_int),
+        ('tm_yday', ctypes.c_int),
+        ('tm_isdst', ctypes.c_int),
+    ]
+
+printf = _libc.printf
+
+scanf = _libc.scanf
+
+localtime = _libc.localtime
+localtime.argtypes = [ctypes.POINTER(ctypes.c_int)]
+localtime.restype = ctypes.POINTER(tm)
+
+asctime = _libc.asctime
+asctime.argtypes = [ctypes.POINTER(tm)]
+asctime.restype = ctypes.c_char_p
+-----------------------------------------------------------------------------------
+##Cython
+#Cython converts a python code to a equivalent C code. Python C api call, wrap it to a python binary module. 
+
+#Example:
+Source: http://cython.readthedocs.io/en/latest/src/tutorial/cython_tutorial.html
+#Fibonacci Fun
+#From the official Python tutorial a simple fibonacci function is defined as:
+
+def fib(n):
+    """Print the Fibonacci series up to n."""
+    a, b = 0, 1
+    while b < n:
+        print b,
+        a, b = b, a + b
+
+#Now following the steps for the Hello World example we first rename the file to have a .pyx extension, lets say fib.pyx, then we create the setup.py file. Using the file created for the Hello World example, all that you need to change is the name of the Cython filename, and the resulting module name, doing this we have:
+
+from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(
+    ext_modules=cythonize("fib.pyx"),
+)
+
+#Build the extension with the same command used for the helloworld.pyx:
+
+$ python setup.py build_ext --inplace
+
+#And use the new extension with:
+
+>>> import fib
+>>> fib.fib(2000)
+1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
