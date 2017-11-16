@@ -1,0 +1,7 @@
+cd /home/sohom/Desktop/Udemy_Python_TensorFlow/C08164/Section1_Mastering Python - Second Edition [Video]/section11
+#cd <one_directory_before_empty_package>
+python3 empty_package/__main__.py
+OR
+
+#run it as a package; for running it as a package, __main__.py file must be present
+python3 -m empty_package
