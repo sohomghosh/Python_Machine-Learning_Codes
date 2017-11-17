@@ -357,3 +357,6 @@ train_test['Gender'] = train_test['Gender'].replace(to_replace = {'Male': 0, 'Fe
 #Train Valid divide
 from sklearn.model_selection import train_test_split
 X_train,X_valid=train_test_split(train,test_size=0.33, random_state=42)
+
+#Check if a column is null in pandas
+train_data_clean = pd.notnull(train_data_clean['label'])
