@@ -360,3 +360,10 @@ X_train,X_valid=train_test_split(train,test_size=0.33, random_state=42)
 
 #Check if a column is null in pandas
 train_data_clean = pd.notnull(train_data_clean['label'])
+
+
+#pandas dataframe to dictonary convert
+df.set_index('ID').T.to_dict('list')
+
+#drop suplicates
+df.drop_duplicates(subset=['id','aadhar_no'])
