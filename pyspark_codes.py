@@ -403,5 +403,3 @@ def date_sub_(c1: Column, c2: Column) -> Column:
     return ((c1.cast("timestamp").cast("long") - 60 * 60 * 24 * c2)
         .cast("timestamp").cast("date"))
 
-#pandas dataframe to dictonary convert
-df.set_index('ID').T.to_dict('list')
