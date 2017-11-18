@@ -370,3 +370,14 @@ df.drop_duplicates(subset=['id','aadhar_no'])
 
 # Type casting to date time
 pd.to_datetime('13000101', format='%Y%m%d', errors='coerce')
+
+train_test['DateTime'] =  pd.to_datetime(train_test['DateTime'], format='%Y-%m-%d %H:%M:%S',errors='coerce')
+
+train_test['weekday'] = train_test['DateTime'].dt.weekday
+train_test['day_of_month'] = train_test['DateTime'].dt.day
+train_test['month'] = train_test['DateTime'].dt.month
+train_test['hour'] = train_test['DateTime'].dt.hour
+train_test['year'] = train_test['DateTime'].dt.year
+train_test['minutes'] = train_test['DateTime'].dt.minute
+train_test['seconds'] = train_test['DateTime'].dt.second
+
