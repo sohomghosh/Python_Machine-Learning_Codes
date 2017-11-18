@@ -367,3 +367,6 @@ df.set_index('ID').T.to_dict('list')
 
 #drop suplicates
 df.drop_duplicates(subset=['id','aadhar_no'])
+
+# Type casting to date time
+pd.to_datetime('13000101', format='%Y%m%d', errors='coerce')
