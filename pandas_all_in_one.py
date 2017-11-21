@@ -89,6 +89,9 @@ data=pd.read_csv(StringIO(''.join(l.replace('||', '$') for l in open("data.csv")
 #Order by
 final_data=final_data.sort_values(['person_id','role_id'])
 
+#Group by then order by
+test_data.groupby(['col1','col2'], as_index = False).size().reset_index().sort_values(['col1','col2']).to_csv("/index/ans.csv",index=False)
+
 
 #Column transformation
 #Converting to months
