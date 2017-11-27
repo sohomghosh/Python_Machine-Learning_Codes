@@ -403,3 +403,15 @@ def date_sub_(c1: Column, c2: Column) -> Column:
     return ((c1.cast("timestamp").cast("long") - 60 * 60 * 24 * c2)
         .cast("timestamp").cast("date"))
 
+
+#Aggregate within count
+import pyspark.sql.functions as func
+
+new_log_df.cache().withColumn("timePeriod", encodeUDF(new_log_df["START_TIME"])) 
+  .groupBy("timePeriod")
+  .agg(
+     func.mean("DOWNSTREAM_SIZE").alias("Mean"), 
+     func.stddev("DOWNSTREAM_SIZE").alias("Stddev"),
+     func.count(func.lit(1)).alias("Num Of Records")
+   )
+  .show(20, False)
