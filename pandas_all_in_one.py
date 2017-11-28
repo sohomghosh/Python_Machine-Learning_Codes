@@ -386,3 +386,8 @@ train_test['seconds'] = train_test['DateTime'].dt.second
 
 #Consecutive rows difference in a pandas dataframe
 df['dA'] = df['A'] - df['A'].shift(-1)
+
+#Creating random numbers (as labels)
+np.random.choice([0, 1], size = (10,), p = [1./3, 2./3])#[numbers to randomly choose from], size = number of numbers to generate, p = [proportions of the numbers chosen in same order as mentioned in the first argument as list]
+np.random.randint(0, 2, 10)#lower_number, higher_number, number_of_numbers
+
