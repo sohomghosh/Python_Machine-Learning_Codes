@@ -20,5 +20,5 @@ plt.tick_params(
 plt.tight_layout() #show plot with tight layout
 plt.show()
 #uncomment below to save figure
-plt.savefig('ward_clusters_roles.png', dpi=100)
+plt.savefig('ward_clusters_features.png', dpi=100)
 
