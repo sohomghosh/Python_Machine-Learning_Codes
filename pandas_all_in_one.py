@@ -395,3 +395,7 @@ import random
 train_ids = random.sample(list(data.index),int(.8*len(data.index)))
 train = data[data.index.isin(train_ids)]
 valid = data[~data.index.isin(train_ids)]
+
+#Cross-tabulation #For generally for categorical_variables
+crosstab(col_1, [col_2, col_3], rownames=['col_1'], colnames=['col_2', 'col_3'])
+
