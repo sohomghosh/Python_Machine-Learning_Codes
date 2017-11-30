@@ -13,6 +13,8 @@ data_natun=pd.read_csv("file.csv",sep='\x01', dtype={'id': np.int32, 'name': obj
 from io import StringIO
 data=pd.concat(pd.read_csv(StringIO(''.join(l.replace('\x00', '') for l in open("data.csv"))),sep=',',error_bad_lines=False,header=0,engine='python',chunksize=16*1024,quoting=csv.QUOTE_NONE, encoding='utf-8'))
 
+#pandas.errors.ParserError: ',' expected after '"'
+pd.read_csv(StringIO(''.join(l.replace('"', '') for l in open("day_data.csv"))))
 
 #Join no result:
 If after joining two pandas dataframes you are getting no results then check the datatype of the parameter used for joining the two dataframes
