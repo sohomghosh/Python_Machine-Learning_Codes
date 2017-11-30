@@ -1,4 +1,3 @@
-#Link: http://hireathon.monsoonfintech.com/problem
 import random
 import pandas as pd
 import numpy as np
@@ -13,9 +12,9 @@ from sklearn.metrics import roc_auc_score, auc,roc_curve
 import pandas_profiling 
 from scipy import stats
 
-X_train = pd.read_csv("/media/sohom/60BC0769BC0738D4/Personal/Monsoon_fintech/X_train.csv")
-y_train = pd.read_csv("/media/sohom/60BC0769BC0738D4/Personal/Monsoon_fintech/y_train.csv")
-X_test = pd.read_csv("/media/sohom/60BC0769BC0738D4/Personal/Monsoon_fintech/X_validation.csv")
+X_train = pd.read_csv("/media/sohom/X_train.csv")
+y_train = pd.read_csv("/media/sohom/y_train.csv")
+X_test = pd.read_csv("/media/sohom/X_validation.csv")
 
 #DATA# X_Train.csv
 #Unique_ID,C1,C2,C3,C4,C5,C6,C7,C8,N1,N2,N3,N4,N5,N6,N7,N8,N9,N10,N11,N12,N13,N14,N15,N16,N17,N18,N19,N20,N21,N22,N23,N24,N25,N26,N27,N28,N29,N30,N31,N32,N33,N34,N35
