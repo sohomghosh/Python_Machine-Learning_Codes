@@ -397,5 +397,5 @@ train = data[data.index.isin(train_ids)]
 valid = data[~data.index.isin(train_ids)]
 
 #Cross-tabulation #For generally for categorical_variables
-crosstab(col_1, [col_2, col_3], rownames=['col_1'], colnames=['col_2', 'col_3'])
+pd.crosstab(df.col_1, [df.col_2, df.col_3], rownames=['col_1'], colnames=['col_2', 'col_3'])
 
