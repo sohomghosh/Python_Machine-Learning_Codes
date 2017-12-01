@@ -401,3 +401,32 @@ valid = data[~data.index.isin(train_ids)]
 #Cross-tabulation #For generally for categorical_variables
 pd.crosstab(df.col_1, [df.col_2, df.col_3], rownames=['col_1'], colnames=['col_2', 'col_3'])
 
+#Source: https://stackoverflow.com/questions/19960077/how-to-implement-in-and-not-in-for-pandas-dataframe
+For "IN" use: something.isin(somewhere)
+Or for "NOT IN": ~something.isin(somewhere)
+df[df.countries.isin(countries)]
+df[~df.countries.isin(countries)]
+
+####One Hot Encoding
+#Source: https://machinelearningmastery.com/how-to-one-hot-encode-sequence-data-in-python/
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
+
+label_encoder = LabelEncoder()
+onehot_encoder = OneHotEncoder(sparse=False)
+
+def one_hot_encode_fns(col_to_encode,train):
+	integer_encoded = label_encoder.fit_transform(train[col_to_encode].values).reshape(train.shape[0], 1)
+	onehot_encoded = onehot_encoder.fit_transform(integer_encoded)
+	onehot_encoded_df = pd.DataFrame(onehot_encoded)
+	onehot_encoded_df.index = train.index
+	onehot_encoded_df.columns = [col_to_encode + "one_hot" + str(i) for i in range(onehot_encoded_df.shape[1])]
+	return onehot_encoded_df
+
+
+col_to_encode = "C6"
+#train[col_to_encode] has values like True, False, True
+onehot_df = one_hot_encode_fns(col_to_encode,train)
+train = pd.concat([train, onehot_df], axis = 1)
+del train[col_to_encode]
