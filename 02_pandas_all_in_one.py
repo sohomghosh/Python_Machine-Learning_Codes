@@ -46,6 +46,9 @@ del c['is_car_cnt_more5']
 cleaned_data=pd.merge(cleaned_data,c,on=['man_id'])
 cleaned_data=cleaned_data.dropna()
 
+#groupby then count and rename the count as new_cc
+gf.groupby(['id'], as_index=False).size().reset_index().rename(columns={0:'new_cc'}).head()
+
 
 #Group by with multiple list unmap
 #For a given animal find frequency of all the attributes
