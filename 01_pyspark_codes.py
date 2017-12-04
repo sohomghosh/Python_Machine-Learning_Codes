@@ -435,3 +435,17 @@ def regex_filter(x):
 filter_udf = udf(regex_filter, BooleanType())
 
 df_filtered = df.filter(filter_udf(df.field_to_filter_on))
+
+
+####################### submitting spark applications ##########################################
+#Source: https://sparkour.urizone.net/recipes/submitting-applications/
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("submitting_applications").getOrCreate()
+#write the code here
+...
+..
+spark.stop()
+
+
+##FROM SHELL
+$nohup /opt/spark-2.1.0-bin-hadoop2.7/bin/./spark-submit --master yarn --driver-memory 3g --executor-memory 6g --executor-cores 2 --num-executors 3 /index/job_scoring_daily/pyspark_code.py &
