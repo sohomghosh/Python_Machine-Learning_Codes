@@ -188,7 +188,8 @@ df_factlist.filter(size(df_factlist['fact_list'])>=2).show()
 df.where(size(col("tokens")) <= 3).show()#Another example
 
 
-
+#Split before explode
+new_final_data=final_data.withColumn('new_col_after_splitting',split(col('col_to_be_splitted'),'<seperator>'))
 #Explode: Make new rows by splitting a column of list
 #Given dataframe df
 # +---+---------+---------+---+
