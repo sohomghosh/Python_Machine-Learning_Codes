@@ -64,6 +64,8 @@ cluster_attribites=pd.DataFrame({'attribute_frequency' : data_use.groupby('anima
 #Group Concat
 df.groupby('team').apply(lambda x: ','.join(x.user))
 
+#group by with sorting
+df.groupby('team').apply(lambda x: ','.join(sorted(x.user)))
 OR
 
 df.groupby('team').agg({'user' : lambda x: ', '.join(x)})
