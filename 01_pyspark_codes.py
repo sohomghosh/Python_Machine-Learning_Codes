@@ -126,6 +126,9 @@ df.fillna(0)
 #Filter - Select entries for which Purchase is > 15000
 df.filter(df.Purchase > 15000)
 
+df.filter((df.Purchase > 15000)&(df.Purchase <25000))
+
+
 #check what are the categories for Product_ID, which are in test file but not in train file by applying subtract operation
 diff_cat_in_train_test=test.select('Product_ID').subtract(train.select('Product_ID'))
 
