@@ -470,3 +470,8 @@ df = df.withColumn("prev_value", F.lag(df.value).over(my_window))
 df = df.withColumn("diff", F.when(F.isnull(df.value - df.prev_value), 0).otherwise(df.value - df.prev_value))
 df.show()
 
+
+#Modify column based on other column
+#Source: https://stackoverflow.com/questions/43988801/pyspark-modify-column-values-when-another-column-value-satisfies-a-condition
+from pyspark.sql.functions import when
+df.withColumn('Id_New',when(df.Rank <= 5,'yes').otherwise('other')).show()
