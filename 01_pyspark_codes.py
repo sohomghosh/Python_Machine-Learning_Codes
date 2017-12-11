@@ -485,4 +485,4 @@ converted_to_pandas_df = spark_df.toPandas()
 final_data.select(dayofmonth(final_data.col_formatted_as_datetype)).show()
 
 #Weekday name and encided_id
-final_data.select(date_format(final_data.col_formatted_as_datetype,'u'),date_format(final_data.col_formatted_as_datetype,'E')).show()
+final_data.select(date_format(final_data.col_formatted_as_datetype,'u').alias('weekday_encoded_as_number'),date_format(final_data.col_formatted_as_datetype,'E').alias('weekday_as_string')).show()
