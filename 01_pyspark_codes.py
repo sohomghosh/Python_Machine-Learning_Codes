@@ -475,3 +475,9 @@ df.show()
 #Source: https://stackoverflow.com/questions/43988801/pyspark-modify-column-values-when-another-column-value-satisfies-a-condition
 from pyspark.sql.functions import when
 df.withColumn('Id_New',when(df.Rank <= 5,'yes').otherwise('other')).show()
+
+#Pandas dataframe to spark dataframe
+converted_to_spark_df = spark.createDataFrame(pd_df.astype(str)).show()
+
+#Spark dataframe to pandas dataframe
+converted_to_pandas_df = spark_df.toPandas()
