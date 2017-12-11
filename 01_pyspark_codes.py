@@ -481,3 +481,5 @@ converted_to_spark_df = spark.createDataFrame(pd_df.astype(str)).show()
 
 #Spark dataframe to pandas dataframe
 converted_to_pandas_df = spark_df.toPandas()
+
+final_data.select(dayofmonth(final_data.col_formatted_as_datetypepe)).show()
