@@ -437,3 +437,11 @@ col_to_encode = "C6"
 onehot_df = one_hot_encode_fns(col_to_encode,train)
 train = pd.concat([train, onehot_df], axis = 1)
 del train[col_to_encode]
+
+#Ensembled multiple dataframes
+df_all=pd.read_csv("sub6.csv")
+for i in [18,36]:
+	df_all=df_all.append(pd.read_csv("sub"+str(i)+".csv"))
+
+ensembled_ans=df_all.groupby('roadId',as_index=False)['noOfLanes'].agg(lambda x: x.value_counts().index[0])
+ensembled_ans.to_csv("sub39.csv",index=False)
