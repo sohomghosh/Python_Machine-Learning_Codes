@@ -11,3 +11,11 @@ jupyter notebook --ip=abc.de.fg.ijk --port=1234 --allow-root
 
 import warnings
 warnings.filterwarnings('ignore')
+
+import matplotlib.pyplot as plt
+plt.style.use(['dark_background', 'ggplot'])
+get_ipython().magic(u'matplotlib inline')
+from IPython.display import clear_output
+# Ignore warnings
+import warnings
+warnings.filterwarnings('ignore')
