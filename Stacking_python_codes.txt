@@ -1,0 +1,4 @@
+#Link: 
+https://h2o-release.s3.amazonaws.com/h2o/rel-ueno/2/docs-website/h2o-docs/data-science/stacked-ensembles.html
+https://github.com/kaz-Anova/StackNet
+https://github.com/MLWave/Kaggle-Ensemble-Guide
