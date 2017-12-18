@@ -287,6 +287,17 @@ df.groupBy("username").agg(join_(F.collect_list("friend").alias("friends_grouped
 #Groupby and list form , collect_list
 df.groupBy("username").agg(F.collect_list("friend").alias("friends_grouped")).show(10)
 
+def top_ss(ss_list):
+	tsk = str(Counter(ss_list).most_common(50))
+	return tsk
+
+
+from pyspark.sql.functions import collect_list
+udf_top = udf(top_ss, StringType())
+final_data = useful_data.groupBy("single_col_l").agg(udf_top(collect_list(col('single_col_2'))).alias('ss_frequencies'))
+
+
+
 #Select max or maximum from a column
 train.select(max("datetime")).show(truncate=False)
 
