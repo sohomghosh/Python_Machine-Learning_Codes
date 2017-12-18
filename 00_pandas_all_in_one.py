@@ -445,3 +445,7 @@ for i in [18,36]:
 
 ensembled_ans=df_all.groupby('roadId',as_index=False)['noOfLanes'].agg(lambda x: x.value_counts().index[0])
 ensembled_ans.to_csv("sub39.csv",index=False)
+
+#Replace unreadable characters
+given_str.replace(u"\u001A", "").strip()
+
