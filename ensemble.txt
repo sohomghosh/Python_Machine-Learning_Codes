@@ -67,6 +67,13 @@ Finally fit the model on the entire train set and create predictions for the tes
 Now train a second-stage stacker model on the probabilities from the first-stage model(s).
 A stacker model gets more information on the problem space by using the first-stage predictions as features, than if it was trained in isolation.
 
+#Link for stacking: https://github.com/supreethmanyam/DataHackSummit2017/blob/master/EnsembleLearning_HackSession.ipynb
+Split the train set in k folds
+Fit a model on k-1 folds and predict the kth fold and the test set
+Repeat 2. to predict each fold
+We now have the (out-of-folds) prediction of the k folds and the average of all test predictions
+Use train and test out of folds predictions to fit a second level model with cross validation
+Predict on test data
 
 ########Blending
 In one of the 5 folds, train the models, then use the results of the models as 'variables' in logistic regression over the validation data of that fold
@@ -76,3 +83,22 @@ https://github.com/emanuele/kaggle_pbr/blob/master/blend.py
 When creating predictions for the test set, you can do that in one go, or take an average of the out-of-fold predictors. 
 Popular non-linear algorithms for stacking are GBM, KNN, NN, RF and ET
 
+#Link for blending: https://github.com/supreethmanyam/DataHackSummit2017/blob/master/EnsembleLearning_HackSession.ipynb
+Create a holdout of 10% of the train set
+Fit a model on the train set without the holdout
+Predict the untouched holdout with the trained first model
+Fit a logistic regression model on the generated probabilities and hold out labels to obtain the optimal weights for each model.
+Retrain the model on complete training data and use the obtained optimal weights for soft voting on test predictions.
+
+
+###########Others to explore
+***Feature weighted linear stacking
+***Quadratic linear stacking of models
+***Stacking classifiers with regressors and vice versa
+***Stacking unsupervised learned features
+***Online Stacking
+	 first create small fully random trees from the hashed binary representation. Substract profit or add profit when the tree makes a correct prediction. Now take the most profitable and least profitable trees and add them to the feature representation
+
+	
+NOTE: For stackers use SVM, random forests, extremely randomized trees, GBM and XGBoost with random parameters and a random subset of base models
+	
