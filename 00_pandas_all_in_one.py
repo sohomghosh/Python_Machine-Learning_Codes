@@ -64,6 +64,9 @@ cluster_attribites=pd.DataFrame({'attribute_frequency' : data_use.groupby('anima
 #Group Concat
 df.groupby('team').apply(lambda x: ','.join(x.user))
 
+useful_data.groupby('single_kv', as_index=False).agg(lambda x : str(Counter(x.cleaned_single_sv).most_common(50)))
+#single_kv, cleaned_single_sv are columns
+
 #group by with sorting
 df.groupby('team').apply(lambda x: ','.join(sorted(x.user)))
 OR
