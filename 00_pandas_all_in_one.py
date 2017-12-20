@@ -67,7 +67,8 @@ df.groupby('team').apply(lambda x: ','.join(x.user))
 useful_data.groupby('single_kv', as_index=False).agg(lambda x : str(Counter(x.cleaned_single_sv).most_common(50)))
 #single_kv, cleaned_single_sv are columns
 
-n [63]: df
+#Source: https://stackoverflow.com/questions/23794082/pandas-groupby-and-join-lists
+In [63]: df
 Out[63]: 
    a          b    c
 0  1  [1, 2, 3]  foo
