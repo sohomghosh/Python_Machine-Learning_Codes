@@ -67,6 +67,22 @@ df.groupby('team').apply(lambda x: ','.join(x.user))
 useful_data.groupby('single_kv', as_index=False).agg(lambda x : str(Counter(x.cleaned_single_sv).most_common(50)))
 #single_kv, cleaned_single_sv are columns
 
+n [63]: df
+Out[63]: 
+   a          b    c
+0  1  [1, 2, 3]  foo
+1  1     [2, 5]  bar
+2  2     [5, 6]  baz
+
+
+In [64]: df.groupby('a').agg({'b': 'sum', 'c': lambda x: ' '.join(x)})
+Out[64]: 
+         c                b
+a                          
+1  foo bar  [1, 2, 3, 2, 5]
+2      baz           [5, 6]
+
+
 #group by with sorting
 df.groupby('team').apply(lambda x: ','.join(sorted(x.user)))
 OR
