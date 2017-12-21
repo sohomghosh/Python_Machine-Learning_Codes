@@ -469,3 +469,9 @@ ensembled_ans.to_csv("sub39.csv",index=False)
 #Replace unreadable characters
 given_str.replace(u"\u001A", "").strip()
 
+#https://stackoverflow.com/questions/32796651/extract-dictionary-from-counter-object
+>>> from collections import Counter
+>>> a = Counter({'menu': 20, 'good': 15, 'happy': 10, 'bar': 5})
+>>> b = Counter({'menu': 1, 'good': 1, 'bar': 3})
+>>> a + b
+Counter({'menu': 21, 'good': 16, 'happy': 10, 'bar': 8})
