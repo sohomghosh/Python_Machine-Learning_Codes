@@ -497,3 +497,9 @@ final_data.select(dayofmonth(final_data.col_formatted_as_datetype)).show()
 
 #Weekday name and encided_id
 final_data.select(date_format(final_data.col_formatted_as_datetype,'u').alias('weekday_encoded_as_number'),date_format(final_data.col_formatted_as_datetype,'E').alias('weekday_as_string')).show()
+
+##Select probability from the output of a model like randomforest
+from pyspark.sql.functions import udf
+from pyspark.sql.types import FloatType
+secondelement=udf(lambda v:float(v[1]),FloatType())
+transformed.select(secondelement('probability')) #here transformed is the obtained dataset
