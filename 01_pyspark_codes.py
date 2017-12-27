@@ -503,3 +503,22 @@ from pyspark.sql.functions import udf
 from pyspark.sql.types import FloatType
 secondelement=udf(lambda v:float(v[1]),FloatType())
 transformed.select(secondelement('probability')) #here transformed is the obtained dataset
+
+#-------- creating saving loading model ------------------
+rf = RandomForestClassifier(labelCol='label', featuresCol='features',numTrees=20)
+
+paramGrid = ParamGridBuilder().build()#ParamGridBuilder().addGrid(lr.regParam, [0.1, 0.01, 0.001, 0.0001]).build()
+#lr = LinearRegression()
+#paramGrid = ParamGridBuilder().addGrid(lr.maxIter, [500]).addGrid(lr.regParam, [0]).addGrid(lr.elasticNetParam, [1]).build()
+pipeline_new = Pipeline(stages=[rf])
+evaluator = MulticlassClassificationEvaluator().setLabelCol("label").setPredictionCol("prediction").setMetricName("f1")  #/setMetricName/ "f1" (default), "weightedPrecision", "weightedRecall", "accuracy"
+#evaluator = RegressionEvaluator(metricName="mae")
+crossval = CrossValidator(estimator=pipeline_new, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=10)
+model_new_rf = crossval.fit(trainingData)
+model_new_rf.bestModel
+model_new_rf.bestModel.save('rf_pipeline_model_saved')
+model_new_rf.avgMetrics
+
+#loading a saved model
+from pyspark.ml import PipelineModel
+loadedModel = PipelineModel.load("rf_pipeline_model_saved")
