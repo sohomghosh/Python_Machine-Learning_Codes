@@ -37,6 +37,7 @@ from pyspark.sql.functions import max,min
 
 from pyspark import SparkContext
 from pyspark.sql.functions import monotonically_increasing_id
+from pyspark.sql.functions import when
 
 sc = SparkContext()
 
