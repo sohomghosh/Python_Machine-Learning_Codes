@@ -525,4 +525,11 @@ if __name__ == '__main__':
         print "There are %d rows of data"%(result)
 
 	
-	
+#dealing data with dask
+#https://dask.pydata.org/en/latest/dataframe-overview.html
+import dask.dataframe as dd
+df = dd.read_csv("cat0_click_data.csv", error_bad_lines = False)
+$split -d -l 100 cat0_click_data.csv cat0_parts_
+$for f in cat0_parts_*; do mv $f $f.csv; done
+ddata = dd.read_csv('data/iata_2000_*.csv', nrows=MAX_ROWS, header=0, names=cols, dtype=dtypes)
+
