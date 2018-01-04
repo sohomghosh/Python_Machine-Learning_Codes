@@ -533,3 +533,5 @@ $split -d -l 100 cat0_click_data.csv cat0_parts_
 $for f in cat0_parts_*; do mv $f $f.csv; done
 ddata = dd.read_csv('data/iata_2000_*.csv', nrows=MAX_ROWS, header=0, names=cols, dtype=dtypes)
 
+#http://dask-ml.readthedocs.io/en/latest/modules/api.html#module-dask_ml.xgboost
+	
