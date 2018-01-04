@@ -475,3 +475,54 @@ given_str.replace(u"\u001A", "").strip()
 >>> b = Counter({'menu': 1, 'good': 1, 'bar': 3})
 >>> a + b
 Counter({'menu': 21, 'good': 16, 'happy': 10, 'bar': 8})
+
+
+#Parallelizing pandas
+#Source: http://www.racketracer.com/2016/07/06/pandas-in-parallel/
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from multiprocessing import Pool
+num_partitions = 10 #number of partitions to split dataframe
+num_cores = 4 #number of cores on your machine
+iris = pd.DataFrame(sns.load_dataset('iris'))
+def parallelize_dataframe(df, func):
+    df_split = np.array_split(df, num_partitions)
+    pool = Pool(num_cores)
+    df = pd.concat(pool.map(func, df_split))
+    pool.close()
+    pool.join()
+    return df
+
+def multiply_columns(data):
+    data['length_of_word'] = data['species'].apply(lambda x: len(x))
+    return data
+    
+iris = parallelize_dataframe(iris, multiply_columns)
+
+#Distributed processing using pandas
+#Source: http://gouthamanbalaraman.com/blog/distributed-processing-pandas.html
+import pandas as pd
+import multiprocessing as mp
+LARGE_FILE = "D:\\my_large_file.txt"
+CHUNKSIZE = 100000 # processing 100,000 rows at a time
+def process_frame(df):
+        # process data frame
+        return len(df)
+
+if __name__ == '__main__':
+        reader = pd.read_table(LARGE_FILE, chunksize=CHUNKSIZE)
+        pool = mp.Pool(4) # use 4 processes
+
+        funclist = []
+        for df in reader:
+                # process each data frame
+                f = pool.apply_async(process_frame,[df])
+                funclist.append(f)
+        result = 0
+        for f in funclist:
+                result += f.get(timeout=10) # timeout in 10 seconds
+        print "There are %d rows of data"%(result)
+
+	
+	
