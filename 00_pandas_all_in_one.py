@@ -535,3 +535,7 @@ ddata = dd.read_csv('data/iata_2000_*.csv', nrows=MAX_ROWS, header=0, names=cols
 
 #http://dask-ml.readthedocs.io/en/latest/modules/api.html#module-dask_ml.xgboost
 	
+
+#error-in-reading-a-csv-file-in-pandascparsererror-error-tokenizing-data-c-err
+#Source: https://stackoverflow.com/questions/33998740/error-in-reading-a-csv-file-in-pandascparsererror-error-tokenizing-data-c-err
+df_clean = pd.read_csv('test_error.csv', lineterminator='\n')
