@@ -17,6 +17,7 @@ warnings.filterwarnings('ignore')
 import mpld3
 mpld3.enable_notebook()
 
+#shortcuts - https://www.cheatography.com/weidadeyue/cheat-sheets/jupyter-notebook/pdf_bw/
 
 import matplotlib.pyplot as plt
 plt.style.use(['dark_background', 'ggplot'])
