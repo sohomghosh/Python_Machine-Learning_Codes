@@ -12,6 +12,12 @@ jupyter notebook --ip=abc.de.fg.ijk --port=1234 --allow-root
 import warnings
 warnings.filterwarnings('ignore')
 
+#Enable zooming of plots in IPython Notebooks / Jupyter Notebooks
+#pip3 install mpld3
+import mpld3
+mpld3.enable_notebook()
+
+
 import matplotlib.pyplot as plt
 plt.style.use(['dark_background', 'ggplot'])
 get_ipython().magic(u'matplotlib inline')
