@@ -435,6 +435,11 @@ df[df.countries.isin(countries)]
 df[~df.countries.isin(countries)]
 
 ####One Hot Encoding
+
+one_hot_encoded_train_test = pd.get_dummies(train_test[['Gender','City_Category','Employer_Category1','Employer_Category2','Customer_Existing_Primary_Bank_Code','Primary_Bank_Type', 'Contacted', 'Source', 'Source_Category', 'Var1']])
+train_test_use = pd.concat([train_test[['Monthly_Income','Existing_EMI','Loan_Amount','Loan_Period','Interest_Rate','EMI','city_encoded','employer_encoded','age','lead_age','loan_emi_ratio','loan_income_ratio','savings','is_new_emi_more','is_emi_available','Approved']],one_hot_encoded_train_test], axis=1)
+
+
 #Source: https://machinelearningmastery.com/how-to-one-hot-encode-sequence-data-in-python/
 
 from sklearn.preprocessing import LabelEncoder
@@ -539,3 +544,4 @@ ddata = dd.read_csv('data/iata_2000_*.csv', nrows=MAX_ROWS, header=0, names=cols
 #error-in-reading-a-csv-file-in-pandascparsererror-error-tokenizing-data-c-err
 #Source: https://stackoverflow.com/questions/33998740/error-in-reading-a-csv-file-in-pandascparsererror-error-tokenizing-data-c-err
 df_clean = pd.read_csv('test_error.csv', lineterminator='\n')
+
