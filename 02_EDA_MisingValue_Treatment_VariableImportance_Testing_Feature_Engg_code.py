@@ -41,6 +41,11 @@ train_test = train.append(test)
 train_test.describe()
 train_test.dtypes
 
+#####Variable Importances
+#http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html
+#http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html
+
+
 ##EDA
 ##Reference: https://www.datacamp.com/community/tutorials/exploratory-data-analysis-python
 ##Reference: https://towardsdatascience.com/visualizing-your-exploratory-data-analysis-d2d6c2e3b30e
@@ -477,3 +482,6 @@ autolabel(rects)
 plt.savefig('dummy_feature_imp_diagram.png',dpi=1000)
 plt.show()
 ###########################################################################################################################
+#Threshold find from auc
+#http://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html
+
