@@ -149,6 +149,7 @@ YEARMONTH
 #Creating empty dataframe
 df = pd.DataFrame({c: np.repeat(0, [nrow]) for c in data['PAGENO'].unique()})
 
+#Assigning values to a cell of a dataframe
 #Populating the dataframe
 for row in data.iterrows():
 	if list(list(row)[1])[1] in data['PAGENO'].unique():
