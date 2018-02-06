@@ -327,6 +327,9 @@ df_new=df.pivot_table(index=['id1','id2'], columns=['1st_column_to_be_transforme
 #Name: "Sohom Ghosh" to "Sohom" "Ghosh" each in seperate column; Spliting a string into multiple strings by space
 df[‘name’] = df.name.str.split(" ", expand=True)
 
+#Fill one column by another
+df['Cat1'].fillna(df['Cat2'])
+
 ### Row to Column ###
 #Different types entries mentioned in "activity" column as seperate columns. The entries of these cells will be number of occurrences
 df.groupby('name')['activity'].value_counts().unstack().fillna(0)
