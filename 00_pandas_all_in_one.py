@@ -550,3 +550,6 @@ ddata = dd.read_csv('data/iata_2000_*.csv', nrows=MAX_ROWS, header=0, names=cols
 #Source: https://stackoverflow.com/questions/33998740/error-in-reading-a-csv-file-in-pandascparsererror-error-tokenizing-data-c-err
 df_clean = pd.read_csv('test_error.csv', lineterminator='\n')
 
+#Adding plots / coloured cells / to excel
+http://xlsxwriter.readthedocs.io/working_with_pandas.html
+http://pbpython.com/excel-pandas-comp-2.html
