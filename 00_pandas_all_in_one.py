@@ -547,6 +547,15 @@ df.sum(axis=0)
 #reorder columns of a dataframe
 df.reindex(columns=['col1', 'col2'])
 
+#Removing upper triangular matrix
+df.mask(np.triu(np.ones(df.shape, dtype=np.bool_)))
+
+#Removing lower triangular matrix
+df.mask(np.tril(np.ones(df.shape, dtype=np.bool_)))
+
+#Set a column as an index of a dataframe
+df4.set_index(df4.col_name, inplace=True)
+
 #dealing data with dask
 #https://dask.pydata.org/en/latest/dataframe-overview.html
 import dask.dataframe as dd
