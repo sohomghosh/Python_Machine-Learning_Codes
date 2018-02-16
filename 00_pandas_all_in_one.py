@@ -534,7 +534,19 @@ if __name__ == '__main__':
                 result += f.get(timeout=10) # timeout in 10 seconds
         print "There are %d rows of data"%(result)
 
-	
+
+#Transpose a pyspark dataframe	
+df.T
+
+#all but one column [except one column select]
+df4.iloc[:,df4.columns != 'col_name']
+
+#columnwise sum
+df.sum(axis=0)
+
+#reorder columns of a dataframe
+df.reindex(columns=['col1', 'col2'])
+
 #dealing data with dask
 #https://dask.pydata.org/en/latest/dataframe-overview.html
 import dask.dataframe as dd
