@@ -1,0 +1,69 @@
+#Source: https://www.analyticsvidhya.com/blog/2018/01/online-learning-guide-text-classification-vowpal-wabbit-vw/
+#Source: https://github.com/JohnLangford/vowpal_wabbit/blob/master/README.md
+#Wiki Link: https://github.com/JohnLangford/vowpal_wabbit/wiki/Command-line-arguments
+
+The idea is very simple: convert data into a vector of features. When this is done using hashing, we call the method “feature hashing” or “the hashing trick”.
+
+#Vowal_Wabbit Input Format
+[Label] [Importance] [Base] [Tag]|Namespace Features |Namespace Features ... |Namespace Features
+
+
+
+where [] denotes non-mandatory elements, and (…)* means some repeats
+Namespace = String[:Value]
+
+Features = (String[:Value] )*
+
+Label: Target
+Importance : (importance weight) is a non-negative real number indicating the relative importance of this example over the others. Default value is 1
+Base : used for residual regression. Default value is 0
+Tag : serves as an identifier for the example
+Namespace: Default value is 1. identifier of a source of information for the example optionally followed by a float (e.g., MetricFeatures:3.28), which acts as a global scaling of all the values of the features in this namespace
+Features : is a sequence of whitespace separated strings, each of which is optionally followed by a float (e.g., NumberOfLegs:4.0 HasStripes). Each string is a feature and the value is the feature value for that example. Omitting a feature means that its value is zero. Including a feature but omitting its value means that its value is 1.
+
+POINTS TO REMEMBER:
+1) No space between Tag and |
+2) No space between | and Namespace
+3) If space after | then the texts are treated as features and not Namespace features
+
+Example:
+1 1.0 zebra|MetricFeatures:3.28 height:1.5 length:2.0 |Says black with white stripes |OtherFeatures NumberOfLegs:4.0 HasStripes
+
+Label = 1
+Importance = 1.0
+Tag = "zebra"
+Namespace = MetricFeatures:3.28
+Features = NumberOfLegs:4.0; black with white stripes
+
+##########Data preparation code
+
+##########Train from command line
+!vw -d movie_reviews_train.vw --loss_function logistic -f movie_reviews_model.vw
+
+-d This is used to include the  path to train the data for the command line.
+–loss_function This is used to declare the loss function (e.g. squared, logistic, hinge etc.).
+-f  This is used to save the model for using it on a different dataset.
+
+##########Test from command line
+!vw -i movie_reviews_model.vw -t -d movie_reviews_valid.vw -p movie_valid_pred.txt --quiet
+
+-i Read the model from the given file
+-t -d Declare that we are dealing with dataset without labels (test) at this path
+-p Save predictions to this file
+–quiet Do not print any steps taken for prediction
+
+!vw -d movie_reviews_train.vw --loss_function logistic --ngram 2 -f movie_reviews_model_bigram.vw --quiet
+
+##########Model Interpretability
+!vw -d movie_reviews_train.vw --loss_function logistic --ngram 2 --invert_hash movie_reviews_readable_model_bigram.vw
+
+##########Regualarizaton
+!vw -d movie_reviews_train.vw --l1 0.00005 --l2 0.00005 --loss_function logistic --ngram 2 -f movie_reviews_model_bigram.vw
+
+##########How to update the model after it is being made?
+#First need to save using --save_resume
+!vw -d movie_reviews_train.vw --loss_function logistic --save_resume -f existing.model
+
+#Then to resume learning
+!vw -i existing.model --save_resume -f new.model more_observations.dat
+!vw -i existing.model --save_resume -f new.model -d more_observations.dat
