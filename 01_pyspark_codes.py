@@ -505,6 +505,12 @@ from pyspark.sql.types import FloatType
 secondelement=udf(lambda v:float(v[1]),FloatType())
 transformed.select(secondelement('probability')) #here transformed is the obtained dataset
 
+from pyspark.sql.types import FloatType
+#Extracting only the column with probability with column with 1's probability
+secondelement=udf(lambda v:float(v[1]),FloatType())
+transformed.select(secondelement('probability')).show()
+
+
 #-------- creating saving loading model ------------------
 rf = RandomForestClassifier(labelCol='label', featuresCol='features',numTrees=20)
 
@@ -523,3 +529,4 @@ model_new_rf.avgMetrics
 #loading a saved model
 from pyspark.ml import PipelineModel
 loadedModel = PipelineModel.load("rf_pipeline_model_saved")
+
