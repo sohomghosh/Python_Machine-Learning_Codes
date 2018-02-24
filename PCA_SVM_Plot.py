@@ -9,6 +9,21 @@ x, y = iris[:, :4], iris[:, 4].astype(np.int) # x: (observations x attributes) m
 x.shape
 y.shape
 
+
+########################PCA USING SKLEARN#########################
+pca = PCA(n_components=2)
+pca.fit(vecs_of_nodes)
+z = pca.transform(vecs_of_nodes)
+print(pca.explained_variance_ratio_)  
+print(pca.singular_values_)
+plt.set_cmap(plt.cm.Paired)
+fig1 = plt.figure(1)
+title = plt.title("PCA on vecs of nodes")
+plot = plt.scatter(z[:, 0], z[:, 1])
+labx = plt.xlabel("First component")
+laby = plt.ylabel("Second component")
+
+########################PCA USING MLPY#############################
 #Dimensionality reduction by Principal Component Analysis (PCA)
 pca = mlpy.PCA() # new PCA instance
 pca.learn(x) # learn from data
