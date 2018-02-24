@@ -15,7 +15,9 @@ warnings.filterwarnings('ignore')
 #Enable zooming of plots in IPython Notebooks / Jupyter Notebooks
 #pip3 install mpld3
 import mpld3
-mpld3.enable_notebook()
+mpld3.enable_notebook() #To enable
+mpld3.disable_notebook() #To disable
+
 
 #shortcuts - https://www.cheatography.com/weidadeyue/cheat-sheets/jupyter-notebook/pdf_bw/
 
@@ -26,3 +28,4 @@ from IPython.display import clear_output
 # Ignore warnings
 import warnings
 warnings.filterwarnings('ignore')
+
