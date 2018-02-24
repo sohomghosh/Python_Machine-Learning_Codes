@@ -46,12 +46,4 @@ plt.xlabel('k')
 plt.ylabel('Distortion')
 plt.title('The Elbow Method showing the optimal k')
 plt.show()
-#FROM THIS PLOT SELECT K WEHRE THE PLOT HAS STEEPEST SLOPE
-
-# Plot the elbow
-plt.plot(K, distortions, 'bx-')
-plt.xlabel('k')
-plt.ylabel('Distortion')
-plt.title('The Elbow Method showing the optimal k')
-plt.show()
- 
+#FROM THIS PLOT SELECT K WEHRE THE PLOT HAS STEEPEST SLOPE 
