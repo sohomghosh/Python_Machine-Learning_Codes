@@ -18,8 +18,8 @@ plt.show()
 #Remenber X : NEEDS TO BE SCALED
 from sklearn.cluster import KMeans
 kmeans = KMeans(n_clusters=4)
-kmeans.fit(X)
-y_kmeans = kmeans.predict(X)
+kmeans.fit(X)#Remenber X : NEEDS TO BE SCALED
+y_kmeans = kmeans.predict(X)#Remenber X : NEEDS TO BE SCALED
 final_data = pd.DataFrame(X)
 final_data['cluster'] = y_kmeans
 
