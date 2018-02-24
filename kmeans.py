@@ -15,11 +15,15 @@ plt.scatter(X[:, 0], X[:, 1], s=50)
 plt.show()
 
 
-#Remenber X : NEEDS TO BE SCALED
+#Remember X : NEEDS TO BE SCALED
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X = scaler.fit_transform(data)
+
 from sklearn.cluster import KMeans
 kmeans = KMeans(n_clusters=4)
-kmeans.fit(X)#Remenber X : NEEDS TO BE SCALED
-y_kmeans = kmeans.predict(X)#Remenber X : NEEDS TO BE SCALED
+kmeans.fit(X)#Remember X : NEEDS TO BE SCALED
+y_kmeans = kmeans.predict(X)#Remember X : NEEDS TO BE SCALED
 final_data = pd.DataFrame(X)
 final_data['cluster'] = y_kmeans
 
