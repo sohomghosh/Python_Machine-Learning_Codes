@@ -58,6 +58,12 @@ fancy_dendrogram(
 )
 plt.show()
 
+#Use the 
+#1) Plot obtained above,
+#2) Elbow Method, 
+#3) Inconsistency Method to determine number of cluters
+#Link: https://joernhees.de/blog/2015/08/26/scipy-hierarchical-clustering-and-dendrogram-tutorial/
+
 #Using number of clusters to make hierarchical clusters
 k=30
 clusters = fcluster(linkage_matrix, k, criterion='maxclust')
