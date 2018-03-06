@@ -37,9 +37,11 @@ data=data.drop_duplicates()
 [item for sublist in main_list for item in sublist]
 flatten = lambda main_list: [item for sublist in main_list for item in sublist]
 
-#remove a columns
-df.drop('column_to_remove',axis=1)
+#remove / drop a column
+df.drop(['column1_to_remove','column2_to_remove'],axis=1)
 
+#remove / drop rows with index 'Coce' and 'Puma' 
+df.drop(['Coce', 'Puma'])
 
 #Group by then join
 #Every man should have min five distinct cars
