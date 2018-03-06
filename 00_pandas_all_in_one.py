@@ -581,3 +581,38 @@ df_clean = pd.read_csv('test_error.csv', lineterminator='\n')
 #Adding plots / coloured cells / to excel
 http://xlsxwriter.readthedocs.io/working_with_pandas.html
 http://pbpython.com/excel-pandas-comp-2.html
+
+
+#### Connecting to databases
+import psycopg2
+import pandas as pd
+import time
+from datetime import datetime
+
+conn_string = "dbname='name_of_database' port='port_number' user='user_name' password='password' host='host_name_or_ip'";
+
+conn = psycopg2.connect(conn_string);
+df = pd.read_sql_query("select * from table_name", con=conn)
+
+
+#OR
+
+cursor = conn.cursor();
+result = cursor.execute("select * from table_name")
+df1 = pd.DataFrame(result.fetchall())
+df1.columns = result.keys()
+
+
+#Fetch result in batches
+#Reference: https://stackoverflow.com/questions/32625593/retrieving-data-from-mysql-in-batches-via-python
+
+cursor.execute("SELECT count(*) FROM mytable")
+count = cursor.fetchone()[0]
+batch_size = 42 # whatever
+
+for offset in xrange(0, count, batch_size):
+    cursor.execute(
+        "SELECT * FROM mytable LIMIT %s OFFSET %s", 
+        (batch_size, offset))
+   for row in cursor:
+       do_something_with(row)
