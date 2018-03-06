@@ -37,6 +37,9 @@ data=data.drop_duplicates()
 [item for sublist in main_list for item in sublist]
 flatten = lambda main_list: [item for sublist in main_list for item in sublist]
 
+#remove a columns
+df.drop('column_to_remove',axis=1)
+
 
 #Group by then join
 #Every man should have min five distinct cars
@@ -45,6 +48,8 @@ c=c[c['is_car_cnt_more5']==True]
 del c['is_car_cnt_more5']
 cleaned_data=pd.merge(cleaned_data,c,on=['man_id'])
 cleaned_data=cleaned_data.dropna()
+
+df1.join(df2,left_on='col_for_joining_of_df1',right_on='col_for_joining_of_df2').drop('col_for_joining_of_df2',axis=1)
 
 #groupby then count and rename the count as new_cc
 gf.groupby(['id'], as_index=False).size().reset_index().rename(columns={0:'new_cc'}).head()
