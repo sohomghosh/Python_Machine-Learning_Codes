@@ -127,6 +127,8 @@ final_data=final_data.sort_values(['person_id','role_id'])
 #Group by then order by
 test_data.groupby(['col1','col2'], as_index = False).size().reset_index().sort_values(['col1','col2']).to_csv("/index/ans.csv",index=False)
 
+#order by indescending order
+final_data.sort_values(['count'], ascending = False)
 
 #Column transformation
 #Converting to months
