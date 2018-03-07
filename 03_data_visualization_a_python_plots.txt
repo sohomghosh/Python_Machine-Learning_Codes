@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 ------------------------------------------------------------
 ######################### UNIVARIATE ANALYSIS ##############
 ------------------------------------------------------------
@@ -6,19 +8,23 @@
 
 #Bar charts of categorical data (Univariate Analysis)
 train['Gender'].value_counts().head(100).plot.bar()
+plt.show()
 
 #Histogram (Univariate Analysis) - For Numeric Data
 train['Interest_Rate'].plot.hist()
+plt.show()
 
 #sns.distplot = pandas hist
 sns.distplot(train['Interest_Rate'].dropna(), bins=5, kde=False)
+plt.show()
 
 #bar chart sorted by x-axis
 train['City_Category'].value_counts().sort_index().head(100).plot.bar()
+plt.show()
 
 #pandas bar plot = seaborn count plot
 sns.countplot(train['Gender']
-
+plt.show()
 #when values are precalculated
 import matplotlib.pyplot as plt
 df.plot(x='col_name1', y= "dependent_variable",kind='bar')
@@ -35,48 +41,54 @@ plt.show()
 
 #Line charts of numeric data (Univariate Analysis)
 train['Monthly_Income'].value_counts().sort_index().plot.line()
+plt.show()
 
 #pandas line charts sorted by x axis
 train['EMI'].value_counts().sort_index().plot.line()
-
+plt.show()
 ---------------------------------------------------------
 ##KDE (Univariate Analysis)
 
 #Kernel Density Estimate Plot (Univariate Analysis) : does smoothing
 sns.kdeplot(train['Interest_Rate'].dropna())
+plt.show()
 
 ---------------------------------------------------------
 
 ##PIECHARTS (Univariate Analysis)
 train['Source_Category'].value_counts().head(10).plot.pie()
 plt.gca().set_aspect('equal')
-
+plt.show()
 ---------------------------------------------------------
 
 ##BOXPLOT (Univariate Analysis)
 sns.boxplot(data=train, x = 'N34')
-
+plt.show()
 ------------------------------------------------------------
 ######################### BIVARIATE ANALYSIS ##############
 ------------------------------------------------------------
 
 ##SCATTER PLOT (Bivariate Analysis)
 train.plot.scatter(x='Loan_Amount', y='EMI')
+plt.show()
 ---------------------------------------------------------------------
 
 ##KERNEL DENSITY ESTIMATE PLOT (Bivariate Analysis)
 sns.kdeplot(train[['Loan_Amount','Approved']].dropna())
+plt.show()
 ---------------------------------------------------------------------
 
 ##HEXPLOT (A hexplot aggregates points in space into hexagons, and then colorize those hexagons) (Bivariate Analysis)
 train.plot.hexbin(x='Loan_Amount', y='EMI', gridsize=15)
-
+plt.show()
 ---------------------------------------------------------------------
 
 ##JOINTPLOT - combine scatter and hexplot (Bivariate Analysis)
 sns.jointplot(x='Loan_Amount', y='EMI', data=train[['Loan_Amount', 'EMI']].dropna())
-sns.jointplot(x='Loan_Amount', y='EMI', data=train[['Loan_Amount', 'EMI']].dropna(), kind='hex', gridsize=20)
+plt.show()
 
+sns.jointplot(x='Loan_Amount', y='EMI', data=train[['Loan_Amount', 'EMI']].dropna(), kind='hex', gridsize=20)
+plt.show()
 ---------------------------------------------------------------------
 ##STACKED PLOTS (Bivariate Analysis)
 train_stats_as_per_source_category = train.groupby('Source_Category').mean()[['Loan_Amount', 'Existing_EMI', 'EMI']]
@@ -89,39 +101,47 @@ Source_Category
 
 #STACKED BAR
 train_stats_as_per_source_category.plot.bar(stacked=True)
+plt.show()
 
 #STACKED AREA
 train_stats_as_per_source_category.plot.area()
+plt.show()
+
 ---------------------------------------------------------------------
 ##BOXPLOT (Bivariate Analysis)
 sns.boxplot(x='Source_Category', y='Loan_Amount',data=train)
+plt.show()
 
 ---------------------------------------------------------------------
 ##VIOLIN PLOT (Bivariate Analysis)
 sns.violinplot(x='Source_Category', y='Loan_Amount',data=train)
-
+plt.show()
 
 ------------------------------------------------------------
 ######################### MULTI-VARIATE ANALYSIS ##############
 ------------------------------------------------------------
 ##PAIRPLOT (Multivariate plots)
 sns.pairplot(train[['Existing_EMI', 'Loan_Amount', 'Monthly_Income']].dropna())
+plt.show()
 
 #Facet Grid (Multivariate plots) : #A FacetGrid is an object which stores some information on how you want to break up your data visualization.
 g = sns.FacetGrid(train, col="Source_Category")
 g.map(sns.kdeplot, "Loan_Amount")
+plt.show()
 ---------------------------------------------------------------------
 
 ##SUB PLOTS (Multivariate plots)
 #fig, axarr = plt.subplots(<number_of_rows>, <number_of_columns>, figsize=(<along_x_axis>, <along_y_axis>))
 fig, axarr = plt.subplots(2, 2, figsize=(12, 8))
+plt.show()
 ---------------------------------------------------------------------
 
 ##SCATTER PLOTS (Multivariate plots)
 sns.lmplot(x='Monthly_Income', y='Existing_EMI', hue='Source_Category', data=tra
 in.dropna(), fit_reg=False)
+plt.show()
 ---------------------------------------------------------------------
 
 ##HEAT MAP (Multivariate Plots)
 sns.heatmap(train[['Monthly_Income', 'EMI', 'Existing_EMI']].corr(),annot=True)
-
+plt.show()
