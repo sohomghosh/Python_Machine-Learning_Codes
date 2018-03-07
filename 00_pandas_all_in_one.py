@@ -621,3 +621,18 @@ for offset in xrange(0, count, batch_size):
 
 # Sort a pandas dataframe based on index of other pandas dataframe
 df2.reindex(df.index)
+
+#Adding values of 2 dataframes element wise
+df_add = df1.add(df2, fill_value=0)
+
+#Finding correlation between 2 columns of a dataframe
+df['A'].corr(df['B'])
+
+
+#Finding cosine similarity between all pairs of elements of a matrix : #Reference: https://stackoverflow.com/questions/17627219/whats-the-fastest-way-in-python-to-calculate-cosine-similarity-given-sparse-mat
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy import sparse
+A =  np.array([[0, 1, 0, 0, 1], [0, 0, 1, 1, 1],[1, 1, 0, 1, 0]])
+A_sparse = sparse.csr_matrix(A)
+similarities = cosine_similarity(A_sparse)
+similarities
