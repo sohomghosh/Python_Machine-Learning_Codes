@@ -618,3 +618,6 @@ for offset in xrange(0, count, batch_size):
         (batch_size, offset))
    for row in cursor:
        do_something_with(row)
+
+# Sort a pandas dataframe based on index of other pandas dataframe
+df2.reindex(df.index)
