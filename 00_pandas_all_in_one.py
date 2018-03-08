@@ -639,3 +639,19 @@ similarities
 
 #Styling and coloring cells, conditional formating of pandas dataframe
 http://pandas.pydata.org/pandas-docs/stable/style.html
+
+#Save dataframe as html
+df.to_html('filename.html')
+
+#Save styled data frame as excel #Reference: https://stackoverflow.com/questions/47398937/saving-pandas-styler-object-in-anyway
+df.style.background_gradient(cmap='RdYlGn',low=.09,high=.18,axis=1).to_excel('d:/temp/a.xlsx', engine='openpyxl')
+
+#Save dataframe as image png #Reference: https://stackoverflow.com/questions/35634238/how-to-save-a-pandas-dataframe-table-as-a-png
+import matplotlib.pyplot as plt
+from pandas.tools.plotting import table
+ax = plt.subplot(111, frame_on=False) # no visible frame
+ax.xaxis.set_visible(False)  # hide the x axis
+ax.yaxis.set_visible(False)  # hide the y axis
+#df is the required pandas dataframe
+table(ax, df)  # where df is your data frame
+plt.savefig('mytable.png')
