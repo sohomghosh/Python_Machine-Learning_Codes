@@ -636,3 +636,6 @@ A =  np.array([[0, 1, 0, 0, 1], [0, 0, 1, 1, 1],[1, 1, 0, 1, 0]])
 A_sparse = sparse.csr_matrix(A)
 similarities = cosine_similarity(A_sparse)
 similarities
+
+#Styling and coloring cells, conditional formating of pandas dataframe
+http://pandas.pydata.org/pandas-docs/stable/style.html
