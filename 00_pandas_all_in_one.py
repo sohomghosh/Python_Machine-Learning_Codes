@@ -669,6 +669,8 @@ plt.savefig('mytable.png')
 df = data['col_name'].str.split(',', expand=True)
 #whenever there will be no data corresponding to a filed, it will be None
 
+#write without header and index
+df.to_csv("data.csv", header=False, index = False)
 
 ################################LEARNINGS################################
 1) If 2 dataframe does not join, check if the datatype of their common columns are same
