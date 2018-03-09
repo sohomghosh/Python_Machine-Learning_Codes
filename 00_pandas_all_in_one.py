@@ -409,6 +409,15 @@ train_data_clean = pd.notnull(train_data_clean['label'])
 #pandas dataframe to dictonary convert
 df.set_index('ID').T.to_dict('list')
 
+#df is a dataframe and is like follows:
+'''
+id    name
+1     abc
+2     pqr
+'''
+dictionary_use = df.set_index('id').T.to_dict('records')[0]
+
+
 #drop suplicates
 df.drop_duplicates(subset=['id','aadhar_no'])
 
