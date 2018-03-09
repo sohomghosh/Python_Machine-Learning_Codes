@@ -672,9 +672,15 @@ df = data['col_name'].str.split(',', expand=True)
 #write without header and index
 df.to_csv("data.csv", header=False, index = False)
 
+# Remove .0 from int columns while writing
+#Even after using astype sometimes .0 doesnot get replaced. This is because column has a nan value which it treats as float. In such cases, first fillna then typecast
+df['ab_id'].fillna(0, inplace = True)
+df['ab_id'] = df['ab_id'].astype(int,errors='ignore')
+
 ################################LEARNINGS################################
 1) If 2 dataframe does not join, check if the datatype of their common columns are same
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
-3) 
+3) Whenever there is nan or na, astype(int) does not convert into int, so .0 comes with the column when the dataframe is written. Remove nan by fill na first, then do astype(int, errors = 'ignore')
+4) 
 #########################################################################
 
