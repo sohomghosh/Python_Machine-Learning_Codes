@@ -655,3 +655,7 @@ ax.yaxis.set_visible(False)  # hide the y axis
 #df is the required pandas dataframe
 table(ax, df)  # where df is your data frame
 plt.savefig('mytable.png')
+
+#text to columns : transform a column having many fileds sepearted by , to different columns
+df = data['col_name'].str.split(',', expand=True)
+#whenever there will be no data corresponding to a filed, it will be None
