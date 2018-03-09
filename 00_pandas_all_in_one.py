@@ -668,3 +668,11 @@ plt.savefig('mytable.png')
 #text to columns : transform a column having many fileds sepearted by , to different columns
 df = data['col_name'].str.split(',', expand=True)
 #whenever there will be no data corresponding to a filed, it will be None
+
+
+################################LEARNINGS################################
+1) If 2 dataframe does not join, check if the datatype of their common columns are same
+2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
+3) 
+#########################################################################
+
