@@ -343,6 +343,32 @@ df['Cat1'].fillna(df['Cat2'])
 #Different types entries mentioned in "activity" column as seperate columns. The entries of these cells will be number of occurrences
 df.groupby('name')['activity'].value_counts().unstack().fillna(0)
 
+df.columns
+#[id,'type','time']
+
+
+df.head(2)
+'''
+id,type,time
+1,full,12:02
+2,not_full,13:09
+'''
+
+
+#OUTPUT REQUIRED
+'''
+id,full,not_full
+1,12:02,NaN
+2,NaN,13:09
+'''
+
+df.groupby(['id','type'])['time'].agg(np.min).unstack().reset_index()
+
+OR
+
+p = df.pivot(index='id', columns='type', values='time')
+#####################################################################
+
 #Time Difference between timestamps of activities of a person
 df = df.sort_values(by=['name','timestamp'])
 df['time_diff'] = df.groupby('name')['timestamp'].diff()
