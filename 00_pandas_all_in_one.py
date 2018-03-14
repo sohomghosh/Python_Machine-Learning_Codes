@@ -703,8 +703,33 @@ df.to_csv("data.csv", header=False, index = False)
 df['ab_id'].fillna(0, inplace = True)
 df['ab_id'] = df['ab_id'].astype(int,errors='ignore')
 
+
+#columns to rows : use melt function #Reference: https://stackoverflow.com/questions/28654047/pandas-convert-some-columns-into-rows
+data_melted = pd.melt(data, id_vars=["col1_not_to_be_made_row", "col2_not_to_be_made_row"], var_name="name_of_the_new_column_which_will_have_all_previous_column_names", value_name="name_of_the_new_column_which_will_have_values_corresponding_to_previous_columns")
+df
+'''
+location  name  Jan-2010  Feb-2010  March-2010
+0        A  test        12        20          30
+1        B   foo        18        20          25
+'''
+
+df2 = pd.melt(df, id_vars=["location", "name"], var_name="Date", value_name="Value")
+df2
+
+'''
+  location  name        Date  Value
+0        A  test    Jan-2010     12
+1        B   foo    Jan-2010     18
+2        A  test    Feb-2010     20
+3        B   foo    Feb-2010     20
+4        A  test  March-2010     30
+5        B   foo  March-2010     25
+'''
+
+
+
 ################################LEARNINGS################################
-1) If 2 dataframe does not join, check if the datatype of their common columns are same
+1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
 3) Whenever there is nan or na, astype(int) does not convert into int, so .0 comes with the column when the dataframe is written. Remove nan by fill na first, then do astype(int, errors = 'ignore')
 4) 
