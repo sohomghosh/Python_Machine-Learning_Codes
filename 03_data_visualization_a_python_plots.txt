@@ -73,6 +73,11 @@ train.plot.scatter(x='Loan_Amount', y='EMI')
 plt.show()
 ---------------------------------------------------------------------
 
+##LINE PLOT (Bivariate Analysis)
+train.line.scatter(x='Loan_Amount', y='EMI')
+plt.show()
+---------------------------------------------------------------------
+
 ##KERNEL DENSITY ESTIMATE PLOT (Bivariate Analysis)
 sns.kdeplot(train[['Loan_Amount','Approved']].dropna())
 plt.show()
