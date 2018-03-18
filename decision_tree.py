@@ -29,5 +29,5 @@ for i in y_test:
 fp.close()
 
 #Evaluating Matrix
-#from sklearn import metrices
-#print metrices.accuracy_score(y_test,y_pred)
+#from sklearn import metrics
+#print metrics.accuracy_score(y_test,y_pred)
