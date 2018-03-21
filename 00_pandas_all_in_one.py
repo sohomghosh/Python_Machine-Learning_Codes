@@ -452,6 +452,11 @@ pd.to_datetime('13000101', format='%Y%m%d', errors='coerce')
 # Type casting from mongoDB exported date time [like:Tue Nov 28 2017 05:29:59 GMT+0530 (IST)] to python date time format
 data ['createTime_formatted'] =  pd.to_datetime(data['createTime'], format='%a %b %d %Y %H:%M:%S GMT+0530 (IST)',errors='coerce')
 
+#Age calculation : : dob_format : 1980-10-22
+from datetime import datetime
+days_diff = datetime.today() - pd.to_datetime(data['dob'], errors = 'coerce')
+data['age'] = days_diff.astype('timedelta64[D]')/365
+
 train_test['DateTime'] =  pd.to_datetime(train_test['DateTime'], format='%Y-%m-%d %H:%M:%S',errors='coerce')
 
 train_test['weekday'] = train_test['DateTime'].dt.weekday
