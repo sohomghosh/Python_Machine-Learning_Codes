@@ -536,6 +536,11 @@ given_str.replace(u"\u001A", "").strip()
 Counter({'menu': 21, 'good': 16, 'happy': 10, 'bar': 8})
 
 
+from collections import Counter, OrderedDict
+locations = list(data['city'].apply(lambda x : str(x).lower().strip()))
+OrderedDict(Counter(locations).most_common())
+
+
 #Parallelizing pandas
 #Source: http://www.racketracer.com/2016/07/06/pandas-in-parallel/
 import pandas as pd
