@@ -540,7 +540,7 @@ from collections import Counter, OrderedDict
 locations = list(data['city'].apply(lambda x : str(x).lower().strip()))
 ordered_dict = OrderedDict(Counter(locations).most_common())
 
-location_distribution = pd.DataFrame({'count' :list(ordered_dict.values()), 'city' :list(orderedDictList.keys())})
+location_distribution = pd.DataFrame({'count' :list(ordered_dict.values()), 'city' :list(ordered_dict.keys())})
 
 
 #Parallelizing pandas
