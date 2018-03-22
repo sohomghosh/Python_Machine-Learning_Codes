@@ -600,6 +600,10 @@ df4.iloc[:,df4.columns != 'col_name']
 #columnwise sum
 df.sum(axis=0)
 
+#rowwise sum
+df.sum(axis=1)
+
+
 #reorder columns of a dataframe
 df.reindex(columns=['col1', 'col2'])
 
