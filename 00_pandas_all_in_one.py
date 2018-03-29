@@ -16,8 +16,15 @@ data=pd.concat(pd.read_csv(StringIO(''.join(l.replace('\x00', '') for l in open(
 #pandas.errors.ParserError: ',' expected after '"'
 pd.read_csv(StringIO(''.join(l.replace('"', '') for l in open("day_data.csv"))))
 
+**AFTER JOINING ALWAYS CHECK NUMBER OF RECORDS**
+
 #Join no result:
 If after joining two pandas dataframes you are getting no results then check the datatype of the parameter used for joining the two dataframes
+
+#Join extra results:
+USE 
+df.drop_duplicates() before join
+
 
 
 #Column rearrange
