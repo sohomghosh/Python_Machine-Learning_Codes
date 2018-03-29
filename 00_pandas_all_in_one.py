@@ -98,6 +98,9 @@ a
 1  foo bar  [1, 2, 3, 2, 5]
 2      baz           [5, 6]
 
+#groupby with agg and size within agg dictionary [then use np.size instead of size()]
+final_df.groupby('source').agg({'col_name':np.size, 'col2_name':np.sum}).reset_index()
+
 
 #group by with sorting
 df.groupby('team').apply(lambda x: ','.join(sorted(x.user)))
