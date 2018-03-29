@@ -756,5 +756,7 @@ df2
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
 3) Whenever there is nan or na, astype(int) does not convert into int, so .0 comes with the column when the dataframe is written. Remove nan by fill na first, then do astype(int, errors = 'ignore')
 4) Whenever joining : Make sure there is no nan and duplicate values in dataframes to be merged. After mergeing count verify
+5) After value_counts() if not get one kind of values : means the other is nan
+6) 
 #########################################################################
 
