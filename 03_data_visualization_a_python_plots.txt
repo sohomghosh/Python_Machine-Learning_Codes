@@ -48,6 +48,17 @@ plt.show()
 #pandas line charts sorted by x axis
 train['EMI'].value_counts().sort_index().plot.line()
 plt.show()
+
+#multiple line plots : df is the dataframe having columns: date,count,media ; for different media plot with diffrent colors
+#data [it is grouped by (date,media)]
+date,media,count
+21-03-2017,facebook,4
+21-03-2017,tv,5
+22-03-2017,facebook,8
+
+sns.factorplot(x='date', y='count', hue='media', data=df, fit_reg=False)
+plt.show()
+
 ---------------------------------------------------------
 ##KDE (Univariate Analysis)
 
