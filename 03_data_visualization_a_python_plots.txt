@@ -25,6 +25,7 @@ plt.show()
 #pandas bar plot = seaborn count plot
 sns.countplot(train['Gender']
 plt.show()
+
 #when values are precalculated
 import matplotlib.pyplot as plt
 df.plot(x='col_name1', y= "dependent_variable",kind='bar')
