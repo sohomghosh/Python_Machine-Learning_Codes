@@ -414,6 +414,12 @@ train_clean.describe()
 # Spelling correction in pandas dataframe
 data['col']=data['col'].replace(to_replace=['wrong_spelling_1','wrong_spelling_2'],value='correct_spelling')
 
+#replace all values except a few by 'others' :: here : replace all states other than UP, MH by 'others
+ff_new['cleaned_state'] =ff_new['state']
+ff_new = ff_new.set_value(index=ff_new[~ff_new['cleaned_state'].isin(['UP','MH'])].index,col='cleaned_state',value='others')
+
+
+
 #Apply user defined function taking multiple columns of a pandas dataframe input simultaneously
 df.apply(lambda row: my_test(row['a'], row['c']), axis=1)
 #Source: https://stackoverflow.com/questions/16353729/pandas-how-to-use-apply-function-to-multiple-columns
