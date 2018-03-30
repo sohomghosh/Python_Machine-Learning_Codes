@@ -759,6 +759,49 @@ df2
 '''
 
 
+#Rank events based on their time occurrence, when multiple occurrence of the same event occurs
+
+#data
+id,event,time
+1,install,18/05/18 13:17
+2,install,19/05/18 13:17
+2,play,19/05/18 13:19
+1,uninstall,21/05/18 13:17
+4,install,22/05/18 13:17
+4,play,23/05/18 13:17
+4,uninstall,24/05/18 13:17
+4,install,25/05/18 13:17
+3,install,26/05/18 13:17
+3,uninstall,27/05/18 13:17
+2,uninstall,28/05/18 13:17
+2,install,28/05/18 13:17
+1,install,21/05/18 14:17
+2,play,28/05/18 13:19
+
+
+data['date_time']=pd.to_datetime(data['time'],errors='coerce')
+data['rank'] = data.groupby(['id','event'])['date_time'].rank(method="dense", ascending=True)
+data['event_ranked'] = data['event'].str.cat(data['rank'].astype(int).astype(str))
+data.sort_values(['id','event','date_time'])
+
+#OUTPUT
+    id      event            time           date_time  rank event_ranked
+0    1    install  18/05/18 13:17 2018-05-18 13:17:00   1.0     install1
+12   1    install  21/05/18 14:17 2018-05-21 14:17:00   2.0     install2
+3    1  uninstall  21/05/18 13:17 2018-05-21 13:17:00   1.0   uninstall1
+1    2    install  19/05/18 13:17 2018-05-19 13:17:00   1.0     install1
+11   2    install  28/05/18 13:17 2018-05-28 13:17:00   2.0     install2
+2    2       play  19/05/18 13:19 2018-05-19 13:19:00   1.0        play1
+13   2       play  28/05/18 13:19 2018-05-28 13:19:00   2.0        play2
+10   2  uninstall  28/05/18 13:17 2018-05-28 13:17:00   1.0   uninstall1
+8    3    install  26/05/18 13:17 2018-05-26 13:17:00   1.0     install1
+9    3  uninstall  27/05/18 13:17 2018-05-27 13:17:00   1.0   uninstall1
+4    4    install  22/05/18 13:17 2018-05-22 13:17:00   1.0     install1
+7    4    install  25/05/18 13:17 2018-05-25 13:17:00   2.0     install2
+5    4       play  23/05/18 13:17 2018-05-23 13:17:00   1.0        play1
+6    4  uninstall  24/05/18 13:17 2018-05-24 13:17:00   1.0   uninstall1
+
+
 
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
