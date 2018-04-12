@@ -661,8 +661,10 @@ from datetime import datetime
 conn_string = "dbname='name_of_database' port='port_number' user='user_name' password='password' host='host_name_or_ip'";
 
 conn = psycopg2.connect(conn_string);
-df = pd.read_sql_query("select * from table_name", con=conn)
+df = pd.read_sql_query("select * from table_name", con = conn)
 
+#see all table names using read_sql
+pd.read_sql("SELECT * FROM information_schema.tables", con = conn).head()
 
 #OR
 
