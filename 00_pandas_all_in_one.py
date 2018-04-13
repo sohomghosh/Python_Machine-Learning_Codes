@@ -486,6 +486,10 @@ train_test['seconds'] = train_test['DateTime'].dt.second
 #Consecutive rows difference in a pandas dataframe
 df['dA'] = df['A'] - df['A'].shift(-1)
 
+#epoch to datetime
+data['new_date_time_human_readable_col'] = data['epoch_unix_times_time'].apply(lambda x:time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(int(x))))
+
+
 #Creating random numbers (as labels)
 np.random.choice([0, 1], size = (10,), p = [1./3, 2./3])#[numbers to randomly choose from], size = number of numbers to generate, p = [proportions of the numbers chosen in same order as mentioned in the first argument as list]
 np.random.randint(0, 2, 10)#lower_number, higher_number, number_of_numbers
@@ -811,6 +815,9 @@ data.sort_values(['id','event','date_time'])
 3) Whenever there is nan or na, astype(int) does not convert into int, so .0 comes with the column when the dataframe is written. Remove nan by fill na first, then do astype(int, errors = 'ignore')
 4) Whenever joining : Make sure there is no nan and duplicate values in dataframes to be merged. After mergeing count verify
 5) After value_counts() if not get one kind of values : means the other is nan
-6) 
+6) Groupby removes records of pandas dataframes with null values. If we need the count corresponding to null/na/nan values too, then remove them first using 
+new_final_df = final_df.fillna('no vaues')
+Then groupby
+7) 
 #########################################################################
 
