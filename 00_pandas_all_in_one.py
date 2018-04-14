@@ -840,6 +840,9 @@ pd.Series([variance_inflation_factor(df.values, i) for i in range(df.shape[1])],
 6) Groupby removes records of pandas dataframes with null values. If we need the count corresponding to null/na/nan values too, then remove them first using 
 new_final_df = final_df.fillna('no vaues')
 Then groupby
-7) 
+7) if length does not match like length of train and train_test_use : then while assigning, it may restart assigning remaining elements of train_test_use from begining may be: 
+		train_test_use['stroke'] = train['stroke'] # THIS MAY RESULT IN BUGS
+8)		
+
 #########################################################################
 
