@@ -206,9 +206,15 @@ selected_data2_erp=selected_data1_erp.groupby(['WorkExp'],as_index = False)['Sal
 final_data=final_data.sort_values(['org_id','class_id','subclass_id_consider'])
 
 
-#Drop na
+#Drop na : Remove all data with na missing values
 final_data=final_data.dropna()
 
+#extract only numeric columns
+train_only_numeric = train._get_numeric_data()
+
+#extract only numeric columns
+numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+newdf = df.select_dtypes(include=numerics)
 
 #Filter by list
 In [5]: df = DataFrame({'A' : [5,6,3,4], 'B' : [1,2,3, 5]})
