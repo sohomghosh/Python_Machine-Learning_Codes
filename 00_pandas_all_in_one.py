@@ -240,6 +240,13 @@ import pandas as pd
 data=pd.read_csv("file.csv", header = None, delimiter="\t", quoting=csv.QUOTE_NONE, encoding='utf-8') #read a file without header
 data.head()
 
+#target encoding
+#conda install -c conda-forge category_encoders
+from category_encoders import *
+X = train[['gender','ever_married']]
+y = train['stroke']
+enc = BinaryEncoder(cols=['gender','ever_married']).fit(X, y)
+numeric_dataset = enc.transform(X)
 
 #######################################PANDAS SQL############################################################
 #From link http://pandas.pydata.org/pandas-docs/stable/comparison_with_sql.html
