@@ -815,6 +815,15 @@ data.sort_values(['id','event','date_time'])
 
 
 
+			
+##statmodels VIF
+#variance_inflation_factor(exog, exog_idx)
+#One recommendation is that if VIF is greater than 5, then the explanatory variable given by exog_idx is highly collinear with the other explanatory variables, and the parameter estimates will have large standard errors because of this
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+df = train[['age','avg_glucose_level','bmi']].dropna()
+pd.Series([variance_inflation_factor(df.values, i) for i in range(df.shape[1])], index=df.columns)
+			
+	
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
