@@ -35,6 +35,9 @@ final_data = final_data[['col4','col2','col1']]
 new_df=pd.concat([df1,df2],axis=1)
 #It is important to mention axis=1 else nan values may come
 
+#Combine 2 columns : concat cpntents of 2 columns : example -> name in col1 CONCAT with surname in col2
+df['name_surname'] = df['name'].map(str) + df['surname'].map(str)
+
 
 #Drop dupicates / duplicate rows
 data=data.drop_duplicates()
