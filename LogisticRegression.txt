@@ -1,7 +1,7 @@
 from sklearn.linear_model import LogisticRegression
 logreg=LogisticRegression()
 logreg.fit(X,y)
-log_reg.predict(X_new)
+logreg.predict(X_new)
 
 from sklearn.datasets import load_iris
 iris=load_iris()
