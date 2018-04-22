@@ -1,10 +1,10 @@
 from scipy.cluster.hierarchy import ward, dendrogram
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-
+from scipy.cluster.hierarchy import fcluster
 from sklearn.metrics.pairwise import cosine_similarity
-dist = 1 - cosine_similarity(tfidf_matrix)
 
+dist = 1 - cosine_similarity(tfidf_matrix)
 linkage_matrix = ward(dist) #define the linkage_matrix using ward clustering pre-computed distances
 
 fig, ax = plt.subplots(figsize=(100, 100),dpi=100) # set size
