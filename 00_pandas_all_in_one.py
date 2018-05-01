@@ -81,6 +81,10 @@ cluster_attribites=pd.DataFrame({'attribute_frequency' : data_use.groupby('anima
 #Group Concat
 df.groupby('team').apply(lambda x: ','.join(x.user))
 
+#Group concat with aggregate
+df_new = final_df.groupby('type').agg({'eve_name':np.size, 'is_positive':np.sum, 'g_id': lambda x: ','.join(x)}).reset_index()
+
+
 useful_data.groupby('single_kv', as_index=False).agg(lambda x : str(Counter(x.cleaned_single_sv).most_common(50)))
 #single_kv, cleaned_single_sv are columns
 #If the above gives error like Series does not have the column cleaned_single_sv, then instead of using multiple columns in groupby, first concat these columns create a single column out of them and then groupby 
