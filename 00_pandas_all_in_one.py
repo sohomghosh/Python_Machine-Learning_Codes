@@ -350,6 +350,23 @@ def score_increase(row):
 
 dtf.apply(score_increase, axis=1)
 
+def score_increase(row):
+    new_score = int(row['score'])
+    if row[param].lower() in li:
+        new_score = new_score + 10
+    return new_score
+
+#Apply on function taking mulitiple parameters as input on the whole row 
+def score_increase(row, li, param):
+    new_score = int(row['score'])
+    if row[param].lower() in li:
+        new_score = new_score + 10
+    return new_score
+
+cat = search_by_category(text)
+    if len(cat) != 0:
+      dtf['score'] = dtf.apply(lambda x:score_increase(x,cat,'l2_category'), axis=1) 
+    
 
 
 ###DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
