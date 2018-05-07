@@ -339,6 +339,19 @@ def quater(mn,yr):
 df_all['quater']=df_all[['month','year']].apply(lambda x: quater(*x), axis=1)
 
 
+#Apply on the whole row
+cat = search_by_category(text)
+def score_increase(row):
+    new_score = int(row['score'])
+    #print(row['l2_category'])
+    if row['l2_category'].lower() in cat:
+        new_score = new_score + 10
+    return new_score
+
+dtf.apply(score_increase, axis=1)
+
+
+
 ###DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
 pd.DatetimeIndex(data['Given Date'],ambiguous ='NaT').month#######DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
 ###DO NOT USE THIS### PRODUCES ERRONEOUS RESULTS####
