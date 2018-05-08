@@ -510,6 +510,8 @@ from pyspark.sql.types import FloatType
 secondelement=udf(lambda v:float(v[1]),FloatType())
 transformed.select(secondelement('probability')).show()
 
+#Dataframe column to list
+mvv_count_df.select('mvv').collect()
 
 #-------- creating saving loading model ------------------
 rf = RandomForestClassifier(labelCol='label', featuresCol='features',numTrees=20)
