@@ -866,8 +866,17 @@ data.sort_values(['id','event','date_time'])
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 df = train[['age','avg_glucose_level','bmi']].dropna()
 pd.Series([variance_inflation_factor(df.values, i) for i in range(df.shape[1])], index=df.columns)
-			
-	
+
+
+## transform date of different forms into one form
+new_data = pd.DataFrame({'date':['12/4/2018 23:59','12/4/2018 23:59','12/4/2018 23:59','12/4/2018 23:59','13-04-2018 00:00:23','13-04-2018 00:00:23','13-04-2018 00:00:53','13-04-2018 00:01:17','13-04-2018 00:01:17','13-04-2018 00:01:33']})
+pd.to_datetime(new_data['response_date'])
+
+#rolling mean
+df.rolling(window=3, min_periods=1).mean()
+
+
+
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
