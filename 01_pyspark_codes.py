@@ -2,6 +2,8 @@
 #https://spark.apache.org/docs/latest/ml-features.html
 #Source: http://spark.apache.org/docs/latest/api/python/pyspark.html
 
+#Configurations: https://spark.apache.org/docs/2.2.0/configuration.html
+
 #Other Links
 #https://spark.apache.org/docs/latest/api/python/pyspark.html
 #http://spark.apache.org/docs/latest/api/python/pyspark.ml.html
