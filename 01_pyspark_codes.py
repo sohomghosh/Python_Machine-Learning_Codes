@@ -534,3 +534,43 @@ model_new_rf.avgMetrics
 from pyspark.ml import PipelineModel
 loadedModel = PipelineModel.load("rf_pipeline_model_saved")
 
+
+#Checkpointing is a process of truncating RDD lineage graph and saving it to a reliable distributed (HDFS) or local file system.
+sc.setCheckpointDir("hdfs://hadoop-master:9000/data/checkpoint")
+df.repartition(100)
+
+
+#read / write parquet files
+df.write.option("compression","none").save("hdfs://address/folder",format="parquet",mode="overwrite")
+spark.read.parquet("hdfs://address/folder")
+df.write.option("compression","snappy").parquet("hdfs://address/folder")
+
+
+#Assign unique continuous numbes to rows of a dataframe
+Z = spark.createDataFrame(d.select("colid").distinct().rdd.map(lambda x: x[0]).zipWithUniqueId())
+
+
+#A window function calculates a return value for every input row of a table based on a group of rows, called the Frame
+from pyspark.sql.window import Window
+window = Window.partitionBy(tmp['prediction']).orderBy(df['clust_count'].desc())
+tmp.select('*', F.rank().over(window).alias('rank')) .filter(col('rank') <= 5).head(5)
+
+
+#K-means cluster	
+from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.clustering import KMeans
+from pyspark.ml.feature import StandardScaler
+d = scaler.fit(d).transform(d)
+kmeans = KMeans(k=5, seed=1, featuresCol="scaled")
+model = kmeans.fit(d)
+centers = model.clusterCenters()
+
+
+#Converting date to timestamp
+x = x.withColumn("unix_time", F.unix_timestamp(F.col("DATETIME"), format='yyyy-MM-dd HH:mm:ss'))
+
+#pivot(pivot_col, values=None); pivot_col – Name of the column to pivot. values – List of values that will be translated to columns in the output DataFrame
+df4.groupBy("year").pivot("course", ["dotNET", "Java"]).sum("earnings").collect()
+
+#Groupby and count distinct / unique
+d.groupby("device").agg(F.countDistinct(F.col("colid"))).toPandas()
