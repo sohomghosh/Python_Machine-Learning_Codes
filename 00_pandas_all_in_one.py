@@ -875,6 +875,8 @@ pd.to_datetime(new_data['response_date'])
 #rolling mean
 df.rolling(window=3, min_periods=1).mean()
 
+#strings encode as numeric
+df['y'] = pd.factorize(df['sex'])[0]
 
 
 ################################LEARNINGS################################
