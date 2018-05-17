@@ -174,6 +174,15 @@ df_final=df_final.drop('age')
 #Write a dataframe as csv
 df_final.write.csv('/index/df_final.csv')
 
+#Set this RDD’s storage level to persist its values across operations after the first time it is computed. This can only be used to assign a new storage level if the RDD does not have a storage level set yet. If no storage level is specified defaults to (MEMORY_ONLY).
+rdd.persist()
+
+#cache an rdd
+rdd.cache()
+
+#broadcast variables, which can be used to cache a value in memory on all nodes, and accumulators, which are variables that are only “added” to, such as counters and sums.
+b = sc.broadcast([1, 2, 3, 4, 5])
+
 #UDF with list as input
 topic_words=['good','well','best']#List of words
 def label_maker_topic(tokens,topic_words):
