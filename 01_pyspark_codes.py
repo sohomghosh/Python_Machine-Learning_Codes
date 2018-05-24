@@ -92,6 +92,9 @@ df.head(5)
 
 df.show(2,truncate= True)
 
+#substring : extrcat hour from datetime i.e. from 2018-01-10 22:00:02 to 22
+df.withColumn('ts', F.split(F.col('dateTime').substr(11,13), ':')[0])
+
 #Number of columns
 len(df.columns)
 
@@ -582,4 +585,5 @@ x = x.withColumn("unix_time", F.unix_timestamp(F.col("DATETIME"), format='yyyy-M
 df4.groupBy("year").pivot("course", ["dotNET", "Java"]).sum("earnings").collect()
 
 #Groupby and count distinct / unique
-d.groupby("device").agg(F.countDistinct(F.col("colid"))).toPandas()
+df.groupby("device").agg(F.countDistinct(F.col("colid"))).toPandas()
+df.groupby("device").agg(F.countDistinct(F.col("id"))).orderBy('count(DISTINCT id)', ascending = False)
