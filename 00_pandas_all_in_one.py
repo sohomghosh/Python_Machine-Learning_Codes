@@ -878,6 +878,15 @@ df.rolling(window=3, min_periods=1).mean()
 #strings encode as numeric
 df['y'] = pd.factorize(df['sex'])[0]
 
+#pandas explode
+df['ref_list_new'] = df['ref_list'].apply(lambda x : eval(x)) #covert column of string "[1, 4, 5]" to list [1, 4, 5]
+df['ref_list_new'].apply(pd.Series).stack().rename('ref_list_new') .to_frame().reset_index(1, drop=True).join(df[list(set(train_info.columns) - set(['ref_list', 'ref_list_new']))]).reset_index(drop=True)
+df['<name_of_col_having_list>'].apply(pd.Series).stack().rename('<name_of_col_having_list>') .to_frame().reset_index(1, drop=True).join(df[<list_of_columns_expect_the_one_having_list>]).reset_index(drop=True)
+#References: https://stackoverflow.com/questions/38428796/how-to-do-lateral-view-explode-in-pandas
+#df1 = df.A.apply(pd.Series).stack().rename('A')
+#df2 = df1.to_frame().reset_index(1, drop=True)
+#df2.join(df.B).reset_index(drop=True)
+
 
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
