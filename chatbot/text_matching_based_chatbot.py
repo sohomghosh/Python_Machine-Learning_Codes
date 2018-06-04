@@ -1,4 +1,4 @@
-#To run : python matching_based_chatbot.py
+#To run : python text_matching_based_chatbot.py
 #From the browser 123.45.67.890:8555
 
 import pandas as pd
