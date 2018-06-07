@@ -537,6 +537,9 @@ train_test['year'] = train_test['DateTime'].dt.year
 train_test['minutes'] = train_test['DateTime'].dt.minute
 train_test['seconds'] = train_test['DateTime'].dt.second
 
+#Extract date from datetime object pandas
+train_test['DateTime'].dt.date
+
 #Consecutive rows difference in a pandas dataframe
 df['dA'] = df['A'] - df['A'].shift(-1)
 
