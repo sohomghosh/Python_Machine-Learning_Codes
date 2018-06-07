@@ -523,6 +523,10 @@ from datetime import datetime
 days_diff = datetime.today() - pd.to_datetime(data['dob'], errors = 'coerce')
 data['age'] = days_diff.astype('timedelta64[D]')/365
 
+#Add n days to a date
+df['dt_time'] + datetime.timedelta(+6)
+df['yesterday'] = df['today'] + datetime.timedelta(-1)
+
 train_test['DateTime'] =  pd.to_datetime(train_test['DateTime'], format='%Y-%m-%d %H:%M:%S',errors='coerce')
 
 train_test['weekday'] = train_test['DateTime'].dt.weekday
