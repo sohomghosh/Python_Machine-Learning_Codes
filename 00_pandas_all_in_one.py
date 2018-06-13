@@ -16,6 +16,7 @@ data=pd.concat(pd.read_csv(StringIO(''.join(l.replace('\x00', '') for l in open(
 #Read data where string is enclosed in "" and string has within itself
 import csv
 data = pd.read_csv("/data.csv",sep=r',(?=\S)',quoting=csv.QUOTE_ALL, encoding = 'utf-8')
+data = pd.read_csv("/data.csv",sep=r',(?=\S)',quoting=csv.QUOTE_ALL, error_bad_lines=False, dtype={'name_string_field':np.object_,'Id':np.int32,'distinct_num':np.int32,'total_num':np.int32}, encoding = 'utf-8')
 
 
 #pandas.errors.ParserError: ',' expected after '"'
