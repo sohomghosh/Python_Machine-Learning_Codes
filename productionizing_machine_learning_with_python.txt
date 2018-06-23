@@ -1,1 +1,0 @@
-Link: https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846

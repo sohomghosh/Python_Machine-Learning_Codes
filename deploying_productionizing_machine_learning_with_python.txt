@@ -1,0 +1,4 @@
+Link: https://hackernoon.com/a-guide-to-scaling-machine-learning-models-in-production-aa8831163846
+https://www.tutorialspoint.com/flask/flask_deployment.htm
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04
+http://flask.pocoo.org/docs/1.0/deploying/
