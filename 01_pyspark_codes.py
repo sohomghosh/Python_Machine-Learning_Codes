@@ -587,3 +587,6 @@ df4.groupBy("year").pivot("course", ["dotNET", "Java"]).sum("earnings").collect(
 #Groupby and count distinct / unique
 df.groupby("device").agg(F.countDistinct(F.col("colid"))).toPandas()
 df.groupby("device").agg(F.countDistinct(F.col("id"))).orderBy('count(DISTINCT id)', ascending = False)
+
+#Show Unique, Distinct records of a column
+data.select("column").distinct().show(400)
