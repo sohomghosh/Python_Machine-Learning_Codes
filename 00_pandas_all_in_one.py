@@ -900,6 +900,8 @@ df['<name_of_col_having_list>'].apply(pd.Series).stack().rename('<name_of_col_ha
 #df2 = df1.to_frame().reset_index(1, drop=True)
 #df2.join(df.B).reset_index(drop=True)
 
+#univariate analysis
+train.describe().T.to_csv('univariate_analysis_train.csv')
 
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
