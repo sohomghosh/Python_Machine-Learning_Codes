@@ -590,3 +590,8 @@ df.groupby("device").agg(F.countDistinct(F.col("id"))).orderBy('count(DISTINCT i
 
 #Show Unique, Distinct records of a column
 data.select("column").distinct().show(400)
+
+#filter by date
+from datetime import datetime
+data = data_raw.withColumn('date_new_format',sent_data_raw.date.cast("timestamp")) #date is the column name here
+data.filter(data.date_new_format>datetime.strptime('2018-04-01', '%Y-%m-%d')).show(10)
