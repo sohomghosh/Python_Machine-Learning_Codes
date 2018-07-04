@@ -718,8 +718,12 @@ df_clean = pd.read_csv('test_error.csv', lineterminator='\n')
 http://xlsxwriter.readthedocs.io/working_with_pandas.html
 http://pbpython.com/excel-pandas-comp-2.html
 
+#### Connecting to mysql databases
+import pymysql
+conn= pymysql.connect(host='<host_ip_without_port_like 172.11.11.123>',user='user_name',password='password',db='name_of_db')
+df = pd.read_sql_query("select * from table_name", con = conn)
 
-#### Connecting to databases
+#### Connecting to databases : aws
 import psycopg2
 import pandas as pd
 import time
@@ -739,7 +743,6 @@ cursor = conn.cursor();
 result = cursor.execute("select * from table_name")
 df1 = pd.DataFrame(result.fetchall())
 df1.columns = result.keys()
-
 
 #Fetch result in batches
 #Reference: https://stackoverflow.com/questions/32625593/retrieving-data-from-mysql-in-batches-via-python
