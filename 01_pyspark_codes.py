@@ -167,6 +167,8 @@ people.filter(people.age > 30).join(department, people.deptId == department.id) 
 #Join
 people.join(department,people.deptId==department.deptId).drop(department.deptId)#Remove additional columns
 
+people.join(department,people.deptId==department.deptId, how='inner').drop(department.deptId)#Remove additional columns
+
 #Change name of column
 new_df=df.selectExpr("id as id_1")
 new_df=df.withColumnRenamed("money", "money_in_rupees")
