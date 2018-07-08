@@ -597,3 +597,8 @@ data.select("column").distinct().show(400)
 from datetime import datetime
 data = data_raw.withColumn('date_new_format',sent_data_raw.date.cast("timestamp")) #date is the column name here
 data.filter(data.date_new_format>datetime.strptime('2018-04-01', '%Y-%m-%d')).show(10)
+
+#Random Sample extract from a dataframe
+df.sample(withReplacement=False, fraction=0.5, seed=None)
+df.sample(False, 0.5, 42)
+
