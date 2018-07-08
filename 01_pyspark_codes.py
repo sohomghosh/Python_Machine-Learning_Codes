@@ -602,3 +602,6 @@ data.filter(data.date_new_format>datetime.strptime('2018-04-01', '%Y-%m-%d')).sh
 df.sample(withReplacement=False, fraction=0.5, seed=None)
 df.sample(False, 0.5, 42)
 
+#If writing dataframe is giving error like stage failure
+df.write.option("compression","none").save("/raw_data",format="parquet",mode="overwrite")
+
