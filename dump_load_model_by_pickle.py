@@ -1,3 +1,4 @@
+import pickle
 import xgboost as xgb
 
 #Save a model
