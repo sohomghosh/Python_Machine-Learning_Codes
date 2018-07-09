@@ -9,6 +9,9 @@ jupyter notebook --ip=abc.de.fg.ijk --port=1234 --allow-root
 %matplotlib inline
 %autoindent
 
+# find out password 
+cat nohup.out | grep "token"
+
 import warnings
 warnings.filterwarnings('ignore')
 
