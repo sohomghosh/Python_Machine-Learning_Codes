@@ -906,6 +906,16 @@ df['<name_of_col_having_list>'].apply(pd.Series).stack().rename('<name_of_col_ha
 #univariate analysis
 train.describe().T.to_csv('univariate_analysis_train.csv')
 
+#Using pandas to read a text file with the headers in multiple rows : Reference: https://stackoverflow.com/questions/46436419/using-pandas-to-read-a-text-file-with-the-headers-in-multiple-rows
+g = lambda x: '' if x.startswith('Unnamed') else x
+
+pd.read_fwf(
+    'file.txt',
+    sep='\s{2,}',
+    header=[0, 1, 2],
+    skiprows=[3]
+).rename(columns=g)
+
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
