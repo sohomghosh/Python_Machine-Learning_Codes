@@ -739,10 +739,16 @@ pd.read_sql("SELECT * FROM information_schema.tables", con = conn).head()
 
 #OR
 
+#INSERT INTO MYSQL
+conn= pymysql.connect(host='<host_ip_without_port_like 172.11.11.123>',user='user_name',password='password',db='name_of_db')
 cursor = conn.cursor();
+sql = "INSERT INTO TABLE (FIELD_ONE_STRING, FIELD_TWO_INTEGER, REQ_DATE_TIME) VALUES ('string_value_of_field1',123,'2018-07-19 15:25:39')"
+cursor.execute(sql)
+conn.commit()
+
 result = cursor.execute("select * from table_name")
-df1 = pd.DataFrame(result.fetchall())
-df1.columns = result.keys()
+#NOT WORKING IN PYTHON3# df1 = pd.DataFrame(result.fetchall())
+#NOT WORING IN PYTHON3# df1.columns = result.keys()
 
 #Fetch result in batches
 #Reference: https://stackoverflow.com/questions/32625593/retrieving-data-from-mysql-in-batches-via-python
