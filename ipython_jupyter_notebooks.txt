@@ -36,3 +36,16 @@ warnings.filterwarnings('ignore')
 #Add image to ipython/jupyter notebook
 #First change comiler from Python to Markdown write the following line
 ![title](image_name.png)
+
+
+#To use pyspark from jupyter in AWS
+pip uninstall pyspark
+vi ~/.bashrc
+
+PYSPARK_DRIVER_PYTHON=jupyter
+PYSPARK_DRIVER_PYTHON_OPTS='notebook --allow-root --ip=0.0.0.0'
+
+source ~/.bashrc
+
+#To launch jupyter notebook with psyaprk
+pyspark
