@@ -448,7 +448,12 @@ new_log_df.cache().withColumn("timePeriod", encodeUDF(new_log_df["START_TIME"]))
    )
   .show(20, False)
 
+#count with countDistinct
+data.groupBy('col_name').agg(F.countDistinct(F.col("id")).alias("unique_ids"), func.count('col_name').alias("count_of_col")).show()
 
+#write in s3 in parquet format
+data.write.option("compression","none").save('s3://name_of_s3_bucket/folder',format="parquet",mode="overwrite")	
+	
 #Filtering using udf : Source: https://gist.github.com/samuelsmal/feb86d4bdd9a658c122a706f26ba7e1e
 from pyspark.sql.functions import udf
 from pyspark.sql.types import BooleanType
