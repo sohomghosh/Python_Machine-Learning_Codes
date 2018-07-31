@@ -435,6 +435,21 @@ def date_sub_(c1: Column, c2: Column) -> Column:
     return ((c1.cast("timestamp").cast("long") - 60 * 60 * 24 * c2)
         .cast("timestamp").cast("date"))
 
+from datetime import datetime
+todays_date = datetime.today().strftime("%Y-%m-%d")
+def date_diff_cal(d1):
+	try:
+		d1_formatted = datetime.strptime(d1, '%Y-%m-%d')
+		ans = (datetime.strptime(todays_date, '%Y-%m-%d') - d1_formatted).days*1.0
+	except:
+		ans = np.nan
+	return ans
+
+func_date_diff = udf(date_diff_cal, FloatType())
+full_data = full_data.withColumn("age_calculated_in_years", func_date_diff(data.date_of_birth)/365)
+full_data = full_data.withColumn("last_login_from_today", func_date_diff(full_data.last_login_date))
+
+
 
 #Aggregate within count
 import pyspark.sql.functions as func
