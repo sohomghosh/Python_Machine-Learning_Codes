@@ -28,8 +28,10 @@ for trn_idx, val_idx in folds.split(train_data):
     
     # Predict Out Of Fold and Test targets
     # Using lgb.train, predict will automatically select the best round for prediction
-    oof_preds[val_idx] = bst.predict(val_X)
-    #sub_preds += bst.predict(test_X[features]) / folds.n_splits
+    dvalid = xgb.DMatrix(val_X, missing=np.nan)
+    oof_preds[val_idx] = bst.predict(dvalid)
+    #dtest = xgb.DMatrix(test_X, missing=np.nan)
+    #sub_preds += bst.predict(dtest) / folds.n_splits
     # Display current fold score
     print(roc_auc_score(val_y, oof_preds[val_idx]))
 # Display Full OOF score (square root of a sum is not the sum of square roots)
