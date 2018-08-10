@@ -9,6 +9,7 @@
 #https://dask.pydata.org/en/latest/bag-api.html
 #dask.pydata.org
 #distributed.readthedocs.org
+#https://www.analyticsvidhya.com/blog/2018/08/dask-big-datasets-machine_learning-python/
 
 $conda install dask
 $pip install dask[complete]
@@ -82,6 +83,39 @@ client = Client('SCHEDULER_ADDRESS:8786')
 client = Client()
 
 #CLOUD DEPLOYMENT
-pip install dask-kubernetes #Google Cloud
-pip install dask-ec2 #Amazon ec2
+$pip install dask-kubernetes #Google Cloud
+$pip install dask-ec2 #Amazon ec2
 
+
+import dask_ml.joblib
+from sklearn.externals.joblib import parallel_backend
+from sklearn.ensemble import RandomForestClassifier 
+with parallel_backend('dask'):
+    # Your normal scikit-learn code here
+    model = RandomForestClassifier()
+
+    
+    
+from sklearn.externals.joblib import parallel_backend
+import dask_ml.joblib
+from sklearn.ensemble import RandomForestRegressor
+
+with parallel_backend('dask'):
+    # Create the parameter grid based on the results of random search 
+     param_grid = {
+    'bootstrap': [True],
+    'max_depth': [8, 9],
+    'max_features': [2, 3],
+    'min_samples_leaf': [4, 5],
+    'min_samples_split': [8, 10],
+    'n_estimators': [100, 200]
+    }
+
+# Create a based model
+rf = RandomForestRegressor()
+
+# Instantiate the grid search model
+import dask_searchcv as dcv
+grid_search = dcv.GridSearchCV(estimator = rf, param_grid = param_grid, cv = 3)
+grid_search.fit(df[[features]], df['target'])
+grid_search.best_params_
