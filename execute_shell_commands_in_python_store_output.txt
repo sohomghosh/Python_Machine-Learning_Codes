@@ -1,1 +1,3 @@
 os.popen('ls').read()
+
+os.system('unzip abc.gz')
