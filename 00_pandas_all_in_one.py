@@ -791,6 +791,12 @@ df.to_html('filename.html')
 #Save styled data frame as excel #Reference: https://stackoverflow.com/questions/47398937/saving-pandas-styler-object-in-anyway
 df.style.background_gradient(cmap='RdYlGn',low=.09,high=.18,axis=1).to_excel('d:/temp/a.xlsx', engine='openpyxl')
 
+#Save pandas dataframe as excel, xlsx file
+writer = pd.ExcelWriter('output.xlsx')
+df1.to_excel(writer,'Sheet1')
+df2.to_excel(writer,'Sheet2')
+writer.save()
+
 #Save dataframe as image png #Reference: https://stackoverflow.com/questions/35634238/how-to-save-a-pandas-dataframe-table-as-a-png
 import matplotlib.pyplot as plt
 from pandas.tools.plotting import table
