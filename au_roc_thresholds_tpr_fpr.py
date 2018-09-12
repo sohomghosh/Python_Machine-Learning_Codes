@@ -1,6 +1,8 @@
 #Reference: https://github.com/abulbasar/machine-learning/blob/master/Scikit%20-%2006%20Text%20Processing.ipynb
-fpr, tpr, thresholds = metrics.roc_curve(X_valid['label'], valid_preds)
-auc = metrics.auc(fpr, tpr)
+from sklearn.metrics import roc_curve, auc
+import matplotlib.pyplot as plt
+fpr, tpr, thresholds = roc_curve(X_valid['label'], valid_preds)
+auc = auc(fpr, tpr)
 plt.plot(fpr, tpr)
 plt.ylim(0, 1)
 plt.xlim(0, 1)
@@ -13,6 +15,7 @@ plt.title("ROC Curve, auc: %.4f" % auc);
 
 #Reference: https://stackoverflow.com/questions/28719067/roc-curve-and-cut-off-point-python
 import pylab as pl
+from sklearn.metrics import roc_curve, auc
 fpr, tpr, thresholds = roc_curve(X_valid['label'], valid_preds)
 roc_auc = auc(fpr, tpr)
 print("Area under the ROC curve : %f" % roc_auc)
