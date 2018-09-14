@@ -17,8 +17,8 @@ plt.title("ROC Curve, auc: %.4f" % auc);
 import pylab as pl
 from sklearn.metrics import roc_curve, auc
 fpr, tpr, thresholds = roc_curve(X_valid['label'], valid_preds)
-roc_auc = auc(fpr, tpr)
-print("Area under the ROC curve : %f" % roc_auc)
+auc = auc(fpr, tpr)
+print("Area under the ROC curve : %f" % auc)
 ####################################
 # The optimal cut off would be where tpr is high and fpr is low
 # tpr - (1-fpr) is zero or near to zero is the optimal cut off point
