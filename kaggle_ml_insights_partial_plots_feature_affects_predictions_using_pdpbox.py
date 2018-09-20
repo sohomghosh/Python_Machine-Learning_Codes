@@ -1,6 +1,7 @@
 #Reference: https://www.kaggle.com/dansbecker/partial-plots
 #Partial dependence plots show how a feature affects predictions.
 #partial dependence plots are calculated after a model has been fit. 
+#Also read : https://christophm.github.io/interpretable-ml-book/pdp.html
 
 #How does it work?
 '''
@@ -40,4 +41,10 @@ plt.show()
 #The above plot shows predictions for any combination of Goals Scored and Distance covered.
 #More yellowish means higher chances of prediction
 #More bluish means lesser chances of prediction
+
+#Remember
+X1 = 4 * rand(n_samples) - 2
+X2 = 4 * rand(n_samples) - 2
+y = X1 * X2
+#For this data seperate partial dependence plots for for X1 as well as X2 will be flat. But both X1 and X2 will have high Permutation Importance
 
