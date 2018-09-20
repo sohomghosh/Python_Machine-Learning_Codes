@@ -26,7 +26,7 @@ plt.show()
 #The y axis is interpreted as change in the prediction from what it would be predicted at the baseline or leftmost value.
 #A blue shaded area indicates level of confidence
 
-
+#One variable 'A' having steeper slope than other variable 'B' in each of their partial plots does not gurantee that variable 'A' has more permutation importance than variable 'B'. This is because variable 'A' could have a big effect in the cases where it varies, but could have a single value 99% of the time. In that case, permuting feat_a wouldn't matter much, since most values would be unchanged.
 
 #2D Partial Dependence Plots
 # Similar to previous PDP plot except we use pdp_interact instead of pdp_isolate and pdp_interact_plot instead of pdp_isolate_plot
