@@ -9,7 +9,7 @@
 #Code
 import shap  # package used to calculate Shap values
 row_to_show = 5
-data_for_prediction = val_X.iloc[row_to_show]  # use 1 row of data here. Could use multiple rows if desired
+data_for_prediction = val_X.iloc[row_to_show]  # use 1 row of data here. Could use multiple rows if desired; May need to typecaste into float (if this existed in any other datatype) : data_for_prediction = val_X.iloc[0,:].astype(float)
 data_for_prediction_array = data_for_prediction.values.reshape(1, -1)
 # Create object that can calculate shap values
 explainer = shap.TreeExplainer(my_model) 
