@@ -26,6 +26,8 @@ print("Area under the ROC curve : %f" % auc)
 i = np.arange(len(tpr)) # index for df
 roc = pd.DataFrame({'fpr' : pd.Series(fpr, index=i),'tpr' : pd.Series(tpr, index = i), '1-fpr' : pd.Series(1-fpr, index = i), 'tf' : pd.Series(tpr - (1-fpr), index = i), 'thresholds' : pd.Series(thresholds, index = i)})
 roc.iloc[(roc.tf-0).abs().argsort()[:1]]
+thres = roc.iloc[(roc.tf-0).abs().argsort()[:1]]['thresholds'].values[0]
+print('optimal threshold:'+ str(thres))
 # Plot tpr vs 1-fpr
 fig, ax = pl.subplots()
 pl.plot(roc['tpr'])
