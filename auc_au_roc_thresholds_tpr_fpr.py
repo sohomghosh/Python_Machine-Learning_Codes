@@ -2,14 +2,14 @@
 from sklearn.metrics import roc_curve, auc
 import matplotlib.pyplot as plt
 fpr, tpr, thresholds = roc_curve(X_valid['label'], valid_preds)
-auc = auc(fpr, tpr)
+auc_cal = auc(fpr, tpr)
 plt.plot(fpr, tpr)
 plt.ylim(0, 1)
 plt.xlim(0, 1)
 plt.plot([0,1], [0,1], ls = "--", color = "k")
 plt.xlabel("False Postive Rate")
 plt.ylabel("True Positive Rate")
-plt.title("ROC Curve, auc: %.4f" % auc);
+plt.title("ROC Curve, auc: %.4f" % auc_cal);
 
 
 
@@ -17,8 +17,8 @@ plt.title("ROC Curve, auc: %.4f" % auc);
 import pylab as pl
 from sklearn.metrics import roc_curve, auc
 fpr, tpr, thresholds = roc_curve(X_valid['label'], valid_preds)
-auc = auc(fpr, tpr)
-print("Area under the ROC curve : %f" % auc)
+auc_cal = auc(fpr, tpr)
+print("Area under the ROC curve : %f" % auc_cal)
 ####################################
 # The optimal cut off would be where tpr is high and fpr is low
 # tpr - (1-fpr) is zero or near to zero is the optimal cut off point
