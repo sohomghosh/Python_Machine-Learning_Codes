@@ -931,6 +931,11 @@ pd.read_fwf(
     skiprows=[3]
 ).rename(columns=g)
 
+#Deciles cut
+df = pd.DataFrame({'actual_label' : validation_df['label'], 'predicted' : valid_preds}).sort_values('predicted', ascending = False)
+df['deciles'] = pd.qcut(df['predicted'].values,10)
+df.reset_index().groupby('deciles').agg({'index':np.size,'actual_label':np.sum,'predicted':np.sum})
+
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
