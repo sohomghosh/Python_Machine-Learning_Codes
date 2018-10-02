@@ -625,3 +625,7 @@ df.sample(False, 0.5, 42)
 #If writing dataframe is giving error like stage failure
 df.write.option("compression","none").save("/raw_data",format="parquet",mode="overwrite")
 
+
+###############LEARNINGS / LESSONS FROM MISTAKES###############
+1) While bringing data from Hadoop to Local data system, count (number of rows) match then only proceed
+2)
