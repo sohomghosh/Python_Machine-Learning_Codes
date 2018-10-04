@@ -931,7 +931,7 @@ pd.read_fwf(
     skiprows=[3]
 ).rename(columns=g)
 
-#Deciles cut
+#Deciles cut for Lift Chart
 df = pd.DataFrame({'actual_label' : validation_df['label'], 'predicted' : valid_preds}).sort_values('predicted', ascending = False)
 df['deciles'] = pd.qcut(df['predicted'].values,10)
 df.reset_index().groupby('deciles').agg({'index':np.size,'actual_label':np.sum,'predicted':np.sum})
