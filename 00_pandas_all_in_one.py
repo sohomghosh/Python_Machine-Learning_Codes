@@ -88,6 +88,12 @@ cluster_attribites=pd.DataFrame({'attribute_frequency' : data_use.groupby('anima
 df.groupby('team').apply(lambda x: ','.join(x.user))
 df.groupby('team').apply(lambda x: [i for i in x.user])
 
+#Group concat with concat /aggregate on multiple columns
+di = {'Start Date': lambda g:  ','.join([str(i) for i in list(df.loc[g.index]['Start Date'])]) , 
+     'End Date': lambda g:  ','.join([str(i) for i in list(df.loc[g.index]['End Date'])])}
+df_use =  df.groupby(['id', 'product_id', 'validity in months']).agg(di).reset_index()
+
+
 #If the column which is to be concatenated after grouping has null values then typecaste into string first
 df.groupby('userid').apply(lambda x : len(set([str(i) for i in x.gender]))).reset_index().rename(columns = {0 : 'gender_list'})
 
