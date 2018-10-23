@@ -467,6 +467,12 @@ df2 = df[df.groupby(‘name’).cumcount()==1]
 #See dtype of all columns
 [(f,train[f].dtype) for f in train.columns]
 
+#LabelEncoder
+for f in ['Destination_Type']:#Add all categorical features in the list
+    lbl = LabelEncoder()
+    lbl.fit(list(train_test[f].values))
+    train_test[f] = lbl.transform(list(train_test[f].values))
+
 #Convert all categorical features to numeric
 for f in features:
     if df_final_train[f].dtype=='object':
