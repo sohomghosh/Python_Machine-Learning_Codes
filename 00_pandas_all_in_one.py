@@ -467,6 +467,8 @@ df2 = df[df.groupby(‘name’).cumcount()==1]
 #See dtype of all columns
 [(f,train[f].dtype) for f in train.columns]
 
+from sklearn.preprocessing import LabelEncoder
+
 #LabelEncoder
 for f in ['Destination_Type']:#Add all categorical features in the list
     lbl = LabelEncoder()
