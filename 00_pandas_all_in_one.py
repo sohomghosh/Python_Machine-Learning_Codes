@@ -22,6 +22,9 @@ data = pd.read_csv("/data.csv",sep=r',(?=\S)',quoting=csv.QUOTE_ALL, error_bad_l
 #pandas.errors.ParserError: ',' expected after '"'
 pd.read_csv(StringIO(''.join(l.replace('"', '') for l in open("day_data.csv"))))
 
+#change number display format in pandas
+pd.set_option('display.float_format', lambda x: '%.3f' % x)
+
 **AFTER JOINING ALWAYS CHECK NUMBER OF RECORDS**
 
 #Join no result:
