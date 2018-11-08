@@ -330,7 +330,7 @@ df.withColumn("id", monotonically_increasing_id()).show()
 train_test=train_test.na.fill({'siteid':3696590,'browserid_merged':2, 'devid_encode':1})
 #siteid, browserid_merged are column names
 #Sellect not null values of a column
-df1.filter(df1.ColumnName_to_check.isNotNull()).show
+df1.filter(df1.ColumnName_to_check.isNotNull()).show()
 
 
 
