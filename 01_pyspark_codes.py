@@ -534,6 +534,12 @@ converted_to_spark_df = spark.createDataFrame(pd_df.astype(str)).show()
 #Spark dataframe to pandas dataframe
 converted_to_pandas_df = spark_df.toPandas()
 
+#pandas install in EMR so that it becomes available from pyspark3 jupyter notebook and toPandas() work
+#login to EMR cluster from terminal using ssh : ssh -i abc.pem ec2-user@ec2-8757859vftsgjvbvbsv-ap-south-1.compute.amazonaws.com
+$sudo python3 -m pip install pandas
+
+
+
 final_data.select(dayofmonth(final_data.col_formatted_as_datetype)).show()
 
 #Weekday name and encided_id
