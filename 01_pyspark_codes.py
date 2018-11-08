@@ -181,6 +181,7 @@ df_final.write.csv('/index/df_final.csv')
 
 #Set this RDD’s storage level to persist its values across operations after the first time it is computed. This can only be used to assign a new storage level if the RDD does not have a storage level set yet. If no storage level is specified defaults to (MEMORY_ONLY).
 rdd.persist()
+df.persist()
 
 #cache an rdd
 rdd.cache()
