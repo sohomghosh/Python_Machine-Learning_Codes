@@ -469,6 +469,9 @@ data.groupBy('col_name').agg(F.countDistinct(F.col("id")).alias("unique_ids"), f
 #write in s3 in parquet format
 data.write.option("compression","none").save('s3://name_of_s3_bucket/folder',format="parquet",mode="overwrite")	
 	
+#read data from s3
+df = spark.read.parquet("s3://bucket_name/folder-name")
+	
 #Filtering using udf : Source: https://gist.github.com/samuelsmal/feb86d4bdd9a658c122a706f26ba7e1e
 from pyspark.sql.functions import udf
 from pyspark.sql.types import BooleanType
