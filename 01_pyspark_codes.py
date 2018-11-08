@@ -95,6 +95,9 @@ df.show(2,truncate= True)
 #substring : extrcat hour from datetime i.e. from 2018-01-10 22:00:02 to 22
 df.withColumn('ts', F.split(F.col('dateTime').substr(11,13), ':')[0])
 
+#Extract 123 from 123.77 [remove part after decimal]
+df = df.withColumn("clnId",F.split("clnid",':')[0])
+
 #Number of columns
 len(df.columns)
 
