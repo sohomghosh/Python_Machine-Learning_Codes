@@ -303,7 +303,7 @@ from pyspark.sql.types import StringType
 join_ = F.udf(lambda x: ", ".join(x), StringType())
 
 #Group concat, Groupconcat, group_concat
-df.groupBy("username").agg(join_(F.collect_list("friend").alias("friends_grouped"))).show(10)
+df.groupBy("username").agg(join_(F.collect_list("friend")).alias("friends_grouped")).show(10)
 
 #Groupby and list form , collect_list
 df.groupBy("username").agg(F.collect_list("friend").alias("friends_grouped")).show(10)
