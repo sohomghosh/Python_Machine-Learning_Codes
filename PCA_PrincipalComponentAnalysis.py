@@ -1,6 +1,8 @@
 #Reference:   https://machinelearningmastery.com/calculate-principal-component-analysis-scratch-python/
 #Covariance Matrix Calculation: https://www.itl.nist.gov/div898/handbook/pmc/section5/pmc541.htm
 
+#REMEMBER DO NOT INCLUDE 'Y' i.e. Depedent Variable as input to PCA
+
 #Using package PCA
 from numpy import array
 from sklearn.decomposition import PCA
