@@ -196,8 +196,11 @@ b = sc.broadcast([1, 2, 3, 4, 5])
 topic_words=['good','well','best']#List of words
 def label_maker_topic(tokens,topic_words):
     return "answer"
+
+#REMEMBER THE FOLLOWING TWO LINES NEED TO BE RUN TOGETHER FOR ANY CHANGE IN VALUES OF 'TKN'
 topicWord=udf(lambda tkn: label_maker_topic(tkn,topic_words),StringType())#label_maker_topic is the name of the function, tkn referes to the column
 myDF=myDF.withColumn("topic_word_count",topicWord(myDF.bodyText_token))#bodyText_token is the column of the dataframe
+
 
 #Splitting a column into seperate columns
 user_messages_sparkdf.withColumn('ads_splitted',split(col('ads'),','))
