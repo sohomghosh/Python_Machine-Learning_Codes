@@ -2,5 +2,5 @@
 from sklearn.linear_model import LinearRegression
 linreg=LinearRegression()
 linreg.fit(X_train,y_train)
-print linreg.intercept_
-print linreg.coef_
+print(linreg.intercept_)
+print(linreg.coef_)
