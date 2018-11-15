@@ -165,6 +165,6 @@ in.dropna(), fit_reg=False)
 plt.show()
 ---------------------------------------------------------------------
 
-##HEAT MAP (Multivariate Plots)
+##HEAT MAP (Multivariate Plots) / Correlation Plot
 sns.heatmap(train[['Monthly_Income', 'EMI', 'Existing_EMI']].corr(),annot=True)
 plt.show()
