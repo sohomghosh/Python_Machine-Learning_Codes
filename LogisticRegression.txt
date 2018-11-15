@@ -22,4 +22,4 @@ len(y_pred)
 
 #Evaluating Matrix
 from sklearn import metrices
-print metrices.accuracy_score(y,y_pred)
+print(metrices.accuracy_score(y,y_pred))
