@@ -172,6 +172,11 @@ people.join(department,people.deptId==department.deptId).drop(department.deptId)
 
 people.join(department,people.deptId==department.deptId, how='inner').drop(department.deptId)#Remove additional columns
 
+
+#Union : place a dataframe one below other [like train.append(test) of pandas]
+df_new = df1.union(df2)
+df_all = df1.union(df2).union(df3) #for placing 3 dataframes one below other
+
 #Change name of column
 new_df=df.selectExpr("id as id_1")
 new_df=df.withColumnRenamed("money", "money_in_rupees")
