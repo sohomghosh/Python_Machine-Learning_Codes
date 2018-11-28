@@ -98,6 +98,9 @@ df.withColumn('ts', F.split(F.col('dateTime').substr(11,13), ':')[0])
 #Extract 123 from 123.77 [remove part after decimal]
 df = df.withColumn("clnId",F.split("clnid",':')[0])
 
+#Convert a column to its lower case
+df.select( F.lower(F.col('bh')).alias('bh_lower'))
+
 #Number of columns
 len(df.columns)
 
