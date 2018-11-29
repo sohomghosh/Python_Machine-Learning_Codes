@@ -540,10 +540,13 @@ df = df.withColumn("diff", F.when(F.isnull(df.value - df.prev_value), 0).otherwi
 df.show()
 
 
-#Modify column based on other column
 #Source: https://stackoverflow.com/questions/43988801/pyspark-modify-column-values-when-another-column-value-satisfies-a-condition
 from pyspark.sql.functions import when
 df.withColumn('Id_New',when(df.Rank <= 5,'yes').otherwise('other')).show()
+
+#Modify column based on other column ; work on multiple columns ; change a column based on other ; work on more tha one column at a time
+df.withColumn('Id_New',when(df.Rank <= 5, df.prize).otherwise('no prize')).show()
+
 
 #Pandas dataframe to spark dataframe
 converted_to_spark_df = spark.createDataFrame(pd_df.astype(str)).show()
