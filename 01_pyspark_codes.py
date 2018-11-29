@@ -384,6 +384,14 @@ foobars.printSchema()
 foobars.select("foobar.foo", "foobar.bar").show()
 
 
+#UDF taking muliple columns as input
+def concat_of_cols(arr):
+    return str(arr[0])+"__"+str(arr[1])
+
+concat_cols = udf(lambda arr: concat_of_cols(arr), StringType())
+df.select('id', 'col1', 'col2').withColumn('Concat_Result', concat_cols(F.array('col1', 'col2'))).show()
+
+
 #Check if an element in present in a column (of Array Type)
 df.withColumn('new_col_name',F.when(F.array_contains(df.col_of_array_type, 'string whose presence to be seen in the array'), 1).otherwise(0))
 
