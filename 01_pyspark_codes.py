@@ -175,6 +175,7 @@ people.join(department,people.deptId==department.deptId).drop(department.deptId)
 
 people.join(department,people.deptId==department.deptId, how='inner').drop(department.deptId)#Remove additional columns
 
+people.join(department, on='deptId', how='inner') #No additional columns will be generated
 
 #Union : place a dataframe one below other [like train.append(test) of pandas]
 df_new = df1.union(df2)
@@ -288,6 +289,10 @@ udf_median = func.udf(median, FloatType())
 
 df_grouped = df.groupby(['a', 'd']).agg(udf_median(func.collect_list(col('c'))).alias('median'))
 df_grouped.show()
+
+
+#collect_list on multiple columns with group_by
+df.groupBy('id').agg(F.collect_list("col_1").alias("col1_grouped"), F.collect_list("col_2").alias("col2_grouped"))
 
 #Extract a column from a dataframe to a list
 sea_lists=[row[0] for row in dataframe_with_sea.collect()]
