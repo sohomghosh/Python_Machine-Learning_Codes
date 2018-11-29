@@ -379,6 +379,9 @@ foobars.printSchema()
 foobars.select("foobar.foo", "foobar.bar").show()
 
 
+#Check if an element in present in a column (of Array Type)
+df.withColumn('new_col_name',F.when(F.array_contains(df.col_of_array_type, 'string whose presence to be seen in the array'), 1).otherwise(0))
+
 
 
 ###Case when in pyspark SOURCE: https://stackoverflow.com/questions/39982135/apache-spark-dealing-with-case-statements
@@ -543,6 +546,9 @@ df.show()
 #Source: https://stackoverflow.com/questions/43988801/pyspark-modify-column-values-when-another-column-value-satisfies-a-condition
 from pyspark.sql.functions import when
 df.withColumn('Id_New',when(df.Rank <= 5,'yes').otherwise('other')).show()
+
+#When with condition using another column
+df.withColumn('new_column',when(df.col1 == df.col2, df.col3).otherwise(df.col4)).show()
 
 #Modify column based on other column ; work on multiple columns ; change a column based on other ; work on more tha one column at a time
 df.withColumn('Id_New',when(df.Rank <= 5, df.prize).otherwise('no prize')).show()
