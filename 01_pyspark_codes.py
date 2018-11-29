@@ -517,6 +517,16 @@ filter_udf = udf(regex_filter, BooleanType())
 
 df_filtered = df.filter(filter_udf(df.field_to_filter_on))
 
+#find maximum occuring row per group in spark-dataframe; Groupby and find most occuring element
+df = data.groupBy('id').agg(F.collect_list("column_name").alias("grouped_column_of_list_type"))
+from collections import Counter
+def max_occ_ele_find(cl):
+    if len(cl)>0:
+        return Counter(cl).most_common(1)[0][0]
+    return ''
+
+udf_max_ex = udf(max_occ_ele_find, StringType())
+df.withColumn('max_of_grouped_column_list', udf_max_ex(df.grouped_column_of_list_type))
 
 ####################### submitting spark applications ##########################################
 #Source: https://sparkour.urizone.net/recipes/submitting-applications/
