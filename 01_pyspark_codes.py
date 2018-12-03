@@ -395,7 +395,8 @@ df.select('id', 'col1', 'col2').withColumn('Concat_Result', concat_cols(F.array(
 #Check if an element in present in a column (of Array Type)
 df.withColumn('new_col_name',F.when(F.array_contains(df.col_of_array_type, 'string whose presence to be seen in the array'), 1).otherwise(0))
 
-
+#Case when with isin
+df.withColumn('new_gender', F.when(df.gender.isin(['Male', 'Female']), df.gender).otherwise('z-others'))
 
 ###Case when in pyspark SOURCE: https://stackoverflow.com/questions/39982135/apache-spark-dealing-with-case-statements
 from pyspark.sql import functions as F
