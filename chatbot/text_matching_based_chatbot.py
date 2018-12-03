@@ -20,7 +20,7 @@ app.secret_key = '12345'
 
 stop = set(stopwords.words('english'))
 data = pd.read_csv("data.csv")
-#data should have atleaset 2 columns: 'question' and 'abswer'
+#data should have atleaset 2 columns: 'question' and 'answer'
 
 stemmer = PorterStemmer()
 data['cleaned_question'] = data['question'].apply(lambda x : ' '.join([stemmer.stem(tagged_word) for tagged_word in re.sub(r'([^\s\w]|_)+', '',str(x).strip().lower()).split()]) )
