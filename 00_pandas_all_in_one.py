@@ -423,6 +423,9 @@ df['Cat1'].fillna(df['Cat2'])
 #Different types entries mentioned in "activity" column as seperate columns. The entries of these cells will be number of occurrences
 df.groupby('name')['activity'].value_counts().unstack().fillna(0)
 
+#Suppose target has 0,1. Check which variable is capturing more variablity of target variable. Use unstack to get variable,count_0,count_1 side by side
+data.groupby(['column_against_whom_we_want_to_see_distribution', 'target']).size().unstack().reset_index()
+
 df.columns
 #[id,'type','time']
 
