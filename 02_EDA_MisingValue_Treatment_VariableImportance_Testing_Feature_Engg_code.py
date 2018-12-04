@@ -127,9 +127,9 @@ skew(train['N35'].notnull())
 #Cross-tabulation #For generally for categorical_variables
 pd.crosstab(df.col_1, [df.col_2, df.col_3], rownames=['col_1'], colnames=['col_2', 'col_3'])
 
-#pip3 install pandas-profiling
+#pip3 install pandas-profiling #Remember only X vaiables of training set is to be given as input in pandas profiling
 #pandas_profiling.ProfileReport(X_train) #For IPython Notebook
-profile = pandas_profiling.ProfileReport(train)
+profile = pandas_profiling.ProfileReport(X_train)
 rejected_variables = profile.get_rejected_variables(threshold=0.9)
 profile.to_file(outputfile="pandas_profiling_output_train.html")
 
