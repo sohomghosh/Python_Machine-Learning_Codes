@@ -946,6 +946,8 @@ df['<name_of_col_having_list>'].apply(pd.Series).stack().rename('<name_of_col_ha
 
 
 #pandas explode : convert a row which consists of list to seperate rows #Reference: https://stackoverflow.com/questions/38428796/how-to-do-lateral-view-explode-in-pandas
+#remeber column A may be stored as a string of list like "[1,2]" . In this case we need to use eval to extract the list from the string
+# df['A'] = df['A'].apply(lambda x : eval(str(x)))
 pd.DataFrame([[item]+list(df.loc[line,'B':]) for line in df.index for item in df.loc[line,'A']], columns=df.columns)
 #Here A is the column which has list, B is a sperate column
 # input:
