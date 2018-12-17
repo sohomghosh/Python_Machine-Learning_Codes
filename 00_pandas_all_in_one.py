@@ -944,6 +944,23 @@ df['<name_of_col_having_list>'].apply(pd.Series).stack().rename('<name_of_col_ha
 #df2 = df1.to_frame().reset_index(1, drop=True)
 #df2.join(df.B).reset_index(drop=True)
 
+
+#pandas explode : convert a row which consists of list to seperate rows #Reference: https://stackoverflow.com/questions/38428796/how-to-do-lateral-view-explode-in-pandas
+pd.DataFrame([[item]+list(df.loc[line,'B':]) for line in df.index for item in df.loc[line,'A']], columns=df.columns)
+#Here A is the column which has list, B is a sperate column
+# input:
+        A   B
+0  [1, 2]  10
+1  [5, 6] -20
+# output:
+   A   B
+0  1  10
+1  2  10
+2  5 -20
+3  6 -20
+
+
+
 #univariate analysis
 train.describe().T.to_csv('univariate_analysis_train.csv')
 
