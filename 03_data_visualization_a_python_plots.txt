@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+% matplotlib inline
 
 #########
 plt.grid(True)
