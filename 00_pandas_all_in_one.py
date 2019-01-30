@@ -192,6 +192,14 @@ YEARMONTH
 
 
 #################################DATA FRAME OPERATIONS##############################################################
+#Create empty dataframe and keep appending / adding dataframes to it
+import os
+df = pd.DataFrame({})
+for fil in os.listdir('folder_name_with_csv_files/):
+    df1 = pd.read_csv(fil)
+    df = df.append(df1)
+
+
 #Creating empty dataframe
 df = pd.DataFrame({c: np.repeat(0, [nrow]) for c in data['PAGENO'].unique()})
 
