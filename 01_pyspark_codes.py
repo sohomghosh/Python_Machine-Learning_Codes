@@ -67,6 +67,9 @@ from pyspark .sql import SparkSession
 spark = SparkSession.builder.master("yarn").getOrCreate()
 df = spark.read.csv('hdfs://hadoop-master:9000/index/train.csv',mode="DROPMALFORMED")
 
+#Defining schema with ArrayType
+schema = StructType([StructField('array_column', ArrayType(StructType([StructField('element_of_array', StringType(), True)])), True)])
+
 #From local : The third parameter i.e. Boolean Type : True / False denote whether the corresponding filed can be nullable
 from pyspark.sql.types import StructType,StructField,LongType,StringType,TimestampType
 schema=StructType([StructField('col0', LongType(), True), StructField('col1', LongType(), True), StructField('col2', StringType(), True), StructField('col3', StringType(), True),StructField('col4',TimestampType(),True),StructField('col5',TimestampType(),True),StructField('col6',StringType(),True)])
