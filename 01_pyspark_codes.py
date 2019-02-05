@@ -69,7 +69,7 @@ df = spark.read.csv('hdfs://hadoop-master:9000/index/train.csv',mode="DROPMALFOR
 
 #From local
 from pyspark.sql.types import StructType,StructField,LongType,StringType,TimestampType
-schema=StructType([StructField('', LongType(), True), StructField('col1', LongType(), True), StructField('col2', StringType(), True), StructField('col3', StringType(), True),StructField('col4',TimestampType(),True),StructField('col5',TimestampType(),True),StructField('col6',StringType(),True)])
+schema=StructType([StructField('col0', LongType(), True), StructField('col1', LongType(), True), StructField('col2', StringType(), True), StructField('col3', StringType(), True),StructField('col4',TimestampType(),True),StructField('col5',TimestampType(),True),StructField('col6',StringType(),True)])
 df = spark.read.csv('file:///index/data_extract_restart2_without_cert/data_refined.csv',,mode="DROPMALFORMED"),schema=schema)
 
 #Creating UDF
