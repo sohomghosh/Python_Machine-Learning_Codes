@@ -8,7 +8,7 @@ dist = 1 - cosine_similarity(tfidf_matrix)
 linkage_matrix = ward(dist) #define the linkage_matrix using ward clustering pre-computed distances
 
 fig, ax = plt.subplots(figsize=(100, 100),dpi=100) # set size
-ax = dendrogram(linkage_matrix, orientation="right", labels=list(features));
+ax = dendrogram(linkage_matrix, orientation="right", labels=list(tfidf_df.index));#labels are rows of the tfidf  matrix i.e. documents
 
 plt.tick_params(
     axis= 'x',          # changes apply to the x-axis
