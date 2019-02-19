@@ -95,6 +95,10 @@ df.head(5)
 
 df.show(2,truncate= True)
 
+#Adding a static column (let's say new_column) i.e. having all values same (here, 10) to a spark dataframe
+from pyspark.sql.functions import lit
+df.withColumn('new_column', lit(10))
+
 #substring : extrcat hour from datetime i.e. from 2018-01-10 22:00:02 to 22
 df.withColumn('ts', F.split(F.col('dateTime').substr(11,13), ':')[0])
 
