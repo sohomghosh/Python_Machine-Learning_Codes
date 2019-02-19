@@ -666,6 +666,10 @@ centers = model.clusterCenters()
 #Converting date to timestamp
 x = x.withColumn("unix_time", F.unix_timestamp(F.col("DATETIME"), format='yyyy-MM-dd HH:mm:ss'))
 
+#SUM of a column
+df.select(F.sum('col')).collect()[0][0]
+
+
 #pivot(pivot_col, values=None); pivot_col – Name of the column to pivot. values – List of values that will be translated to columns in the output DataFrame
 df4.groupBy("year").pivot("course", ["dotNET", "Java"]).sum("earnings").collect()
 
