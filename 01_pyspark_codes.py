@@ -42,7 +42,10 @@ from pyspark.sql.functions import monotonically_increasing_id
 from pyspark.sql.functions import when
 
 
-#Spark data file read trick
+#Spark data file from folders read trick
+#data_for/day_28 AND data_for/day_29
+#suppose one folder data_for has folders day_28 and day_29. These folders have parquet files; To read all parquet of these two folders together; Try this out:
+data = spark.read.parquet('data_for/*')#Remember * is most important here; with out * recursive traversal and read of files won't happen
 
 
 sc = SparkContext()
