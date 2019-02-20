@@ -92,6 +92,8 @@ udf_dict = udf(dict, StringType())
 
 df.withColumn('new_column_name', udf_dict("col2")).write.csv(path="/index/skill_clean_v3")#col2 is the column to be changed
 
+df.write.csv('/data/file_csv/', mode="overwrite") # May also add:     mode="overwrite", sep="\t"
+
 #TIP : If a dataframe has list / array in one of its' column (like 'student_name_list') it can't be written into a csv file directly
 #Typecaste the column to a string type column
 df_to_write = df.select(data_need.student_name_list.cast("string"), 'class', 'section')
