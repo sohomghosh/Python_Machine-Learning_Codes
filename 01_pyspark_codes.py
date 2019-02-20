@@ -713,4 +713,7 @@ df.write.option("compression","none").save("/raw_data",format="parquet",mode="ov
 
 ###############LEARNINGS / LESSONS FROM MISTAKES###############
 1) While bringing data from Hadoop to Local data system, count (number of rows) match then only proceed
-2)
+2) Validate data several times before submitting
+3) Before after joining use count, count distinct and cross verify
+4) While a new column has to be created with statis values, do it after all the joining and merging operations are over [Reference: boro panch intersection project]
+5) 
