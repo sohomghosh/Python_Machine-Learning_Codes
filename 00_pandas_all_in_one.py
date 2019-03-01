@@ -51,6 +51,16 @@ df['name_surname'] = df['name'].map(str) + df['surname'].map(str)
 #Drop dupicates / duplicate rows
 data=data.drop_duplicates()
 
+#Apply on more than one columns [condition apply to a column based on another]
+#tweet_text_df has 2 columns: 'tweet_text', 'language_detected'
+def func(x):
+    if x['language_detected']!='en':
+        return str(TextBlob('u'+str(x['language_detected'])).translate(to='en'))
+    return x['tweet_text']
+
+tweet_text_df['language_translated'] = tweet_text_df.apply(func, axis=1)
+
+
 
 #Flat Map
 [item for sublist in main_list for item in sublist]
