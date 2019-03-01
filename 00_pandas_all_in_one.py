@@ -25,6 +25,9 @@ pd.read_csv(StringIO(''.join(l.replace('"', '') for l in open("day_data.csv"))))
 #change number display format in pandas
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 
+#change text display format in pandas
+pd.set_option('display.max_colwidth', -1)
+
 **AFTER JOINING ALWAYS CHECK NUMBER OF RECORDS**
 
 #Join no result:
