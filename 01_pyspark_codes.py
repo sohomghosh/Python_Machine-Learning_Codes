@@ -416,6 +416,9 @@ df.select('id', 'col1', 'col2').withColumn('Concat_Result', concat_cols(F.array(
 #Check if an element in present in a column (of Array Type)
 df.withColumn('new_col_name',F.when(F.array_contains(df.col_of_array_type, 'string whose presence to be seen in the array'), 1).otherwise(0))
 
+# if a text is in a field
+df.filter(df.bh.like('%string_to_look_for%'))
+
 #Case when with isin
 df.withColumn('new_gender', F.when(df.gender.isin(['Male', 'Female']), df.gender).otherwise('z-others'))
 
