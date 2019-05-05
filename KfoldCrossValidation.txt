@@ -1,10 +1,11 @@
-from sklearn.cross_validation import Kfold
-kf=Kfold(25,n_folds=5,shuffle=False)
+from sklearn.model_selection import KFold
+kf=KFold(n_splits=10)
 #k=10 recmmended
 
 #cross_val_score:::: USES STRATIFIED SAMPLING
-from sklearn.cross_validation import cross_val_score
+from sklearn.model_selection import cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
+
 knn=KNeighborsClassifier(n_neighbors=5)
 scores=cross_val_score(knn,x,y,cv=10,scoring='accuracy')
 #knn is the model
@@ -12,3 +13,8 @@ scores=cross_val_score(knn,x,y,cv=10,scoring='accuracy')
 #y is test set
 #cv=10 is 10 fold cross validation
 #scoring='accuracy' means using classification accuracy as the evaluation matrix
+
+
+from sklearn.model_selection import cross_validate
+scores = cross_validate(xgb_clf,X,y,cv=10,scoring=['f1', 'roc_auc'])
+scores
