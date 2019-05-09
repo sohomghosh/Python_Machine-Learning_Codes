@@ -75,6 +75,9 @@ df.drop(['column1_to_remove','column2_to_remove'],axis=1)
 #remove / drop rows with index 'Coce' and 'Puma' 
 df.drop(['Coce', 'Puma'])
 
+#Find out the index of the maximum value from each row in a dataframe df
+df.idxmax(axis = 1)
+
 #Group by then join
 #Every man should have min five distinct cars
 c=pd.DataFrame({'is_car_cnt_more5':cleaned_data.groupby(['man_id'])['car_id'].nunique()>=5}).reset_index()
