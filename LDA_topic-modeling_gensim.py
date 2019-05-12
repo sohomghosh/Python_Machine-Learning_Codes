@@ -63,7 +63,7 @@ for dd in doc_clean:
 	fp2.write(str(ldamodel.get_document_topics(bow_vector, minimum_probability=None, minimum_phi_value=None, per_word_topics=False))+"\n")
 fp2.close()
 
-feature_matrix_lda=np.zeros(shape=(train_test.shape[0],100))#as number of topics is 100
+feature_matrix_lda=np.zeros(shape=(train_test.shape[0],50))#as number of topics is 50
 
 rw=0
 for dd in doc_clean:
