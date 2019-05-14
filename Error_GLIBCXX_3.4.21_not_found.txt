@@ -1,0 +1,2 @@
+#Error details: GLIBCXX_3.4.21' not found (required by /home/sohom.ghosh/.conda/envs/python3/lib/python3.6/site-packages/pandas/_libs/window.cpython-36m-x86_64-linux-gnu.so) 
+cp /usr/lib64/libstdc++.so.6 /home/sohom.ghosh/.conda/envs/python3/lib/python3.6/site-packages/pandas/_libs/
