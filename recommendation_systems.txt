@@ -1,0 +1,6 @@
+#Packages to explore
+Tensorrec: https://github.com/jfkirk/tensorrec
+Pyspark ML: https://spark.apache.org/docs/latest/api/python/_modules/pyspark/ml/recommendation.html
+LightFM: https://lyst.github.io/lightfm/docs/home.html
+Implicit: https://implicit.readthedocs.io/en/latest/quickstart.html
+Surprise: http://surpriselib.com/
