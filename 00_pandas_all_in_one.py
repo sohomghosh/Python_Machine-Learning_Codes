@@ -78,6 +78,18 @@ df.drop(['Coce', 'Puma'])
 #Find out the index of the maximum value from each row in a dataframe df
 df.idxmax(axis = 1)
 
+
+#Find out top 5 key words per document
+#Refernce: https://stackoverflow.com/questions/38955182/find-names-of-top-n-highest-value-columns-in-each-pandas-dataframe-row
+nlargest = 5
+order = np.argsort(-tfidf_df.values, axis=1)[:,:nlargest]
+result = pd.DataFrame(tfidf_df.columns[order], 
+                      columns=['top{}'.format(i) for i in range(1, nlargest+1)],
+                      index=tfidf_df.index)
+result.head()
+
+
+
 #Group by then join
 #Every man should have min five distinct cars
 c=pd.DataFrame({'is_car_cnt_more5':cleaned_data.groupby(['man_id'])['car_id'].nunique()>=5}).reset_index()
