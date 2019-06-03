@@ -615,6 +615,7 @@ train_test['DateTime'].dt.date
 df['dA'] = df['A'] - df['A'].shift(-1)
 
 #epoch to datetime
+import time		      
 data['new_date_time_human_readable_col'] = data['epoch_unix_times_time'].apply(lambda x:time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(int(x))))
 
 
