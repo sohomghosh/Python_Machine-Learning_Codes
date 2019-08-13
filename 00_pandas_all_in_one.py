@@ -50,6 +50,8 @@ new_df=pd.concat([df1,df2],axis=1)
 #Combine 2 columns : concat cpntents of 2 columns : example -> name in col1 CONCAT with surname in col2
 df['name_surname'] = df['name'].map(str) + df['surname'].map(str)
 
+#add certain number of days to a date ##Reference: https://stackoverflow.com/questions/20480897/pandas-add-one-day-to-column
+df['new_date_one_advanced'] = pd.DatetimeIndex(pd.to_datetime(df['date'])) + pd.DateOffset(1)
 
 #Drop dupicates / duplicate rows
 data=data.drop_duplicates()
