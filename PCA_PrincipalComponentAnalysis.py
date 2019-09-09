@@ -2,13 +2,18 @@
 #Covariance Matrix Calculation: https://www.itl.nist.gov/div898/handbook/pmc/section5/pmc541.htm
 
 #REMEMBER DO NOT INCLUDE 'Y' i.e. Depedent Variable as input to PCA
-
+#It is a good practise to scale the data before running a PCA
 #Using package PCA
 from numpy import array
+from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+
 # define a matrix
 A = array([[1, 2], [3, 4], [5, 6]])
 print(A)
+scaler = StandardScaler()
+scaler.fit(A)
+A_scaled = scaler.transform(A_scaled)
 # create the PCA instance
 pca = PCA(2) #2 is the number of principal components we want
 # fit on data
