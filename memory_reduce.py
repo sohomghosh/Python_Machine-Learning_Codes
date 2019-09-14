@@ -1,4 +1,4 @@
-#Reference:
+#Reference: https://www.kaggle.com/sunilsj99/fraud-detection-ieee
 import pandas as pd
 import numpy as np
 def reduce_mem_usage(props):
