@@ -281,6 +281,14 @@ train_only_numeric = train._get_numeric_data()
 numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 newdf = df.select_dtypes(include=numerics)
 
+#se;ect only categorical columns
+cat_data = X.select_dtypes(include='object')
+num_data = X.select_dtypes(exclude='object')
+cat_cols = cat_data.columns.values
+num_cols = num_data.columns.values
+print('Categorical Columns : ',cat_cols)
+print('Numerical Columns : ',num_cols)		      
+		      
 #Filter by list
 In [5]: df = DataFrame({'A' : [5,6,3,4], 'B' : [1,2,3, 5]})
 
