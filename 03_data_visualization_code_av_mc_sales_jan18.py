@@ -128,6 +128,19 @@ train['Source_Category'].value_counts().sort_index().head(1000).plot.bar() #For 
 train['Var1'].value_counts().sort_index().head(1000).plot.bar()
 
 
+fig = plt.figure(figsize=(20,15))
+
+#Bar plot / Histogram for all categorical variables at one go. Reference: https://www.kaggle.com/sunilsj99/fraud-detection-ieee
+cat_data = df.select_dtypes(include='object')
+cat_cols = cat_data.columns.values
+j = 1
+for i in cat_cols:
+    plt.subplot(3,3,j)
+    sns.countplot(x=X[i], palette='winter_r')
+    j = j + 1
+plt.show()
+
+
 # ## Line charts of numeric data (Univariate Analysis)
 
 # In[39]:
@@ -210,6 +223,18 @@ sns.distplot(train['Interest_Rate'].dropna(), bins=5, kde=False)
 
 
 train['Interest_Rate'].value_counts().sort_index().plot.bar(figsize=(15, 10))
+
+#Distribution plot / Histogram for all numeric variables at one go. Reference: https://www.kaggle.com/sunilsj99/fraud-detection-ieee
+
+num_data = df.select_dtypes(exclude='object')
+num_cols = num_data.columns.values
+fig = plt.figure(figsize=(20,15))
+j = 1
+for i in num_cols:
+    plt.subplot(3,3,j)
+    sns.distplot(a=X[i])
+    j = j + 1    
+plt.show()
 
 
 # ## Pie Charts (Univariate Analysis)
