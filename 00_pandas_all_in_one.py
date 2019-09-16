@@ -56,6 +56,9 @@ df['new_date_one_advanced'] = pd.DatetimeIndex(pd.to_datetime(df['date'])) + pd.
 #Drop dupicates / duplicate rows
 data=data.drop_duplicates()
 
+#Drop duplicate columns
+df = df.loc[:,~df.columns.duplicated()]
+
 #Apply on more than one columns [condition apply to a column based on another]
 #tweet_text_df has 2 columns: 'tweet_text', 'language_detected'
 def func(x):
