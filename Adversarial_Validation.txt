@@ -1,0 +1,6 @@
+Adversarial Validation (Reference: http://fastml.com/adversarial-validation-part-two/)
+---------------------
+#To ensusre that training and validation set represents same kind of distribution
+1) Train a classifier to identify whether data comes from the train (label 'istrain' as flag = 1) or test set (label 'istrain' as flag = 0).
+2) Sort the training data by it’s probability of being in the test set [i.e. is in increasing order of probability].
+3) Select the training data most similar to the test data  (i.e. having near to 0 predictions) as your validation set.
