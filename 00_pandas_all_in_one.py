@@ -120,7 +120,7 @@ gf.groupby(['id'], as_index=False).size().reset_index().rename(columns={0:'new_c
 cluster_attribites=pd.DataFrame({'attribute_frequency' : data_use.groupby('animal_id').apply(lambda x: str(Counter([item for sublist in [i.split(',') for i in list(x['attributes'])] for item in sublist])))}).reset_index()
 
 
-#Group Concat
+#Group Concat / collect list, collect set, collect_list, collect_set
 df.groupby('team').apply(lambda x: ','.join(x.user))
 df.groupby('team').apply(lambda x: [i for i in x.user])
 
