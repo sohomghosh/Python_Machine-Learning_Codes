@@ -5,7 +5,7 @@ import xgboost as xgb
 import matplotlib.pyplot as plt
 import pylab
 import seaborn as sns
-from pandas.tools.plotting import scatter_matrix
+from pandas.plotting import scatter_matrix #from pandas.tools.plotting import scatter_matrix
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import f1_score
 from sklearn.metrics import roc_auc_score, auc,roc_curve
