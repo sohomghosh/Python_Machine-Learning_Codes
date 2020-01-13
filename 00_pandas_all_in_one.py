@@ -68,6 +68,12 @@ def func(x):
 
 tweet_text_df['language_translated'] = tweet_text_df.apply(func, axis=1)
 
+#Apply on 2 or more different columns as arguments
+def func_di(col1, col2):
+	return col1+col2
+
+df.apply(lambda x : func_di(x['col_name_1'], x['col_name_2']), axis = 1)
+
 
 
 #Flat Map
