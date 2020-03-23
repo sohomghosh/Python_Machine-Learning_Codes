@@ -28,6 +28,10 @@ pd.set_option('display.float_format', lambda x: '%.3f' % x)
 #change text display format in pandas
 pd.set_option('display.max_colwidth', -1)
 
+#Store the output of a dataframe by filtering into another
+df_new = df[df['value_of_num']>25].copy()
+#Remeber .copy() statement is very important. Otherwise just a reference of df will be stored.
+
 **AFTER JOINING ALWAYS CHECK NUMBER OF RECORDS**
 
 #Join no result:
@@ -37,7 +41,7 @@ If after joining two pandas dataframes you are getting no results then check the
 USE 
 df.drop_duplicates() before join
 
-
+#Use .iloc, .ix instead os df_new['new_column']= [1,2,3]
 
 #Column rearrange
 final_data = final_data[['col4','col2','col1']]
