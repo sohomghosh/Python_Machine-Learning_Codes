@@ -1041,6 +1041,14 @@ df = pd.DataFrame({'actual_label' : validation_df['label'], 'predicted' : valid_
 df['deciles'] = pd.qcut(df['predicted'].values,10)
 df.reset_index().groupby('deciles').agg({'index':np.size,'actual_label':np.sum,'predicted':np.sum})
 df.reset_index().groupby('deciles').agg({'actual_label':np.mean}) #The mean of actual_label should increase from 0th deciles to 10th deciles
+#Remember when decile borders are overlapping then qcut doesn't cretae all the buckets and duplicates = 'drop' argument needs to be passed
+#Use the following then
+df = pd.DataFrame({'actual_label' : validation_df['label'], 'predicted' : valid_preds}).sort_values('predicted', ascending = False)
+df_sorted = df.sort_values('predicted', ascending = False).reset_index()
+bucket_len = df_sorted.shape[0]/10 #10 as deciles
+df_sorted['decile'] = (df_sorted.index/bucket_len)+1		      
+df_sorted['decile'] = df_sorted['decile'].astype('int')
+		      
 ################################LEARNINGS################################
 1) If 2 dataframe does not join or produces no/nan values on joining, check if the datatype of their common columns are same
 2) df.replace ({'a':'aa'}) is not efficient when number of rows and columns are more, better read row by row and replace elementwise
