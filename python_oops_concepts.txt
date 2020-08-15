@@ -1,0 +1,21 @@
+#Note from : Python Four Pillars Course
+Inheritance
+-----------
+Single Inheritance
+Multiple Inheritance
+Multi level Inheritance
+
+SingleInheritance.py
+--------------------
+Python first checks as an instance attribute, if not present then as a class attribute, then goes and checks at the base class
+
+MultipleInheritance.py
+----------------------
+Inherit from 2 classes
+Separate multiple classes with comma
+If same attribute is being inherited from 2 class, the class mentioned first i.e. before comma it's attributes will be taken
+
+Access specifiers
+-----------------
+Public => memberName [as it is, no change] {anywhere inside/outside the program} (like pasting a paper with information outside ones house such that everyone can see)
+Protected => 
