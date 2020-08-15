@@ -17,12 +17,13 @@ A_scaled = scaler.transform(A_scaled)
 # create the PCA instance
 pca = PCA(2) #2 is the number of principal components we want
 # fit on data
-pca.fit(A)
+pca.fit(A_scaled)
 # access values and vectors
+print(pca.explained_variance_ratio_)
 print(pca.components_)
 print(pca.explained_variance_)
 # transform data
-B = pca.transform(A)
+B = pca.transform(A_scaled)
 print(B) #B is the final transformed data which is to be used
 
 
