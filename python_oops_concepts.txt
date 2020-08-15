@@ -18,4 +18,33 @@ If same attribute is being inherited from 2 class, the class mentioned first i.e
 Access specifiers
 -----------------
 Public => memberName [as it is, no change] {anywhere inside/outside the program} (like pasting a paper with information outside ones house such that everyone can see)
-Protected => 
+Protected => _memberName [starts with single underscore] {This class, derived class and no where else} (like pasting a paper with information in own house so that all house members can see, but outsiders can't)
+Private => __memberName [starts with double underscore] {only this class in the program} (like pasting a paper with information in own personal room)
+
+
+Special methods => __specialMethodName__ [starts and end with two underscore]
+Name mangling (when private members need to be accessed out side class just like public members)
+Simply add suffix __ClassName to it that is __variableName becomes __ClassName__variableName
+
+super keyword let us refer to the base class members
+
+Diamond Shape problem in multiple inheritance
+It is avoided in Python as the class which occurs first (left to right, the leftmost class) is given preference
+
+Operator overloading
+--------------------
+Example: Plus(+) operator does not know how to handle 2 operators of type Object
+
+Abstract Base class
+-------------------
+Example: Ensure every class has a method area
+Abstract classes does not have a definition of its' own. It has abstract methods which forces the implementation in its derived class. All the abstract methods has been to implement in each of the derived class.
+
+ABCMeta is a class which has properties of a abstract base class
+
+Use @abstractmethod decorator to make sure that the method is abstract
+
+An abstract class should not be able to instantiate an object for itself
+An abstract class can only be inherited in its' derived classes
+
+Rule of a programmer : DRY (Don't Repeat Yourself)
