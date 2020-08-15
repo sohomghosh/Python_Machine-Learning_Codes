@@ -78,6 +78,12 @@ def func_di(col1, col2):
 
 df.apply(lambda x : func_di(x['col_name_1'], x['col_name_2']), axis = 1)
 
+#sort a dataframe based on a column in another dataframe pandas: [Reference: https://stackoverflow.com/questions/45576800/how-to-sort-dataframe-based-on-a-column-in-another-dataframe-in-pandas]
+df1 = pd.DataFrame({'Col1': ['a','b','c','d','e'], 'Col2': ['chocolate','chicken','pizza','icecream','cake'] })
+df2 = pd.DataFrame({'Col1': ['f','g','h','i','j'], 'Col2': ['chicken','cake','icecream','chocolate','pizza'] })
+df1 = df1.set_index('Col2')
+df1 = df1.reindex(index=df2['Col2'])
+df1 = df1.reset_index()
 
 
 #Flat Map
