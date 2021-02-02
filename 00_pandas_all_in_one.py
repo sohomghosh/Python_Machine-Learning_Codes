@@ -90,6 +90,9 @@ df1 = df1.reset_index()
 [item for sublist in main_list for item in sublist]
 flatten = lambda main_list: [item for sublist in main_list for item in sublist]
 
+#Map (applied on series object)
+pd.Series([1,2,3]).map(lambda x:pd.Series([x,x]))
+
 #remove / drop a column
 df.drop(['column1_to_remove','column2_to_remove'],axis=1)
 
@@ -99,6 +102,9 @@ df.drop(['Coce', 'Puma'])
 #Find out the index of the maximum value from each row in a dataframe df
 df.idxmax(axis = 1)
 
+#Read a list which was stored as a string while saving dataframe
+import ast
+df.col_new = df.col_with_list.map(ast.literal_eval)
 
 #Find out top 5 key words per document
 #Refernce: https://stackoverflow.com/questions/38955182/find-names-of-top-n-highest-value-columns-in-each-pandas-dataframe-row
@@ -109,7 +115,8 @@ result = pd.DataFrame(tfidf_df.columns[order],
                       index=tfidf_df.index)
 result.head()
 
-
+#dataframe as dictionary
+dict_for_repl = dict(zip(df[col_as_keys].values,df[col_as_values].values))
 
 #Group by then join
 #Every man should have min five distinct cars
